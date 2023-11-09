@@ -28,5 +28,19 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Products">
+      <EntityTypeMapping TypeName="InventoryDBModel.Products">
+        <MappingFragment StoreEntitySet="Products">
+          <ScalarProperty Name="categoryID" ColumnName="categoryID" />
+          <ScalarProperty Name="product_Description" ColumnName="product_Description" />
+          <ScalarProperty Name="product_Price" ColumnName="product_Price" />
+          <ScalarProperty Name="product_Quantity" ColumnName="product_Quantity" />
+          <ScalarProperty Name="product_Sku" ColumnName="product_Sku" />
+          <ScalarProperty Name="product_Name" ColumnName="product_Name" />
+          <ScalarProperty Name="productID" ColumnName="productID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_AddNewProduct" FunctionName="InventoryDBModel.Store.sp_AddNewProduct" />
   </EntityContainerMapping>
 </Mapping>

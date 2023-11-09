@@ -13,13 +13,28 @@ namespace Inventory_Management_System.Models
 {
 
 using System;
+    using System.Collections.Generic;
     
-public partial class sp_ValidateAccount_Result
+public partial class Products
 {
 
-    public int user_ID { get; set; }
+    public int productID { get; set; }
 
-    public string user_Position { get; set; }
+    public string product_Name { get; set; }
+
+    public string product_Sku { get; set; }
+
+    public string product_Quantity { get; set; }
+
+    public Nullable<decimal> product_Price { get; set; }
+
+    public string product_Description { get; set; }
+
+    public int categoryID { get; set; }
+
+
+
+    public virtual Category Category { get; set; }
 
 }
 

@@ -17,6 +17,19 @@
       <Parameter Name="user_password" Mode="In" Type="String" />
     </FunctionImport>
     <EntitySet Name="Category" EntityType="InventoryDBModel.Category" />
+    <EntitySet Name="Products" EntityType="InventoryDBModel.Products" />
+    <AssociationSet Name="FK_Products_Category" Association="InventoryDBModel.FK_Products_Category">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
+    <FunctionImport Name="sp_AddNewProduct">
+      <Parameter Name="CategoryName" Mode="In" Type="String" />
+      <Parameter Name="productName" Mode="In" Type="String" />
+      <Parameter Name="product_sku" Mode="In" Type="String" />
+      <Parameter Name="product_quantity" Mode="In" Type="String" />
+      <Parameter Name="product_price" Mode="In" Type="Decimal" />
+      <Parameter Name="product_description" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="sp_ValidateAccount_Result">
     <Property Type="Int32" Name="user_ID" Nullable="false" />
@@ -28,5 +41,31 @@
     </Key>
     <Property Name="categoryID" Type="Int32" Nullable="false" />
     <Property Name="categoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Products" Relationship="InventoryDBModel.FK_Products_Category" FromRole="Category" ToRole="Products" />
   </EntityType>
+  <EntityType Name="Products">
+    <Key>
+      <PropertyRef Name="productID" />
+    </Key>
+    <Property Name="productID" Type="Int32" Nullable="false" />
+    <Property Name="product_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="product_Sku" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="product_Quantity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="product_Price" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="product_Description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="categoryID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Category" Relationship="InventoryDBModel.FK_Products_Category" FromRole="Products" ToRole="Category" />
+  </EntityType>
+  <Association Name="FK_Products_Category">
+    <End Type="InventoryDBModel.Category" Role="Category" Multiplicity="1" />
+    <End Type="InventoryDBModel.Products" Role="Products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="categoryID" />
+      </Principal>
+      <Dependent Role="Products">
+        <PropertyRef Name="categoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

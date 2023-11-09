@@ -19,9 +19,41 @@
           <Key>
             <PropertyRef Name="categoryID" />
           </Key>
-          <Property Name="categoryID" Type="int" Nullable="false" />
+          <Property Name="categoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="categoryName" Type="varchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="productID" />
+          </Key>
+          <Property Name="productID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="product_Name" Type="varchar" MaxLength="50" />
+          <Property Name="product_Sku" Type="varchar" MaxLength="50" />
+          <Property Name="product_Quantity" Type="varchar" MaxLength="50" />
+          <Property Name="product_Price" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="product_Description" Type="varchar" MaxLength="255" />
+          <Property Name="categoryID" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Products_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="1" />
+          <End Role="Products" Type="Self.Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="categoryID" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="categoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="sp_AddNewProduct" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CategoryName" Type="varchar" Mode="In" />
+          <Parameter Name="productName" Type="varchar" Mode="In" />
+          <Parameter Name="product_sku" Type="varchar" Mode="In" />
+          <Parameter Name="product_quantity" Type="varchar" Mode="In" />
+          <Parameter Name="product_price" Type="decimal" Mode="In" />
+          <Parameter Name="product_description" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="sp_ValidateAccount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="user_name" Type="varchar" Mode="In" />
           <Parameter Name="user_password" Type="varchar" Mode="In" />
@@ -29,6 +61,11 @@
         <EntityContainer Name="InventoryDBModelStoreContainer">
           <EntitySet Name="Accounts" EntityType="Self.Accounts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Products_Category" Association="Self.FK_Products_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -51,6 +88,19 @@
             <Parameter Name="user_password" Mode="In" Type="String" />
           </FunctionImport>
           <EntitySet Name="Category" EntityType="InventoryDBModel.Category" />
+          <EntitySet Name="Products" EntityType="InventoryDBModel.Products" />
+          <AssociationSet Name="FK_Products_Category" Association="InventoryDBModel.FK_Products_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <FunctionImport Name="sp_AddNewProduct">
+            <Parameter Name="CategoryName" Mode="In" Type="String" />
+            <Parameter Name="productName" Mode="In" Type="String" />
+            <Parameter Name="product_sku" Mode="In" Type="String" />
+            <Parameter Name="product_quantity" Mode="In" Type="String" />
+            <Parameter Name="product_price" Mode="In" Type="Decimal" />
+            <Parameter Name="product_description" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="sp_ValidateAccount_Result">
           <Property Type="Int32" Name="user_ID" Nullable="false" />
@@ -62,7 +112,33 @@
           </Key>
           <Property Name="categoryID" Type="Int32" Nullable="false" />
           <Property Name="categoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Products" Relationship="InventoryDBModel.FK_Products_Category" FromRole="Category" ToRole="Products" />
         </EntityType>
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="productID" />
+          </Key>
+          <Property Name="productID" Type="Int32" Nullable="false" />
+          <Property Name="product_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="product_Sku" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="product_Quantity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="product_Price" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="product_Description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="categoryID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Category" Relationship="InventoryDBModel.FK_Products_Category" FromRole="Products" ToRole="Category" />
+        </EntityType>
+        <Association Name="FK_Products_Category">
+          <End Type="InventoryDBModel.Category" Role="Category" Multiplicity="1" />
+          <End Type="InventoryDBModel.Products" Role="Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="categoryID" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="categoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -96,6 +172,20 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="InventoryDBModel.Products">
+              <MappingFragment StoreEntitySet="Products">
+                <ScalarProperty Name="categoryID" ColumnName="categoryID" />
+                <ScalarProperty Name="product_Description" ColumnName="product_Description" />
+                <ScalarProperty Name="product_Price" ColumnName="product_Price" />
+                <ScalarProperty Name="product_Quantity" ColumnName="product_Quantity" />
+                <ScalarProperty Name="product_Sku" ColumnName="product_Sku" />
+                <ScalarProperty Name="product_Name" ColumnName="product_Name" />
+                <ScalarProperty Name="productID" ColumnName="productID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_AddNewProduct" FunctionName="InventoryDBModel.Store.sp_AddNewProduct" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

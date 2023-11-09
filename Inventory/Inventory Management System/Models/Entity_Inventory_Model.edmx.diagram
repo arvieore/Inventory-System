@@ -7,6 +7,8 @@
       <Diagram DiagramId="5791d7a5a0a44289b9de235bacd0385f" Name="Diagram1">
         <EntityTypeShape EntityType="InventoryDBModel.Accounts" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="InventoryDBModel.Category" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="InventoryDBModel.Products" Width="1.5" PointX="3" PointY="3.25" />
+        <AssociationConnector Association="InventoryDBModel.FK_Products_Category" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

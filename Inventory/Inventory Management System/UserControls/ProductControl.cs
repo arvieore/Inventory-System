@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Inventory_Management_System.Models;
+using Inventory_Management_System.Forms;
 
 namespace Inventory_Management_System.UserControls
 {
@@ -18,16 +19,6 @@ namespace Inventory_Management_System.UserControls
         {
             InitializeComponent();
             db = new DB_InventoryEntities();
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-            Graphics gra = this.panel1.CreateGraphics();
-            Pen blackPen = new Pen(Color.Black, 3);
-            PointF pnt1 = new PointF(8.0F, 50.0F);
-            PointF pnt2 = new PointF(825.0F, 50.0F);
-
-            e.Graphics.DrawLine(blackPen, pnt1, pnt2);
         }
         public void loadCbBoxCategory()
         {
@@ -46,7 +37,18 @@ namespace Inventory_Management_System.UserControls
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            AddForm add = new AddForm();
+            add.ShowDialog();
+        }
 
+        private void panelHeader_Paint(object sender, PaintEventArgs e)
+        {
+            Graphics gra = this.panel1.CreateGraphics();
+            Pen blackPen = new Pen(Color.Black, 3);
+            PointF pnt1 = new PointF(8.0F, 50.0F);
+            PointF pnt2 = new PointF(825.0F, 50.0F);
+
+            e.Graphics.DrawLine(blackPen, pnt1, pnt2);
         }
     }
 }
