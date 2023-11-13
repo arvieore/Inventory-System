@@ -30,6 +30,9 @@
       <Parameter Name="product_price" Mode="In" Type="Decimal" />
       <Parameter Name="product_description" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="sp_CategoryFilter" ReturnType="Collection(InventoryDBModel.sp_CategoryFilter_Result)">
+      <Parameter Name="CategoryFiltered" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="sp_ValidateAccount_Result">
     <Property Type="Int32" Name="user_ID" Nullable="false" />
@@ -68,4 +71,12 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <ComplexType Name="sp_CategoryFilter_Result">
+    <Property Type="Int32" Name="productID" Nullable="false" />
+    <Property Type="String" Name="product_Name" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="product_Sku" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="product_Quantity" Nullable="true" MaxLength="50" />
+    <Property Type="Decimal" Name="product_Price" Nullable="true" Precision="10" Scale="2" />
+    <Property Type="String" Name="product_Description" Nullable="true" MaxLength="255" />
+  </ComplexType>
 </Schema>

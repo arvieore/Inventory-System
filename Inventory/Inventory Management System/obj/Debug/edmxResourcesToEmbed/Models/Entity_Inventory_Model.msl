@@ -42,5 +42,17 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <FunctionImportMapping FunctionImportName="sp_AddNewProduct" FunctionName="InventoryDBModel.Store.sp_AddNewProduct" />
+    <FunctionImportMapping FunctionImportName="sp_CategoryFilter" FunctionName="InventoryDBModel.Store.sp_CategoryFilter">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="InventoryDBModel.sp_CategoryFilter_Result">
+          <ScalarProperty Name="productID" ColumnName="productID" />
+          <ScalarProperty Name="product_Name" ColumnName="product_Name" />
+          <ScalarProperty Name="product_Sku" ColumnName="product_Sku" />
+          <ScalarProperty Name="product_Quantity" ColumnName="product_Quantity" />
+          <ScalarProperty Name="product_Price" ColumnName="product_Price" />
+          <ScalarProperty Name="product_Description" ColumnName="product_Description" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Inventory_Management_System.Models;
 using Inventory_Management_System.Functions;
+using Guna.UI2.WinForms.Suite;
+using System.Diagnostics;
 
 namespace Inventory_Management_System.Forms
 {
@@ -16,6 +18,7 @@ namespace Inventory_Management_System.Forms
     {
         private DB_InventoryEntities db;
         private String category;
+        private Commands cmd;
         public AddForm()
         {
             InitializeComponent();
@@ -73,7 +76,8 @@ namespace Inventory_Management_System.Forms
             {
                 category = cbx_Category.Text;
             }
-            Commands cmd = new Commands();
+            cmd = new Commands(db);
+            cmd.InitializeDB();
             cmd.AddNewProductCommand(category, txtItemName.Text, txtSKU.Text, txtQuantity.Text, decimal.Parse(txtItemPrice.Text), txtDescription.Text);
 
             MessageBox.Show("Added successfully!");

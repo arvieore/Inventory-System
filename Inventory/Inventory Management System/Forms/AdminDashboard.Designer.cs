@@ -50,7 +50,7 @@
             this.guna2GradientPanel1.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(40)))), ((int)(((byte)(50)))));
             this.guna2GradientPanel1.Location = new System.Drawing.Point(0, 0);
             this.guna2GradientPanel1.Name = "guna2GradientPanel1";
-            this.guna2GradientPanel1.Size = new System.Drawing.Size(200, 555);
+            this.guna2GradientPanel1.Size = new System.Drawing.Size(200, 610);
             this.guna2GradientPanel1.TabIndex = 11;
             // 
             // panelHover
@@ -106,7 +106,7 @@
             this.guna2Panel1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(110)))), ((int)(((byte)(140)))));
             this.guna2Panel1.Location = new System.Drawing.Point(200, 0);
             this.guna2Panel1.Name = "guna2Panel1";
-            this.guna2Panel1.Size = new System.Drawing.Size(857, 24);
+            this.guna2Panel1.Size = new System.Drawing.Size(915, 24);
             this.guna2Panel1.TabIndex = 12;
             // 
             // ExitIcon
@@ -117,7 +117,7 @@
             this.ExitIcon.FillColor = System.Drawing.Color.Transparent;
             this.ExitIcon.Image = global::Inventory_Management_System.Properties.Resources.reject_removebg_preview;
             this.ExitIcon.ImageRotate = 0F;
-            this.ExitIcon.Location = new System.Drawing.Point(838, 0);
+            this.ExitIcon.Location = new System.Drawing.Point(896, 0);
             this.ExitIcon.Name = "ExitIcon";
             this.ExitIcon.Size = new System.Drawing.Size(19, 24);
             this.ExitIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -130,14 +130,14 @@
             this.MainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MainPanel.Location = new System.Drawing.Point(200, 24);
             this.MainPanel.Name = "MainPanel";
-            this.MainPanel.Size = new System.Drawing.Size(857, 531);
+            this.MainPanel.Size = new System.Drawing.Size(915, 586);
             this.MainPanel.TabIndex = 13;
             // 
             // AdminDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1057, 555);
+            this.ClientSize = new System.Drawing.Size(1115, 610);
             this.Controls.Add(this.MainPanel);
             this.Controls.Add(this.guna2Panel1);
             this.Controls.Add(this.guna2GradientPanel1);

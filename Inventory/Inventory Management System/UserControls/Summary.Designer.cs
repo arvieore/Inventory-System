@@ -54,9 +54,9 @@
             this.PanelStocks.Controls.Add(this.label4);
             this.PanelStocks.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(9)))), ((int)(((byte)(125)))));
             this.PanelStocks.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(96)))), ((int)(((byte)(161)))));
-            this.PanelStocks.Location = new System.Drawing.Point(595, 68);
+            this.PanelStocks.Location = new System.Drawing.Point(611, 68);
             this.PanelStocks.Name = "PanelStocks";
-            this.PanelStocks.Size = new System.Drawing.Size(231, 159);
+            this.PanelStocks.Size = new System.Drawing.Size(267, 177);
             this.PanelStocks.TabIndex = 1;
             // 
             // label5
@@ -64,7 +64,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(56, 74);
+            this.label5.Location = new System.Drawing.Point(87, 74);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(0, 31);
             this.label5.TabIndex = 2;
@@ -75,7 +75,7 @@
             this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(59, 46);
+            this.label4.Location = new System.Drawing.Point(90, 46);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(76, 15);
             this.label4.TabIndex = 2;
@@ -89,9 +89,9 @@
             this.PanelCategory.Controls.Add(this.label3);
             this.PanelCategory.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.PanelCategory.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(145)))), ((int)(((byte)(145)))));
-            this.PanelCategory.Location = new System.Drawing.Point(303, 68);
+            this.PanelCategory.Location = new System.Drawing.Point(312, 68);
             this.PanelCategory.Name = "PanelCategory";
-            this.PanelCategory.Size = new System.Drawing.Size(231, 159);
+            this.PanelCategory.Size = new System.Drawing.Size(267, 177);
             this.PanelCategory.TabIndex = 1;
             // 
             // lblTotalCategory
@@ -99,7 +99,7 @@
             this.lblTotalCategory.AutoSize = true;
             this.lblTotalCategory.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTotalCategory.ForeColor = System.Drawing.Color.White;
-            this.lblTotalCategory.Location = new System.Drawing.Point(56, 74);
+            this.lblTotalCategory.Location = new System.Drawing.Point(87, 74);
             this.lblTotalCategory.Name = "lblTotalCategory";
             this.lblTotalCategory.Size = new System.Drawing.Size(0, 31);
             this.lblTotalCategory.TabIndex = 2;
@@ -109,7 +109,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(59, 46);
+            this.label3.Location = new System.Drawing.Point(90, 46);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(85, 15);
             this.label3.TabIndex = 2;
@@ -125,7 +125,7 @@
             this.PanelItems.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(114)))), ((int)(((byte)(142)))));
             this.PanelItems.Location = new System.Drawing.Point(7, 68);
             this.PanelItems.Name = "PanelItems";
-            this.PanelItems.Size = new System.Drawing.Size(231, 159);
+            this.PanelItems.Size = new System.Drawing.Size(267, 177);
             this.PanelItems.TabIndex = 1;
             // 
             // lblTotalProduct
@@ -133,7 +133,7 @@
             this.lblTotalProduct.AutoSize = true;
             this.lblTotalProduct.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTotalProduct.ForeColor = System.Drawing.Color.White;
-            this.lblTotalProduct.Location = new System.Drawing.Point(56, 74);
+            this.lblTotalProduct.Location = new System.Drawing.Point(87, 74);
             this.lblTotalProduct.Name = "lblTotalProduct";
             this.lblTotalProduct.Size = new System.Drawing.Size(0, 31);
             this.lblTotalProduct.TabIndex = 2;
@@ -143,7 +143,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(59, 46);
+            this.label2.Location = new System.Drawing.Point(90, 46);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(85, 15);
             this.label2.TabIndex = 2;
@@ -155,7 +155,7 @@
             this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelHeader.Location = new System.Drawing.Point(0, 0);
             this.panelHeader.Name = "panelHeader";
-            this.panelHeader.Size = new System.Drawing.Size(829, 44);
+            this.panelHeader.Size = new System.Drawing.Size(885, 44);
             this.panelHeader.TabIndex = 0;
             // 
             // label1
@@ -179,7 +179,7 @@
             this.panel1.Controls.Add(this.panelHeader);
             this.panel1.Location = new System.Drawing.Point(14, 14);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(829, 496);
+            this.panel1.Size = new System.Drawing.Size(885, 518);
             this.panel1.TabIndex = 0;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
@@ -190,7 +190,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.panel1);
             this.Name = "Summary";
-            this.Size = new System.Drawing.Size(857, 531);
+            this.Size = new System.Drawing.Size(915, 586);
             this.Load += new System.EventHandler(this.Summary_Load);
             this.PanelStocks.ResumeLayout(false);
             this.PanelStocks.PerformLayout();

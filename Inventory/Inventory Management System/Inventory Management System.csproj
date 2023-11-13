@@ -106,6 +106,9 @@
     <Compile Include="Models\Products.cs">
       <DependentUpon>Entity_Inventory_Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\sp_CategoryFilter_Result.cs">
+      <DependentUpon>Entity_Inventory_Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\sp_ValidateAccount_Result.cs">
       <DependentUpon>Entity_Inventory_Model.tt</DependentUpon>
     </Compile>

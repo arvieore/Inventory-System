@@ -49,6 +49,9 @@
     <Parameter Name="product_price" Type="decimal" Mode="In" />
     <Parameter Name="product_description" Type="varchar" Mode="In" />
   </Function>
+  <Function Name="sp_CategoryFilter" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CategoryFiltered" Type="varchar" Mode="In" />
+  </Function>
   <Function Name="sp_ValidateAccount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="user_name" Type="varchar" Mode="In" />
     <Parameter Name="user_password" Type="varchar" Mode="In" />

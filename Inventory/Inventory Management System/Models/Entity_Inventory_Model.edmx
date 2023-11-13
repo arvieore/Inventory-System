@@ -54,6 +54,9 @@
           <Parameter Name="product_price" Type="decimal" Mode="In" />
           <Parameter Name="product_description" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="sp_CategoryFilter" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CategoryFiltered" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="sp_ValidateAccount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="user_name" Type="varchar" Mode="In" />
           <Parameter Name="user_password" Type="varchar" Mode="In" />
@@ -101,6 +104,9 @@
             <Parameter Name="product_price" Mode="In" Type="Decimal" />
             <Parameter Name="product_description" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="sp_CategoryFilter" ReturnType="Collection(InventoryDBModel.sp_CategoryFilter_Result)">
+          <Parameter Name="CategoryFiltered" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="sp_ValidateAccount_Result">
           <Property Type="Int32" Name="user_ID" Nullable="false" />
@@ -139,6 +145,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <ComplexType Name="sp_CategoryFilter_Result">
+          <Property Type="Int32" Name="productID" Nullable="false" />
+          <Property Type="String" Name="product_Name" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="product_Sku" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="product_Quantity" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="product_Price" Nullable="true" Precision="10" Scale="2" />
+          <Property Type="String" Name="product_Description" Nullable="true" MaxLength="255" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -186,6 +200,18 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="sp_AddNewProduct" FunctionName="InventoryDBModel.Store.sp_AddNewProduct" />
+          <FunctionImportMapping FunctionImportName="sp_CategoryFilter" FunctionName="InventoryDBModel.Store.sp_CategoryFilter">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="InventoryDBModel.sp_CategoryFilter_Result">
+                <ScalarProperty Name="productID" ColumnName="productID" />
+                <ScalarProperty Name="product_Name" ColumnName="product_Name" />
+                <ScalarProperty Name="product_Sku" ColumnName="product_Sku" />
+                <ScalarProperty Name="product_Quantity" ColumnName="product_Quantity" />
+                <ScalarProperty Name="product_Price" ColumnName="product_Price" />
+                <ScalarProperty Name="product_Description" ColumnName="product_Description" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

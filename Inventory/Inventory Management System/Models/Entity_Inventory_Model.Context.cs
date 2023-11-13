@@ -95,6 +95,18 @@ public partial class DB_InventoryEntities : DbContext
         return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_AddNewProduct", categoryNameParameter, productNameParameter, product_skuParameter, product_quantityParameter, product_priceParameter, product_descriptionParameter);
     }
 
+
+    public virtual ObjectResult<sp_CategoryFilter_Result> sp_CategoryFilter(string categoryFiltered)
+    {
+
+        var categoryFilteredParameter = categoryFiltered != null ?
+            new ObjectParameter("CategoryFiltered", categoryFiltered) :
+            new ObjectParameter("CategoryFiltered", typeof(string));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_CategoryFilter_Result>("sp_CategoryFilter", categoryFilteredParameter);
+    }
+
 }
 
 }
