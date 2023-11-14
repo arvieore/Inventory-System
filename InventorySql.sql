@@ -86,3 +86,6 @@ BEGIN
 		WHERE c.categoryName = @CategoryFiltered;
 	END
 END
+
+
+SELECT * FROM Products

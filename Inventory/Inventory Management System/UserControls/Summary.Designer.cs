@@ -54,7 +54,7 @@
             this.PanelStocks.Controls.Add(this.label4);
             this.PanelStocks.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(9)))), ((int)(((byte)(125)))));
             this.PanelStocks.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(96)))), ((int)(((byte)(161)))));
-            this.PanelStocks.Location = new System.Drawing.Point(611, 68);
+            this.PanelStocks.Location = new System.Drawing.Point(694, 68);
             this.PanelStocks.Name = "PanelStocks";
             this.PanelStocks.Size = new System.Drawing.Size(267, 177);
             this.PanelStocks.TabIndex = 1;
@@ -89,7 +89,7 @@
             this.PanelCategory.Controls.Add(this.label3);
             this.PanelCategory.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.PanelCategory.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(145)))), ((int)(((byte)(145)))));
-            this.PanelCategory.Location = new System.Drawing.Point(312, 68);
+            this.PanelCategory.Location = new System.Drawing.Point(360, 68);
             this.PanelCategory.Name = "PanelCategory";
             this.PanelCategory.Size = new System.Drawing.Size(267, 177);
             this.PanelCategory.TabIndex = 1;
@@ -155,7 +155,7 @@
             this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelHeader.Location = new System.Drawing.Point(0, 0);
             this.panelHeader.Name = "panelHeader";
-            this.panelHeader.Size = new System.Drawing.Size(885, 44);
+            this.panelHeader.Size = new System.Drawing.Size(967, 44);
             this.panelHeader.TabIndex = 0;
             // 
             // label1
@@ -179,7 +179,7 @@
             this.panel1.Controls.Add(this.panelHeader);
             this.panel1.Location = new System.Drawing.Point(14, 14);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(885, 518);
+            this.panel1.Size = new System.Drawing.Size(967, 518);
             this.panel1.TabIndex = 0;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
@@ -190,7 +190,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.panel1);
             this.Name = "Summary";
-            this.Size = new System.Drawing.Size(915, 586);
+            this.Size = new System.Drawing.Size(996, 586);
             this.Load += new System.EventHandler(this.Summary_Load);
             this.PanelStocks.ResumeLayout(false);
             this.PanelStocks.PerformLayout();

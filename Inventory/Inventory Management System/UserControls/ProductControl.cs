@@ -21,7 +21,7 @@ namespace Inventory_Management_System.UserControls
         {
             InitializeComponent();
             db = new DB_InventoryEntities();
-            commands = new Commands(db);
+            commands = new Commands();
 
         }
         public DataGridView GetDataGridView()
@@ -51,9 +51,9 @@ namespace Inventory_Management_System.UserControls
                 ModifyColumnHeader("product_Price", "Price");
                 ModifyColumnHeader("product_Description", "Description");
 
-                dgv_Products.Columns["productID"].Width = 80;
-                dgv_Products.Columns["product_Name"].Width = 170;
-                dgv_Products.Columns["product_Sku"].Width = 170;
+                dgv_Products.Columns["productID"].Width = 30;
+                dgv_Products.Columns["product_Name"].Width = 180;
+                dgv_Products.Columns["product_Sku"].Width = 180;
                 dgv_Products.Columns["product_Quantity"].Width = 80;
                 dgv_Products.Columns["product_Price"].Width = 100;
             }
@@ -72,11 +72,71 @@ namespace Inventory_Management_System.UserControls
         {
             loadCbBoxCategory();
             LoadTable();
+            // Add "Edit" and "Remove" buttons to DataGridView columns
+            var editButton = new DataGridViewButtonColumn
+            {
+                HeaderText = "Edit",
+                Text = "Edit",
+                UseColumnTextForButtonValue = true,
+                Name = "btnEdit",
+                FlatStyle = FlatStyle.Flat
+            };
+            dgv_Products.Columns.Add(editButton);
+
+            var removeButton = new DataGridViewButtonColumn
+            {
+                HeaderText = "Remove",
+                Text = "Remove",
+                UseColumnTextForButtonValue = true,
+                Name = "btnRemove",
+                FlatStyle = FlatStyle.Flat
+            };
+            dgv_Products.Columns.Add(removeButton);
+
+            dgv_Products.Columns["btnEdit"].Width = 50;
+            dgv_Products.Columns["btnRemove"].Width = 50;
+        }
+        private void dgv_Products_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //Edit button
+            if (e.ColumnIndex == dgv_Products.Columns["btnEdit"].Index && e.RowIndex >= 0)
+            {
+                DataGridViewRow selectedRow = dgv_Products.Rows[e.RowIndex];
+
+                Products products = new Products
+                {
+                    productID = int.Parse(selectedRow.Cells["productID"].Value.ToString()),
+                    product_Name = selectedRow.Cells["product_Name"].Value.ToString(),
+                    product_Sku = selectedRow.Cells["product_Sku"].Value.ToString(),
+                    product_Quantity = selectedRow.Cells["product_Quantity"].Value.ToString(),
+                    product_Price = decimal.Parse(selectedRow.Cells["product_Price"].Value.ToString()),
+                    product_Description = selectedRow.Cells["product_Description"].Value.ToString()
+                };
+                EditForm edit = new EditForm(products, this);
+                edit.ShowDialog();
+            }
+            //Remove button
+            if (e.ColumnIndex == dgv_Products.Columns["btnRemove"].Index && e.RowIndex >= 0)
+            {
+                DataGridViewRow selectedRow = dgv_Products.Rows[e.RowIndex];
+
+                Products products = new Products
+                {
+                    productID = int.Parse(selectedRow.Cells["productID"].Value.ToString()),
+                    product_Name = selectedRow.Cells["product_Name"].Value.ToString(),
+                    product_Sku = selectedRow.Cells["product_Sku"].Value.ToString(),
+                    product_Quantity = selectedRow.Cells["product_Quantity"].Value.ToString(),
+                    product_Price = decimal.Parse(selectedRow.Cells["product_Price"].Value.ToString()),
+                    product_Description = selectedRow.Cells["product_Description"].Value.ToString()
+                };
+
+                MessageBox.Show("Remove click data of: " + products.product_Name);
+            }
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            AddForm add = new AddForm();
+            AddForm add = new AddForm(this);
             add.ShowDialog();
         }
 
@@ -85,7 +145,7 @@ namespace Inventory_Management_System.UserControls
             Graphics gra = this.panel1.CreateGraphics();
             Pen blackPen = new Pen(Color.Black, 3);
             PointF pnt1 = new PointF(8.0F, 50.0F);
-            PointF pnt2 = new PointF(825.0F, 50.0F);
+            PointF pnt2 = new PointF(960.0F, 50.0F);
 
             e.Graphics.DrawLine(blackPen, pnt1, pnt2);
         }
@@ -119,5 +179,6 @@ namespace Inventory_Management_System.UserControls
                 dgv_Products.DataSource = filteredData;
             }
         }
+
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,17 +13,56 @@ namespace Inventory_Management_System.Functions
     internal class Commands
     {
         private DB_InventoryEntities db;
+        private Products editedProducts;
         public void InitializeDB()
         {
-            db = new DB_InventoryEntities();
+            //db = new DB_InventoryEntities();
         }
-        public Commands (DB_InventoryEntities db)
+        //public Commands (DB_InventoryEntities db)
+        //{
+        //    db = new DB_InventoryEntities();
+        //}
+        private void dbContext()
         {
             db = new DB_InventoryEntities();
         }
         public void AddNewProductCommand(String category, String ItemName, String SKU, String Quantity, decimal Price, String Description)
         {
+            dbContext();
             db.sp_AddNewProduct(category, ItemName, SKU, Quantity, Price, Description);
+            MessageBox.Show("Added successfully!");
         }
+        public void EditProductsCommand(int id, String Name, String Sku, String Qty, decimal? Price, String Description)
+        {
+            try
+            {
+                dbContext();
+                Products productInfo = db.Products.Where(i => i.productID == id).FirstOrDefault();
+
+                productInfo.product_Name = Name;
+                productInfo.product_Sku = Sku;
+                productInfo.product_Quantity = Qty;
+                productInfo.product_Price = Price;
+                productInfo.product_Description = Description;
+
+                db.SaveChanges();
+                MessageBox.Show("Saved!");
+            }
+            catch(Exception e)
+            {
+                MessageBox.Show("Error: " + e.Message);
+            }
+        }
+        //public void EditProductCommand(int id, String Name, String Sku, String Qty, decimal? Price, String Description)
+        //{
+        //    Products product = db.Products.Where(i => i.productID == id).FirstOrDefault();
+        //    product.product_Name = Name;
+        //    product.product_Sku = Sku;
+        //    product.product_Quantity = Qty;
+        //    product.product_Price = Price;
+        //    product.product_Description = Description;
+
+        //    db.SaveChanges();
+        //}
     }
 }
