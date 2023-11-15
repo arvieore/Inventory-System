@@ -56,6 +56,7 @@ namespace Inventory_Management_System.UserControls
                 dgv_Products.Columns["product_Sku"].Width = 180;
                 dgv_Products.Columns["product_Quantity"].Width = 80;
                 dgv_Products.Columns["product_Price"].Width = 100;
+                //dgv_Products.Columns["product_Description"].Width = 210;
             }
         }
         private void ModifyColumnHeader(string columnName, string newHeaderText)
@@ -93,8 +94,8 @@ namespace Inventory_Management_System.UserControls
             };
             dgv_Products.Columns.Add(removeButton);
 
-            dgv_Products.Columns["btnEdit"].Width = 50;
-            dgv_Products.Columns["btnRemove"].Width = 50;
+            dgv_Products.Columns["btnEdit"].Width = 60;
+            dgv_Products.Columns["btnRemove"].Width = 60;
         }
         private void dgv_Products_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -129,8 +130,8 @@ namespace Inventory_Management_System.UserControls
                     product_Price = decimal.Parse(selectedRow.Cells["product_Price"].Value.ToString()),
                     product_Description = selectedRow.Cells["product_Description"].Value.ToString()
                 };
-
-                MessageBox.Show("Remove click data of: " + products.product_Name);
+                Commands cmd = new Commands();
+                cmd.RemoveProductCommand(products);
             }
         }
 

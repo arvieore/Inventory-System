@@ -37,6 +37,37 @@ namespace Inventory_Management_System.Forms
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            if (String.IsNullOrEmpty(txtID.Text))
+            {
+                errorProvider.SetError(txtID, "Field empty!");
+            }
+            else if (String.IsNullOrEmpty(txtItemName.Text))
+            {
+                errorProvider.SetError(txtItemName, "Field empty!");
+            }
+            else if (String.IsNullOrEmpty(txtSKU.Text))
+            {
+                errorProvider.SetError(txtSKU, "Field empty!");
+            }
+            else if (String.IsNullOrEmpty(txtItemPrice.Text))
+            {
+                errorProvider.SetError(txtItemPrice, "Field empty!");
+            }
+            else if (String.IsNullOrEmpty(txtQuantity.Text))
+            {
+                errorProvider.SetError(txtQuantity, "Field empty!");
+            }
+            else if (String.IsNullOrEmpty(txtDescription.Text))
+            {
+                errorProvider.SetError(txtDescription, "Field empty!");
+            }
+            else
+            {
+                NoIssue();
+            }
+        }
+        private void NoIssue()
+        {
             editProduct = new Products
             {
                 productID = int.Parse(txtID.Text),

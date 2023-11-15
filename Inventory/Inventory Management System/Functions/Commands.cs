@@ -13,15 +13,6 @@ namespace Inventory_Management_System.Functions
     internal class Commands
     {
         private DB_InventoryEntities db;
-        private Products editedProducts;
-        public void InitializeDB()
-        {
-            //db = new DB_InventoryEntities();
-        }
-        //public Commands (DB_InventoryEntities db)
-        //{
-        //    db = new DB_InventoryEntities();
-        //}
         private void dbContext()
         {
             db = new DB_InventoryEntities();
@@ -53,16 +44,29 @@ namespace Inventory_Management_System.Functions
                 MessageBox.Show("Error: " + e.Message);
             }
         }
-        //public void EditProductCommand(int id, String Name, String Sku, String Qty, decimal? Price, String Description)
-        //{
-        //    Products product = db.Products.Where(i => i.productID == id).FirstOrDefault();
-        //    product.product_Name = Name;
-        //    product.product_Sku = Sku;
-        //    product.product_Quantity = Qty;
-        //    product.product_Price = Price;
-        //    product.product_Description = Description;
+        public void RemoveProductCommand(Products product)
+        {
+            try
+            {
+                dbContext();
+                var RemoveProduct = db.Products.Find(product.productID);
+                DialogResult result = MessageBox.Show("Continue to delete?", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-        //    db.SaveChanges();
-        //}
+                if (result == DialogResult.Yes)
+                {
+                    db.Products.Remove(RemoveProduct);
+                    db.SaveChanges();
+                    MessageBox.Show("Delete successfully!", "Delete", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Cancel delete", "Cancel", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch(Exception e)
+            {
+                MessageBox.Show("Error: "+ e.Message);
+            }
+        }
     }
 }
