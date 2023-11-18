@@ -41,6 +41,8 @@ public partial class DB_InventoryEntities : DbContext
 
     public virtual DbSet<Products> Products { get; set; }
 
+    public virtual DbSet<Role> Role { get; set; }
+
 
     public virtual ObjectResult<sp_ValidateAccount_Result> sp_ValidateAccount(string user_name, string user_password)
     {
@@ -105,6 +107,58 @@ public partial class DB_InventoryEntities : DbContext
 
 
         return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_CategoryFilter_Result>("sp_CategoryFilter", categoryFilteredParameter);
+    }
+
+
+    public virtual int sp_AddAccount(string firstname, string lastname, string email, string phone, string gender, Nullable<System.DateTime> birthdate, string position, string password, string address)
+    {
+
+        var firstnameParameter = firstname != null ?
+            new ObjectParameter("firstname", firstname) :
+            new ObjectParameter("firstname", typeof(string));
+
+
+        var lastnameParameter = lastname != null ?
+            new ObjectParameter("lastname", lastname) :
+            new ObjectParameter("lastname", typeof(string));
+
+
+        var emailParameter = email != null ?
+            new ObjectParameter("email", email) :
+            new ObjectParameter("email", typeof(string));
+
+
+        var phoneParameter = phone != null ?
+            new ObjectParameter("phone", phone) :
+            new ObjectParameter("phone", typeof(string));
+
+
+        var genderParameter = gender != null ?
+            new ObjectParameter("gender", gender) :
+            new ObjectParameter("gender", typeof(string));
+
+
+        var birthdateParameter = birthdate.HasValue ?
+            new ObjectParameter("birthdate", birthdate) :
+            new ObjectParameter("birthdate", typeof(System.DateTime));
+
+
+        var positionParameter = position != null ?
+            new ObjectParameter("position", position) :
+            new ObjectParameter("position", typeof(string));
+
+
+        var passwordParameter = password != null ?
+            new ObjectParameter("password", password) :
+            new ObjectParameter("password", typeof(string));
+
+
+        var addressParameter = address != null ?
+            new ObjectParameter("address", address) :
+            new ObjectParameter("address", typeof(string));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_AddAccount", firstnameParameter, lastnameParameter, emailParameter, phoneParameter, genderParameter, birthdateParameter, positionParameter, passwordParameter, addressParameter);
     }
 
 }

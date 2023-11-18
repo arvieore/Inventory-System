@@ -57,3 +57,6 @@ C:\Users\acer\OneDrive\Desktop\Inventory\Inventory-System\Inventory\Inventory Ma
 C:\Users\acer\OneDrive\Desktop\Inventory\Inventory-System\Inventory\Inventory Management System\obj\Debug\Inventory Management System.pdb
 C:\Users\acer\OneDrive\Desktop\Inventory\Inventory-System\Inventory\Inventory Management System\obj\Debug\Inventory_Management_System.Forms.AddForm.resources
 C:\Users\acer\OneDrive\Desktop\Inventory\Inventory-System\Inventory\Inventory Management System\obj\Debug\Inventory_Management_System.Forms.EditForm.resources
+C:\Users\acer\OneDrive\Desktop\Inventory\Inventory-System\Inventory\Inventory Management System\obj\Debug\Inventory_Management_System.UserControls.ManageAccount.resources
+C:\Users\acer\OneDrive\Desktop\Inventory\Inventory-System\Inventory\Inventory Management System\obj\Debug\Inventory_Management_System.Forms.Create.resources
+C:\Users\acer\OneDrive\Desktop\Inventory\Inventory-System\Inventory\Inventory Management System\obj\Debug\Inventory_Management_System.Forms.Registration.resources

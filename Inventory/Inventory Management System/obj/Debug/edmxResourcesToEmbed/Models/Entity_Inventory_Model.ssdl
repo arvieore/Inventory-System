@@ -5,10 +5,17 @@
       <PropertyRef Name="user_ID" />
     </Key>
     <Property Name="user_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="user_firstname" Type="varchar" MaxLength="50" />
+    <Property Name="user_lastname" Type="varchar" MaxLength="50" />
+    <Property Name="user_email" Type="varchar" MaxLength="50" />
+    <Property Name="user_phone" Type="varchar" MaxLength="50" />
+    <Property Name="user_gender" Type="varchar" MaxLength="10" />
+    <Property Name="user_birthdate" Type="date" />
+    <Property Name="user_position" Type="varchar" MaxLength="50" />
     <Property Name="user_name" Type="varchar" MaxLength="50" />
     <Property Name="user_password" Type="varchar" MaxLength="50" />
-    <Property Name="user_Position" Type="varchar" MaxLength="50" />
     <Property Name="user_Address" Type="varchar" MaxLength="250" />
+    <Property Name="roleID" Type="int" />
   </EntityType>
   <EntityType Name="Category">
     <Key>
@@ -29,6 +36,25 @@
     <Property Name="product_Description" Type="varchar" MaxLength="255" />
     <Property Name="categoryID" Type="int" Nullable="false" />
   </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="roleID" />
+    </Key>
+    <Property Name="roleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="roleName" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK_Accounts_Role">
+    <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+    <End Role="Accounts" Type="Self.Accounts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="roleID" />
+      </Principal>
+      <Dependent Role="Accounts">
+        <PropertyRef Name="roleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Products_Category">
     <End Role="Category" Type="Self.Category" Multiplicity="1" />
     <End Role="Products" Type="Self.Products" Multiplicity="*" />
@@ -41,6 +67,17 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Function Name="sp_AddAccount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="firstname" Type="varchar" Mode="In" />
+    <Parameter Name="lastname" Type="varchar" Mode="In" />
+    <Parameter Name="email" Type="varchar" Mode="In" />
+    <Parameter Name="phone" Type="varchar" Mode="In" />
+    <Parameter Name="gender" Type="varchar" Mode="In" />
+    <Parameter Name="birthdate" Type="date" Mode="In" />
+    <Parameter Name="position" Type="varchar" Mode="In" />
+    <Parameter Name="password" Type="varchar" Mode="In" />
+    <Parameter Name="address" Type="varchar" Mode="In" />
+  </Function>
   <Function Name="sp_AddNewProduct" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="CategoryName" Type="varchar" Mode="In" />
     <Parameter Name="productName" Type="varchar" Mode="In" />
@@ -60,6 +97,11 @@
     <EntitySet Name="Accounts" EntityType="Self.Accounts" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Accounts_Role" Association="Self.FK_Accounts_Role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="Accounts" EntitySet="Accounts" />
+    </AssociationSet>
     <AssociationSet Name="FK_Products_Category" Association="Self.FK_Products_Category">
       <End Role="Category" EntitySet="Category" />
       <End Role="Products" EntitySet="Products" />

@@ -33,8 +33,9 @@
             this.btnProducts = new Guna.UI2.WinForms.Guna2Button();
             this.btnDashboard = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
-            this.ExitIcon = new Guna.UI2.WinForms.Guna2PictureBox();
             this.MainPanel = new System.Windows.Forms.Panel();
+            this.btnAccounts = new Guna.UI2.WinForms.Guna2Button();
+            this.ExitIcon = new Guna.UI2.WinForms.Guna2PictureBox();
             this.guna2GradientPanel1.SuspendLayout();
             this.guna2Panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ExitIcon)).BeginInit();
@@ -43,6 +44,7 @@
             // guna2GradientPanel1
             // 
             this.guna2GradientPanel1.Controls.Add(this.panelHover);
+            this.guna2GradientPanel1.Controls.Add(this.btnAccounts);
             this.guna2GradientPanel1.Controls.Add(this.btnProducts);
             this.guna2GradientPanel1.Controls.Add(this.btnDashboard);
             this.guna2GradientPanel1.Dock = System.Windows.Forms.DockStyle.Left;
@@ -109,6 +111,33 @@
             this.guna2Panel1.Size = new System.Drawing.Size(996, 24);
             this.guna2Panel1.TabIndex = 12;
             // 
+            // MainPanel
+            // 
+            this.MainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MainPanel.Location = new System.Drawing.Point(200, 24);
+            this.MainPanel.Name = "MainPanel";
+            this.MainPanel.Size = new System.Drawing.Size(996, 586);
+            this.MainPanel.TabIndex = 13;
+            // 
+            // btnAccounts
+            // 
+            this.btnAccounts.BackColor = System.Drawing.Color.Transparent;
+            this.btnAccounts.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnAccounts.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnAccounts.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnAccounts.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnAccounts.FillColor = System.Drawing.Color.Transparent;
+            this.btnAccounts.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAccounts.ForeColor = System.Drawing.Color.White;
+            this.btnAccounts.HoverState.FillColor = System.Drawing.Color.White;
+            this.btnAccounts.HoverState.ForeColor = System.Drawing.Color.Black;
+            this.btnAccounts.Location = new System.Drawing.Point(12, 129);
+            this.btnAccounts.Name = "btnAccounts";
+            this.btnAccounts.Size = new System.Drawing.Size(188, 43);
+            this.btnAccounts.TabIndex = 1;
+            this.btnAccounts.Text = "Accounts";
+            this.btnAccounts.Click += new System.EventHandler(this.btnAccounts_Click);
+            // 
             // ExitIcon
             // 
             this.ExitIcon.BackColor = System.Drawing.Color.Transparent;
@@ -124,14 +153,6 @@
             this.ExitIcon.TabIndex = 0;
             this.ExitIcon.TabStop = false;
             this.ExitIcon.Click += new System.EventHandler(this.ExitIcon_Click);
-            // 
-            // MainPanel
-            // 
-            this.MainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.MainPanel.Location = new System.Drawing.Point(200, 24);
-            this.MainPanel.Name = "MainPanel";
-            this.MainPanel.Size = new System.Drawing.Size(996, 586);
-            this.MainPanel.TabIndex = 13;
             // 
             // AdminDashboard
             // 
@@ -161,5 +182,6 @@
         private Guna.UI2.WinForms.Guna2Button btnDashboard;
         private System.Windows.Forms.Panel panelHover;
         private Guna.UI2.WinForms.Guna2Button btnProducts;
+        private Guna.UI2.WinForms.Guna2Button btnAccounts;
     }
 }

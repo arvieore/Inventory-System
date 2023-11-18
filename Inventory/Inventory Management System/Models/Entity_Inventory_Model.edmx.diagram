@@ -5,10 +5,12 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="5791d7a5a0a44289b9de235bacd0385f" Name="Diagram1">
-        <EntityTypeShape EntityType="InventoryDBModel.Accounts" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryDBModel.Category" Width="1.5" PointX="0.75" PointY="3.75" />
-        <EntityTypeShape EntityType="InventoryDBModel.Products" Width="1.5" PointX="3" PointY="3.25" />
+        <EntityTypeShape EntityType="InventoryDBModel.Accounts" Width="1.5" PointX="0.75" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryDBModel.Category" Width="1.5" PointX="0.75" PointY="4.5" />
+        <EntityTypeShape EntityType="InventoryDBModel.Products" Width="1.5" PointX="3" PointY="4.125" />
         <AssociationConnector Association="InventoryDBModel.FK_Products_Category" />
+        <EntityTypeShape EntityType="InventoryDBModel.Role" Width="1.5" PointX="0.75" PointY="6.625" />
+        <AssociationConnector Association="InventoryDBModel.FK_Accounts_Role" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

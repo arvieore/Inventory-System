@@ -36,7 +36,7 @@ namespace Inventory_Management_System
         public String GetPosition(int id)
         {
             //SELECT THE POSITION BY SPECIFIC ID
-            return db.Accounts.Where(a => a.user_ID == id).Select(a => a.user_Position).FirstOrDefault();
+            return db.Accounts.Where(a => a.user_ID == id).Select(a => a.user_position).FirstOrDefault();
         }
     }
 }

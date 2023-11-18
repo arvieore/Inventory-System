@@ -24,9 +24,27 @@ public partial class Accounts
 
     public string user_password { get; set; }
 
-    public string user_Position { get; set; }
-
     public string user_Address { get; set; }
+
+    public string user_firstname { get; set; }
+
+    public string user_lastname { get; set; }
+
+    public string user_email { get; set; }
+
+    public string user_phone { get; set; }
+
+    public string user_position { get; set; }
+
+    public Nullable<int> roleID { get; set; }
+
+    public string user_gender { get; set; }
+
+    public Nullable<System.DateTime> user_birthdate { get; set; }
+
+
+
+    public virtual Role Role { get; set; }
 
 }
 

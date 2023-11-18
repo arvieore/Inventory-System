@@ -4,10 +4,17 @@
     <EntitySetMapping Name="Accounts">
       <EntityTypeMapping TypeName="InventoryDBModel.Accounts">
         <MappingFragment StoreEntitySet="Accounts">
+          <ScalarProperty Name="user_birthdate" ColumnName="user_birthdate" />
+          <ScalarProperty Name="user_gender" ColumnName="user_gender" />
+          <ScalarProperty Name="roleID" ColumnName="roleID" />
+          <ScalarProperty Name="user_position" ColumnName="user_position" />
+          <ScalarProperty Name="user_phone" ColumnName="user_phone" />
+          <ScalarProperty Name="user_email" ColumnName="user_email" />
+          <ScalarProperty Name="user_lastname" ColumnName="user_lastname" />
+          <ScalarProperty Name="user_firstname" ColumnName="user_firstname" />
           <ScalarProperty Name="user_ID" ColumnName="user_ID" />
           <ScalarProperty Name="user_name" ColumnName="user_name" />
           <ScalarProperty Name="user_password" ColumnName="user_password" />
-          <ScalarProperty Name="user_Position" ColumnName="user_Position" />
           <ScalarProperty Name="user_Address" ColumnName="user_Address" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -54,5 +61,14 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <EntitySetMapping Name="Role">
+      <EntityTypeMapping TypeName="InventoryDBModel.Role">
+        <MappingFragment StoreEntitySet="Role">
+          <ScalarProperty Name="roleName" ColumnName="roleName" />
+          <ScalarProperty Name="roleID" ColumnName="roleID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_AddAccount" FunctionName="InventoryDBModel.Store.sp_AddAccount" />
   </EntityContainerMapping>
 </Mapping>

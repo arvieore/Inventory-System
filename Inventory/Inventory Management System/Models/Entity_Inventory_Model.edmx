@@ -10,10 +10,17 @@
             <PropertyRef Name="user_ID" />
           </Key>
           <Property Name="user_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="user_firstname" Type="varchar" MaxLength="50" />
+          <Property Name="user_lastname" Type="varchar" MaxLength="50" />
+          <Property Name="user_email" Type="varchar" MaxLength="50" />
+          <Property Name="user_phone" Type="varchar" MaxLength="50" />
+          <Property Name="user_gender" Type="varchar" MaxLength="10" />
+          <Property Name="user_birthdate" Type="date" />
+          <Property Name="user_position" Type="varchar" MaxLength="50" />
           <Property Name="user_name" Type="varchar" MaxLength="50" />
           <Property Name="user_password" Type="varchar" MaxLength="50" />
-          <Property Name="user_Position" Type="varchar" MaxLength="50" />
           <Property Name="user_Address" Type="varchar" MaxLength="250" />
+          <Property Name="roleID" Type="int" />
         </EntityType>
         <EntityType Name="Category">
           <Key>
@@ -34,6 +41,25 @@
           <Property Name="product_Description" Type="varchar" MaxLength="255" />
           <Property Name="categoryID" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="roleID" />
+          </Key>
+          <Property Name="roleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="roleName" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_Accounts_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+          <End Role="Accounts" Type="Self.Accounts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="roleID" />
+            </Principal>
+            <Dependent Role="Accounts">
+              <PropertyRef Name="roleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Products_Category">
           <End Role="Category" Type="Self.Category" Multiplicity="1" />
           <End Role="Products" Type="Self.Products" Multiplicity="*" />
@@ -46,6 +72,17 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="sp_AddAccount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="firstname" Type="varchar" Mode="In" />
+          <Parameter Name="lastname" Type="varchar" Mode="In" />
+          <Parameter Name="email" Type="varchar" Mode="In" />
+          <Parameter Name="phone" Type="varchar" Mode="In" />
+          <Parameter Name="gender" Type="varchar" Mode="In" />
+          <Parameter Name="birthdate" Type="date" Mode="In" />
+          <Parameter Name="position" Type="varchar" Mode="In" />
+          <Parameter Name="password" Type="varchar" Mode="In" />
+          <Parameter Name="address" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="sp_AddNewProduct" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="CategoryName" Type="varchar" Mode="In" />
           <Parameter Name="productName" Type="varchar" Mode="In" />
@@ -65,6 +102,11 @@
           <EntitySet Name="Accounts" EntityType="Self.Accounts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Accounts_Role" Association="Self.FK_Accounts_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="Accounts" EntitySet="Accounts" />
+          </AssociationSet>
           <AssociationSet Name="FK_Products_Category" Association="Self.FK_Products_Category">
             <End Role="Category" EntitySet="Category" />
             <End Role="Products" EntitySet="Products" />
@@ -81,8 +123,16 @@
           <Property Name="user_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="user_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="user_password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="user_Position" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="user_Address" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="user_firstname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="user_lastname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="user_email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="user_phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="user_position" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="roleID" Type="Int32" />
+          <NavigationProperty Name="Role" Relationship="InventoryDBModel.FK_Accounts_Role" FromRole="Accounts" ToRole="Role" />
+          <Property Name="user_gender" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="user_birthdate" Type="DateTime" Precision="0" />
         </EntityType>
         <EntityContainer Name="DB_InventoryEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Accounts" EntityType="Self.Accounts" />
@@ -106,6 +156,22 @@
           </FunctionImport>
           <FunctionImport Name="sp_CategoryFilter" ReturnType="Collection(InventoryDBModel.sp_CategoryFilter_Result)">
           <Parameter Name="CategoryFiltered" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="Role" EntityType="InventoryDBModel.Role" />
+          <AssociationSet Name="FK_Accounts_Role" Association="InventoryDBModel.FK_Accounts_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="Accounts" EntitySet="Accounts" />
+          </AssociationSet>
+          <FunctionImport Name="sp_AddAccount">
+            <Parameter Name="firstname" Mode="In" Type="String" />
+            <Parameter Name="lastname" Mode="In" Type="String" />
+            <Parameter Name="email" Mode="In" Type="String" />
+            <Parameter Name="phone" Mode="In" Type="String" />
+            <Parameter Name="gender" Mode="In" Type="String" />
+            <Parameter Name="birthdate" Mode="In" Type="DateTime" />
+            <Parameter Name="position" Mode="In" Type="String" />
+            <Parameter Name="password" Mode="In" Type="String" />
+            <Parameter Name="address" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="sp_ValidateAccount_Result">
@@ -153,6 +219,26 @@
           <Property Type="Decimal" Name="product_Price" Nullable="true" Precision="10" Scale="2" />
           <Property Type="String" Name="product_Description" Nullable="true" MaxLength="255" />
         </ComplexType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="roleID" />
+          </Key>
+          <Property Name="roleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="roleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Accounts" Relationship="InventoryDBModel.FK_Accounts_Role" FromRole="Role" ToRole="Accounts" />
+        </EntityType>
+        <Association Name="FK_Accounts_Role">
+          <End Type="InventoryDBModel.Role" Role="Role" Multiplicity="0..1" />
+          <End Type="InventoryDBModel.Accounts" Role="Accounts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="roleID" />
+            </Principal>
+            <Dependent Role="Accounts">
+              <PropertyRef Name="roleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -162,10 +248,17 @@
           <EntitySetMapping Name="Accounts">
             <EntityTypeMapping TypeName="InventoryDBModel.Accounts">
               <MappingFragment StoreEntitySet="Accounts">
+                <ScalarProperty Name="user_birthdate" ColumnName="user_birthdate" />
+                <ScalarProperty Name="user_gender" ColumnName="user_gender" />
+                <ScalarProperty Name="roleID" ColumnName="roleID" />
+                <ScalarProperty Name="user_position" ColumnName="user_position" />
+                <ScalarProperty Name="user_phone" ColumnName="user_phone" />
+                <ScalarProperty Name="user_email" ColumnName="user_email" />
+                <ScalarProperty Name="user_lastname" ColumnName="user_lastname" />
+                <ScalarProperty Name="user_firstname" ColumnName="user_firstname" />
                 <ScalarProperty Name="user_ID" ColumnName="user_ID" />
                 <ScalarProperty Name="user_name" ColumnName="user_name" />
                 <ScalarProperty Name="user_password" ColumnName="user_password" />
-                <ScalarProperty Name="user_Position" ColumnName="user_Position" />
                 <ScalarProperty Name="user_Address" ColumnName="user_Address" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -212,6 +305,15 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="Role">
+            <EntityTypeMapping TypeName="InventoryDBModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="roleName" ColumnName="roleName" />
+                <ScalarProperty Name="roleID" ColumnName="roleID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_AddAccount" FunctionName="InventoryDBModel.Store.sp_AddAccount" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

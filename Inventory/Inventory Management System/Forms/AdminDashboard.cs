@@ -30,6 +30,10 @@ namespace Inventory_Management_System.Forms
             btnDashboard.BackColor = Color.Transparent;
             btnDashboard.ForeColor = Color.White;
 
+            btnAccounts.FillColor = Color.Transparent;
+            btnAccounts.BackColor = Color.Transparent;
+            btnAccounts.ForeColor = Color.White;
+
             btnProducts.BackColor = Color.White;
             btnProducts.ForeColor = Color.Black;
             int x = 0;
@@ -47,6 +51,10 @@ namespace Inventory_Management_System.Forms
             btnProducts.FillColor = Color.Transparent;
             btnProducts.BackColor = Color.Transparent;
             btnProducts.ForeColor = Color.White;
+
+            btnAccounts.FillColor = Color.Transparent;
+            btnAccounts.BackColor = Color.Transparent;
+            btnAccounts.ForeColor = Color.White;
 
             btnDashboard.BackColor = Color.White;
             btnDashboard.ForeColor = Color.Black;
@@ -69,6 +77,27 @@ namespace Inventory_Management_System.Forms
             MainPanel.Controls.Clear();
             MainPanel.Controls.Add(userControl);
             userControl.BringToFront();
+        }
+
+        private void btnAccounts_Click(object sender, EventArgs e)
+        {
+            btnProducts.FillColor = Color.Transparent;
+            btnProducts.BackColor = Color.Transparent;
+            btnProducts.ForeColor = Color.White;
+
+            btnDashboard.FillColor = Color.Transparent;
+            btnDashboard.BackColor = Color.Transparent;
+            btnDashboard.ForeColor = Color.White;
+
+            btnAccounts.BackColor = Color.White;
+            btnAccounts.ForeColor = Color.Black;
+            int x = 0;
+            int y = 129;
+            Point HoverPanel = new Point(x, y);
+            panelHover.Location = HoverPanel;
+
+            ManageAccount manageAccount = new ManageAccount();
+            DisplayUserControl(manageAccount);
         }
     }
 }

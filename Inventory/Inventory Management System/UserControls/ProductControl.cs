@@ -16,13 +16,10 @@ namespace Inventory_Management_System.UserControls
     public partial class ProductControl : UserControl
     {
         private DB_InventoryEntities db;
-        private Commands commands;
         public ProductControl()
         {
             InitializeComponent();
             db = new DB_InventoryEntities();
-            commands = new Commands();
-
         }
         public DataGridView GetDataGridView()
         {

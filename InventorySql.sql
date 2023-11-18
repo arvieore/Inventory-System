@@ -2,9 +2,34 @@ CREATE DATABASE InventoryDB;
 
 use InventoryDB;
 
-INSERT INTO Accounts (user_name, user_password, user_Position, user_Address) 
-VALUES ('arvieAdmin', 'password', 'Admin', 'LLC');
+SELECT * FROM Accounts
+SELECT * FROM [Role]
+----------------------- Create Account --------------------------------
+CREATE PROCEDURE sp_AddAccount
+	@firstname varchar(50),
+	@lastname varchar(50),
+	@email varchar(50),
+	@phone varchar(50),
+	@gender varchar(10),
+	@birthdate Date,
+	@position varchar(50),
+	@password varchar(50),
+	@address varchar(250)
+AS
+BEGIN
+	DECLARE @roleIndex INT
+	DECLARE @username varchar(50)
 
+	SELECT @roleIndex = roleID
+	FROM [Role]
+	WHERE roleName = @position
+
+	SET @username = CONCAT(@firstname, @lastname, YEAR(@birthdate))
+
+	INSERT INTO Accounts (user_firstname, user_lastname, user_email, user_phone, user_gender, user_birthdate, user_position, user_name, user_password, user_Address, roleID)
+	VALUES (@firstname, @lastname, @email, @phone, @gender, @birthdate, @position, @username, @password, @address, @roleIndex)
+END
+----------------------- Check Position of the account --------------------------------
 CREATE PROCEDURE sp_ValidateAccount
 	@user_name varchar(50),
 	@user_password varchar(50)
@@ -14,7 +39,7 @@ BEGIN
 	FROM Accounts
 	WHERE user_name = @user_name AND user_password = @user_password;
 END
-
+----------------------- Add Product --------------------------------
 CREATE PROCEDURE sp_AddNewProduct
 	@CategoryName varchar(50),
 	@productName varchar(50),
