@@ -67,6 +67,9 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Function Name="sp_AccountFilter" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="AccountFiltered" Type="varchar" Mode="In" />
+  </Function>
   <Function Name="sp_AddAccount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="firstname" Type="varchar" Mode="In" />
     <Parameter Name="lastname" Type="varchar" Mode="In" />

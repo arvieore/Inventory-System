@@ -70,5 +70,18 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <FunctionImportMapping FunctionImportName="sp_AddAccount" FunctionName="InventoryDBModel.Store.sp_AddAccount" />
+    <FunctionImportMapping FunctionImportName="sp_AccountFilter" FunctionName="InventoryDBModel.Store.sp_AccountFilter">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="InventoryDBModel.sp_AccountFilter_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Fullname" ColumnName="Fullname" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Position" ColumnName="Position" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

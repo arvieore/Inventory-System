@@ -6,16 +6,19 @@ using System.Drawing;
 using System.Linq;
 using System.Net.NetworkInformation;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Inventory_Management_System.Functions;
 using Inventory_Management_System.Models;
+using Inventory_Management_System.UserControls;
 
 namespace Inventory_Management_System.Forms
 {
     public partial class Registration : Form
     {
         private String gender;
+        private String pattern = @"[.,'""\]\[{^@&#!%()_=+}\\|:;*]";
         private DB_InventoryEntities db;
         public Registration()
         {
@@ -81,11 +84,19 @@ namespace Inventory_Management_System.Forms
                     txtPassword.BorderColor = Color.Red;
                     txtConfirmpassword.BorderColor = Color.Red;
                 }
+                else if (Regex.IsMatch(txtEmail.Text, pattern))
+                {
+                    MessageBox.Show("Please avoid using Symbols.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    errorProvider.SetError(txtEmail, "Avoid using symbols!");
+                    txtEmail.BorderColor = Color.Red;
+                    return;
+                }
                 else
                 {
+                    string email = txtEmail.Text + "@gmail.com";
                     UserRegistration register = new UserRegistration();
                     Gender();
-                    register.RegisterAccount(txtFirstname.Text, txtLastname.Text, txtEmail.Text, txtPhone.Text, gender, birthdate_picker.Value, Cbox_Position.Text, txtPassword.Text, txtAddress.Text);
+                    register.RegisterAccount(txtFirstname.Text, txtLastname.Text, email, txtPhone.Text, gender, birthdate_picker.Value, Cbox_Position.Text, txtPassword.Text, txtAddress.Text);
                     Confirm();
                 }
             }
@@ -104,6 +115,8 @@ namespace Inventory_Management_System.Forms
         {
             Clear();
             MessageBox.Show("Registered successfully!");
+            ManageAccount acc = new ManageAccount();
+            acc.AccountDisplay();
         }
         private void Gender()
         {

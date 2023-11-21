@@ -72,6 +72,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="sp_AccountFilter" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="AccountFiltered" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="sp_AddAccount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="firstname" Type="varchar" Mode="In" />
           <Parameter Name="lastname" Type="varchar" Mode="In" />
@@ -173,6 +176,9 @@
             <Parameter Name="password" Mode="In" Type="String" />
             <Parameter Name="address" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="sp_AccountFilter" ReturnType="Collection(InventoryDBModel.sp_AccountFilter_Result)">
+            <Parameter Name="AccountFiltered" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="sp_ValidateAccount_Result">
           <Property Type="Int32" Name="user_ID" Nullable="false" />
@@ -239,6 +245,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <ComplexType Name="sp_AccountFilter_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Fullname" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Address" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="Phone" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Position" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Username" Nullable="true" MaxLength="50" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -314,6 +329,19 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="sp_AddAccount" FunctionName="InventoryDBModel.Store.sp_AddAccount" />
+          <FunctionImportMapping FunctionImportName="sp_AccountFilter" FunctionName="InventoryDBModel.Store.sp_AccountFilter">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="InventoryDBModel.sp_AccountFilter_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Fullname" ColumnName="Fullname" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

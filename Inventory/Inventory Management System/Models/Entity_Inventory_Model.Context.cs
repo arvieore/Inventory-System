@@ -161,6 +161,18 @@ public partial class DB_InventoryEntities : DbContext
         return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_AddAccount", firstnameParameter, lastnameParameter, emailParameter, phoneParameter, genderParameter, birthdateParameter, positionParameter, passwordParameter, addressParameter);
     }
 
+
+    public virtual ObjectResult<sp_AccountFilter_Result> sp_AccountFilter(string accountFiltered)
+    {
+
+        var accountFilteredParameter = accountFiltered != null ?
+            new ObjectParameter("AccountFiltered", accountFiltered) :
+            new ObjectParameter("AccountFiltered", typeof(string));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_AccountFilter_Result>("sp_AccountFilter", accountFilteredParameter);
+    }
+
 }
 
 }

@@ -264,7 +264,7 @@
             this.txtPassword.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtPassword.Location = new System.Drawing.Point(379, 399);
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.PasswordChar = '\0';
+            this.txtPassword.PasswordChar = '*';
             this.txtPassword.PlaceholderText = "Password";
             this.txtPassword.SelectedText = "";
             this.txtPassword.Size = new System.Drawing.Size(208, 36);
@@ -293,7 +293,7 @@
             this.txtConfirmpassword.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtConfirmpassword.Location = new System.Drawing.Point(613, 399);
             this.txtConfirmpassword.Name = "txtConfirmpassword";
-            this.txtConfirmpassword.PasswordChar = '\0';
+            this.txtConfirmpassword.PasswordChar = '*';
             this.txtConfirmpassword.PlaceholderText = "Confirm password";
             this.txtConfirmpassword.SelectedText = "";
             this.txtConfirmpassword.Size = new System.Drawing.Size(208, 36);

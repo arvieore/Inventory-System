@@ -128,6 +128,9 @@
     <Compile Include="Models\Role.cs">
       <DependentUpon>Entity_Inventory_Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\sp_AccountFilter_Result.cs">
+      <DependentUpon>Entity_Inventory_Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\sp_CategoryFilter_Result.cs">
       <DependentUpon>Entity_Inventory_Model.tt</DependentUpon>
     </Compile>

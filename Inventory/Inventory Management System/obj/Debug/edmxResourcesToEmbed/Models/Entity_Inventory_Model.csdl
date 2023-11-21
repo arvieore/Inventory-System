@@ -57,6 +57,9 @@
       <Parameter Name="password" Mode="In" Type="String" />
       <Parameter Name="address" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="sp_AccountFilter" ReturnType="Collection(InventoryDBModel.sp_AccountFilter_Result)">
+      <Parameter Name="AccountFiltered" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="sp_ValidateAccount_Result">
     <Property Type="Int32" Name="user_ID" Nullable="false" />
@@ -123,4 +126,13 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <ComplexType Name="sp_AccountFilter_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Fullname" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="Email" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Address" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="Phone" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Position" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Username" Nullable="true" MaxLength="50" />
+  </ComplexType>
 </Schema>

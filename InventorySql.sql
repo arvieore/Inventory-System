@@ -112,5 +112,34 @@ BEGIN
 	END
 END
 
+SELECT * FROM Accounts
 
-SELECT * FROM Products
+----------------------- Account Filter --------------------------------
+CREATE PROCEDURE sp_AccountFilter
+	@AccountFiltered varchar(50)
+AS
+BEGIN
+	IF @AccountFiltered = 'All'
+	BEGIN
+		SELECT user_ID as 'ID',
+		CONCAT(user_firstname, user_lastname) as 'Fullname',
+		user_email as 'Email',
+		user_Address as 'Address',
+		user_phone as 'Phone',
+		user_position as 'Position',
+		user_name as 'Username'
+		FROM Accounts
+	END
+	ELSE
+	BEGIN
+		SELECT user_ID as 'ID',
+		CONCAT(user_firstname, user_lastname) as 'Fullname',
+		user_email as 'Email',
+		user_Address as 'Address',
+		user_phone as 'Phone',
+		user_position as 'Position',
+		user_name as 'Username'
+		FROM Accounts
+		WHERE user_position = @AccountFiltered;
+	END
+END

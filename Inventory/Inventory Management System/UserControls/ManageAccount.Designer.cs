@@ -35,13 +35,13 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.dgv_Accounts = new Guna.UI2.WinForms.Guna2DataGridView();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnCreate = new Guna.UI2.WinForms.Guna2Button();
+            this.txtSearch = new Guna.UI2.WinForms.Guna2TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.Cbox_Roles = new Guna.UI2.WinForms.Guna2ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.panelHeader = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnCreate = new Guna.UI2.WinForms.Guna2Button();
-            this.txtSearch = new Guna.UI2.WinForms.Guna2TextBox();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Accounts)).BeginInit();
@@ -138,6 +138,53 @@
             this.panel2.Size = new System.Drawing.Size(967, 50);
             this.panel2.TabIndex = 5;
             // 
+            // btnCreate
+            // 
+            this.btnCreate.BackColor = System.Drawing.Color.Transparent;
+            this.btnCreate.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCreate.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnCreate.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnCreate.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnCreate.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnCreate.FillColor = System.Drawing.Color.Transparent;
+            this.btnCreate.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
+            this.btnCreate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(124)))), ((int)(((byte)(124)))));
+            this.btnCreate.HoverState.BorderColor = System.Drawing.Color.Transparent;
+            this.btnCreate.HoverState.CustomBorderColor = System.Drawing.Color.Transparent;
+            this.btnCreate.HoverState.FillColor = System.Drawing.Color.Transparent;
+            this.btnCreate.HoverState.ForeColor = System.Drawing.Color.Black;
+            this.btnCreate.Image = global::Inventory_Management_System.Properties.Resources.create;
+            this.btnCreate.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnCreate.ImageSize = new System.Drawing.Size(30, 30);
+            this.btnCreate.Location = new System.Drawing.Point(853, 3);
+            this.btnCreate.Name = "btnCreate";
+            this.btnCreate.Size = new System.Drawing.Size(111, 44);
+            this.btnCreate.TabIndex = 0;
+            this.btnCreate.Text = "Create";
+            this.btnCreate.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.btnCreate.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // txtSearch
+            // 
+            this.txtSearch.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtSearch.DefaultText = "";
+            this.txtSearch.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txtSearch.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txtSearch.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtSearch.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtSearch.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtSearch.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.txtSearch.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtSearch.IconLeft = global::Inventory_Management_System.Properties.Resources.SearchIcon;
+            this.txtSearch.Location = new System.Drawing.Point(319, 6);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.PasswordChar = '\0';
+            this.txtSearch.PlaceholderText = "Search";
+            this.txtSearch.SelectedText = "";
+            this.txtSearch.Size = new System.Drawing.Size(200, 36);
+            this.txtSearch.TabIndex = 3;
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -199,52 +246,6 @@
             this.label1.Size = new System.Drawing.Size(84, 20);
             this.label1.TabIndex = 0;
             this.label1.Text = "Accounts";
-            // 
-            // btnCreate
-            // 
-            this.btnCreate.BackColor = System.Drawing.Color.Transparent;
-            this.btnCreate.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCreate.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnCreate.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnCreate.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnCreate.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnCreate.FillColor = System.Drawing.Color.Transparent;
-            this.btnCreate.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
-            this.btnCreate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(124)))), ((int)(((byte)(124)))));
-            this.btnCreate.HoverState.BorderColor = System.Drawing.Color.Transparent;
-            this.btnCreate.HoverState.CustomBorderColor = System.Drawing.Color.Transparent;
-            this.btnCreate.HoverState.FillColor = System.Drawing.Color.Transparent;
-            this.btnCreate.HoverState.ForeColor = System.Drawing.Color.Black;
-            this.btnCreate.Image = global::Inventory_Management_System.Properties.Resources.create;
-            this.btnCreate.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnCreate.ImageSize = new System.Drawing.Size(30, 30);
-            this.btnCreate.Location = new System.Drawing.Point(853, 3);
-            this.btnCreate.Name = "btnCreate";
-            this.btnCreate.Size = new System.Drawing.Size(111, 44);
-            this.btnCreate.TabIndex = 0;
-            this.btnCreate.Text = "Create";
-            this.btnCreate.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.btnCreate.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
-            // txtSearch
-            // 
-            this.txtSearch.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtSearch.DefaultText = "";
-            this.txtSearch.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txtSearch.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txtSearch.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtSearch.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtSearch.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtSearch.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.txtSearch.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtSearch.IconLeft = global::Inventory_Management_System.Properties.Resources.SearchIcon;
-            this.txtSearch.Location = new System.Drawing.Point(319, 6);
-            this.txtSearch.Name = "txtSearch";
-            this.txtSearch.PasswordChar = '\0';
-            this.txtSearch.PlaceholderText = "Search";
-            this.txtSearch.SelectedText = "";
-            this.txtSearch.Size = new System.Drawing.Size(200, 36);
-            this.txtSearch.TabIndex = 3;
             // 
             // ManageAccount
             // 
