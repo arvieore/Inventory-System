@@ -10,30 +10,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Security.Principal;
+using Inventory_Management_System.Functions;
 
 namespace Inventory_Management_System.UserControls
 {
     public partial class ManageAccount : UserControl
     {
         private DB_InventoryEntities db;
+
         public ManageAccount()
         {
             InitializeComponent();
             db = new DB_InventoryEntities();
-        }
-        public void loadCbBoxRole()
-        {
-            // SELECT * FROM Role
-            var roles = db.Role.ToList();
-
-            Cbox_Roles.ValueMember = "roleID";
-            Cbox_Roles.DisplayMember = "roleName";
-            Cbox_Roles.DataSource = roles;
-        }
-        private void btnAdd_Click(object sender, EventArgs e)
-        {
-            Create create = new Create();
-            create.ShowDialog();
         }
 
         private void panelHeader_Paint(object sender, PaintEventArgs e)
@@ -46,24 +34,20 @@ namespace Inventory_Management_System.UserControls
             e.Graphics.DrawLine(blackPen, pnt1, pnt2);
         }
 
-        private void dgv_Accounts_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        public void loadCbBoxRole()
         {
+            // SELECT * FROM Role
+            var roles = db.Role.ToList();
 
+            Cbox_Roles.ValueMember = "roleID";
+            Cbox_Roles.DisplayMember = "roleName";
+            Cbox_Roles.DataSource = roles;
         }
 
-        private void Cbox_Roles_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            AccountDisplay();
-        }
-
-        private void ManageAccount_Load(object sender, EventArgs e)
-        {
-            loadCbBoxRole();
-            AccountDisplay();
-        }
         //This method is to display the Accounts and also filtered display.
         public void AccountDisplay()
         {
+            dgv_Accounts.DataSource = db.sp_AccountFilter(Cbox_Roles.Text).ToList();
             if (Cbox_Roles.Text == "All")
             {
                 dgv_Accounts.DataSource = (from account in db.Accounts
@@ -76,6 +60,7 @@ namespace Inventory_Management_System.UserControls
                                                Phone = account.user_phone,
                                                Position = account.user_position,
                                                Username = account.user_name,
+                                               Status = account.user_Status
                                            }).ToList();
             }
             else
@@ -91,9 +76,93 @@ namespace Inventory_Management_System.UserControls
                                                Phone = account.user_phone,
                                                Position = account.user_position,
                                                Username = account.user_name,
+                                               Status = account.user_Status
                                            }).ToList();
             }
+
             dgv_Accounts.Columns["ID"].Width = 30;
+
+            // Ensure the display order of the columns
+            dgv_Accounts.Columns["ID"].DisplayIndex = 0;
+            dgv_Accounts.Columns["Fullname"].DisplayIndex = 1;
+            dgv_Accounts.Columns["Email"].DisplayIndex = 2;
+            dgv_Accounts.Columns["Address"].DisplayIndex = 3;
+            dgv_Accounts.Columns["Phone"].DisplayIndex = 4;
+            dgv_Accounts.Columns["Position"].DisplayIndex = 5;
+            dgv_Accounts.Columns["Username"].DisplayIndex = 6;
+            dgv_Accounts.Columns["Status"].DisplayIndex = 7;
+
+            // Find the index of the "Status" column
+            int statusColumnIndex = dgv_Accounts.Columns["Status"].Index;
+
+            // Add the "Edit" button column after the "Status" column
+            var editButton = new DataGridViewButtonColumn
+            {
+                HeaderText = "Edit",
+                Text = "Edit",
+                UseColumnTextForButtonValue = true,
+                Name = "btnEdit",
+                FlatStyle = FlatStyle.Flat
+            };
+
+            // Check if the column already exists before adding it
+            if (!dgv_Accounts.Columns.Contains("btnEdit"))
+            {
+                // Insert the "Edit" button column after the "Status" column
+                dgv_Accounts.Columns.Insert(statusColumnIndex + 1, editButton);
+
+                // Ensure "Edit" comes after "Status"
+                int editColumnIndex = dgv_Accounts.Columns["btnEdit"].Index;
+                if (editColumnIndex <= statusColumnIndex)
+                {
+                    dgv_Accounts.Columns["btnEdit"].DisplayIndex = statusColumnIndex + 1;
+                }
+            }
+        }
+
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            Registration register = new Registration(this);
+            register.ShowDialog();
+        }
+
+        private void dgv_Accounts_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridViewRow selectedRow = dgv_Accounts.Rows[e.RowIndex];
+
+            Accounts account = new Accounts
+            {
+                user_Status = selectedRow.Cells["Status"].Value.ToString()
+            };
+
+            if (account.user_Status.Equals("Active"))
+            {
+                ToggleStatus.Checked = true;
+            }
+            else
+            {
+                ToggleStatus.Checked = false;
+            }
+
+            //Edit button
+            if (e.ColumnIndex == dgv_Accounts.Columns["btnEdit"].Index && e.RowIndex >= 0)
+            {
+                int ID = int.Parse(selectedRow.Cells["ID"].Value.ToString());
+                EditAccount edit = new EditAccount(ID, this);
+                edit.ShowDialog();
+            }
+        }
+
+        private void Cbox_Roles_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            AccountDisplay();
+        }
+
+        private void ManageAccount_Load(object sender, EventArgs e)
+        {
+            loadCbBoxRole();
+            AccountDisplay();
         }
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
@@ -122,6 +191,27 @@ namespace Inventory_Management_System.UserControls
                     .ToList();
 
                 dgv_Accounts.DataSource = searchData;
+            }
+        }
+
+        private void ToggleStatus_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dgv_Accounts.SelectedRows.Count > 0)
+                {
+                    DataGridViewRow selectedRow = dgv_Accounts.SelectedRows[0];
+                    int GetID = Convert.ToInt32(selectedRow.Cells["ID"].Value);
+                    bool status = ToggleStatus.Checked;
+
+                    Commands statusCMD = new Commands();
+                    statusCMD.UpdateStatusCommand(GetID, status);
+                    AccountDisplay();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

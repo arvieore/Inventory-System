@@ -42,6 +42,8 @@ public partial class Accounts
 
     public Nullable<System.DateTime> user_birthdate { get; set; }
 
+    public string user_Status { get; set; }
+
 
 
     public virtual Role Role { get; set; }

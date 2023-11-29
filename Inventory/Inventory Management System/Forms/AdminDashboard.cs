@@ -71,7 +71,7 @@ namespace Inventory_Management_System.Forms
             DisplayUserControl(summary);
         }
         //Display the User Controls
-        private void DisplayUserControl(UserControl userControl)
+        public void DisplayUserControl(UserControl userControl)
         {
             userControl.Dock = DockStyle.Fill;
             MainPanel.Controls.Clear();

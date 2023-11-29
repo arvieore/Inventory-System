@@ -31,6 +31,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.dgv_Products = new Guna.UI2.WinForms.Guna2DataGridView();
@@ -100,6 +101,8 @@
             this.dgv_Products.ReadOnly = true;
             this.dgv_Products.RowHeadersVisible = false;
             this.dgv_Products.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.PaleTurquoise;
+            this.dgv_Products.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dgv_Products.Size = new System.Drawing.Size(957, 270);
             this.dgv_Products.TabIndex = 1;
             this.dgv_Products.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
@@ -158,6 +161,7 @@
             this.btnAdd.ImageSize = new System.Drawing.Size(50, 50);
             this.btnAdd.Location = new System.Drawing.Point(853, 3);
             this.btnAdd.Name = "btnAdd";
+            this.btnAdd.PressedColor = System.Drawing.Color.Transparent;
             this.btnAdd.Size = new System.Drawing.Size(111, 44);
             this.btnAdd.TabIndex = 0;
             this.btnAdd.Text = "Add";

@@ -20,10 +20,12 @@ namespace Inventory_Management_System.Forms
         private String gender;
         private String pattern = @"[.,'""\]\[{^@&#!%()_=+}\\|:;*]";
         private DB_InventoryEntities db;
-        public Registration()
+        private ManageAccount ManageAccount;
+        public Registration(ManageAccount ManageAccount)
         {
             InitializeComponent();
             db = new DB_InventoryEntities();
+            this.ManageAccount = ManageAccount;
         }
         private void Registration_Load(object sender, EventArgs e)
         {
@@ -41,8 +43,10 @@ namespace Inventory_Management_System.Forms
         private void btnBack_Click(object sender, EventArgs e)
         {
             this.Hide();
-            Create backToCreate = new Create();
-            backToCreate.ShowDialog();
+            //Create backToCreate = new Create();
+            //backToCreate.ShowDialog();
+            ManageAccount account = new ManageAccount();
+            account.Show();
         }
         private void btnRegister_Click(object sender, EventArgs e)
         {
@@ -115,8 +119,7 @@ namespace Inventory_Management_System.Forms
         {
             Clear();
             MessageBox.Show("Registered successfully!");
-            ManageAccount acc = new ManageAccount();
-            acc.AccountDisplay();
+            ManageAccount.AccountDisplay();
         }
         private void Gender()
         {

@@ -20,6 +20,7 @@
           <Property Name="user_name" Type="varchar" MaxLength="50" />
           <Property Name="user_password" Type="varchar" MaxLength="50" />
           <Property Name="user_Address" Type="varchar" MaxLength="250" />
+          <Property Name="user_Status" Type="varchar" MaxLength="10" />
           <Property Name="roleID" Type="int" />
         </EntityType>
         <EntityType Name="Category">
@@ -136,6 +137,7 @@
           <NavigationProperty Name="Role" Relationship="InventoryDBModel.FK_Accounts_Role" FromRole="Accounts" ToRole="Role" />
           <Property Name="user_gender" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="user_birthdate" Type="DateTime" Precision="0" />
+          <Property Name="user_Status" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityContainer Name="DB_InventoryEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Accounts" EntityType="Self.Accounts" />
@@ -177,7 +179,7 @@
             <Parameter Name="address" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_AccountFilter" ReturnType="Collection(InventoryDBModel.sp_AccountFilter_Result)">
-            <Parameter Name="AccountFiltered" Mode="In" Type="String" />
+          <Parameter Name="AccountFiltered" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="sp_ValidateAccount_Result">
@@ -263,6 +265,7 @@
           <EntitySetMapping Name="Accounts">
             <EntityTypeMapping TypeName="InventoryDBModel.Accounts">
               <MappingFragment StoreEntitySet="Accounts">
+                <ScalarProperty Name="user_Status" ColumnName="user_Status" />
                 <ScalarProperty Name="user_birthdate" ColumnName="user_birthdate" />
                 <ScalarProperty Name="user_gender" ColumnName="user_gender" />
                 <ScalarProperty Name="roleID" ColumnName="roleID" />

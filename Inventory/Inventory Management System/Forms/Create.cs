@@ -20,8 +20,8 @@ namespace Inventory_Management_System.Forms
         private void btnCreateAccount_Click(object sender, EventArgs e)
         {
             this.Hide();
-            Registration registration = new Registration();
-            registration.ShowDialog();
+            //Registration registration = new Registration();
+            //registration.ShowDialog();
         }
     }
 }

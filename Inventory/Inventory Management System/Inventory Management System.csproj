@@ -80,6 +80,12 @@
     <Compile Include="Forms\Create.Designer.cs">
       <DependentUpon>Create.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\EditAccount.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\EditAccount.Designer.cs">
+      <DependentUpon>EditAccount.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\EditForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -166,6 +172,9 @@
     <EmbeddedResource Include="Forms\Create.resx">
       <DependentUpon>Create.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\EditAccount.resx">
+      <DependentUpon>EditAccount.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\EditForm.resx">
       <DependentUpon>EditForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -242,6 +251,9 @@
       <DependentUpon>Entity_Inventory_Model.edmx</DependentUpon>
       <LastGenOutput>Entity_Inventory_Model.cs</LastGenOutput>
     </Content>
+    <None Include="Resources\View.png" />
+    <None Include="Resources\Hide.png" />
+    <None Include="Resources\refresh.png" />
     <None Include="Resources\man.png" />
     <None Include="Resources\back button.png" />
     <None Include="Resources\acc.png" />

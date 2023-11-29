@@ -1,10 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity.Migrations;
+using System.Diagnostics;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Guna.UI2.WinForms.Suite;
+using System.Xml.Linq;
 using Inventory_Management_System.Models;
 using Inventory_Management_System.UserControls;
 
@@ -66,6 +70,57 @@ namespace Inventory_Management_System.Functions
             catch(Exception e)
             {
                 MessageBox.Show("Error: "+ e.Message);
+            }
+        }
+        public void UpdateStatusCommand(int ID, bool status)
+        {
+            try
+            {
+                using (var db = new DB_InventoryEntities())
+                {
+                    var acc = db.Accounts.Find(ID);
+                    if(status)
+                    {
+                        acc.user_Status = "Active";
+                    }
+                    else
+                    {
+                        acc.user_Status = "Inactive";
+                    }
+                    db.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: "+ ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        public void EditAccountCommand(Accounts acc)
+        {
+            try
+            {
+                using (db = new DB_InventoryEntities())
+                {
+                    Accounts accountUpdate = db.Accounts.Where(i => i.user_ID == acc.user_ID).FirstOrDefault();
+                    if(accountUpdate != null) 
+                    {
+                        accountUpdate.user_firstname = acc.user_firstname;
+                        accountUpdate.user_lastname = acc.user_lastname;
+                        accountUpdate.user_email = acc.user_email;
+                        accountUpdate.user_Address = acc.user_Address;
+                        accountUpdate.user_phone = acc.user_phone;
+                        accountUpdate.user_position = acc.user_position;
+                        accountUpdate.user_name = acc.user_name;
+                        accountUpdate.user_password = acc.user_password;
+
+                        db.SaveChanges();
+                        MessageBox.Show("Saved!");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
             }
         }
     }

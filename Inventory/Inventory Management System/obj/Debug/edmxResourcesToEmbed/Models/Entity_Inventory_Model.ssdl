@@ -15,6 +15,7 @@
     <Property Name="user_name" Type="varchar" MaxLength="50" />
     <Property Name="user_password" Type="varchar" MaxLength="50" />
     <Property Name="user_Address" Type="varchar" MaxLength="250" />
+    <Property Name="user_Status" Type="varchar" MaxLength="10" />
     <Property Name="roleID" Type="int" />
   </EntityType>
   <EntityType Name="Category">

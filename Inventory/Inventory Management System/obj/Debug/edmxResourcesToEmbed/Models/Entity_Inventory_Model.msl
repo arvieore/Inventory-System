@@ -4,6 +4,7 @@
     <EntitySetMapping Name="Accounts">
       <EntityTypeMapping TypeName="InventoryDBModel.Accounts">
         <MappingFragment StoreEntitySet="Accounts">
+          <ScalarProperty Name="user_Status" ColumnName="user_Status" />
           <ScalarProperty Name="user_birthdate" ColumnName="user_birthdate" />
           <ScalarProperty Name="user_gender" ColumnName="user_gender" />
           <ScalarProperty Name="roleID" ColumnName="roleID" />

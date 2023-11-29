@@ -19,6 +19,7 @@ AS
 BEGIN
 	DECLARE @roleIndex INT
 	DECLARE @username varchar(50)
+	DECLARE @status varchar(20) = 'Inactive'
 
 	SELECT @roleIndex = roleID
 	FROM [Role]
@@ -26,9 +27,10 @@ BEGIN
 
 	SET @username = CONCAT(@firstname, @lastname, YEAR(@birthdate))
 
-	INSERT INTO Accounts (user_firstname, user_lastname, user_email, user_phone, user_gender, user_birthdate, user_position, user_name, user_password, user_Address, roleID)
-	VALUES (@firstname, @lastname, @email, @phone, @gender, @birthdate, @position, @username, @password, @address, @roleIndex)
+	INSERT INTO Accounts (user_firstname, user_lastname, user_email, user_phone, user_gender, user_birthdate, user_position, user_name, user_password, user_Address, user_Status, roleID)
+	VALUES (@firstname, @lastname, @email, @phone, @gender, @birthdate, @position, @username, @password, @address, @status, @roleIndex)
 END
+
 ----------------------- Check Position of the account --------------------------------
 CREATE PROCEDURE sp_ValidateAccount
 	@user_name varchar(50),
@@ -111,7 +113,7 @@ BEGIN
 		WHERE c.categoryName = @CategoryFiltered;
 	END
 END
-
+`
 SELECT * FROM Accounts
 
 ----------------------- Account Filter --------------------------------

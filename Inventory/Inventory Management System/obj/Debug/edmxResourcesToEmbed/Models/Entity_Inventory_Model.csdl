@@ -17,6 +17,7 @@
     <NavigationProperty Name="Role" Relationship="InventoryDBModel.FK_Accounts_Role" FromRole="Accounts" ToRole="Role" />
     <Property Name="user_gender" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
     <Property Name="user_birthdate" Type="DateTime" Precision="0" />
+    <Property Name="user_Status" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityContainer Name="DB_InventoryEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Accounts" EntityType="Self.Accounts" />
