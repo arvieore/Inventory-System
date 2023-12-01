@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Guna.UI2.WinForms;
+using Inventory_Management_System.Functions;
 using Inventory_Management_System.Models;
 
 namespace Inventory_Management_System.UserControls
@@ -14,6 +16,7 @@ namespace Inventory_Management_System.UserControls
     public partial class Summary : UserControl
     {
         private DB_InventoryEntities db;
+        private String SelectedPanel;
         public Summary()
         {
             InitializeComponent();
@@ -41,6 +44,64 @@ namespace Inventory_Management_System.UserControls
 
             int countCategory = db.Category.Count();
             lblTotalCategory.Text = countCategory.ToString();
+        }
+
+        private void panelProduct_Click(object sender, EventArgs e)
+        {
+            panelHover.BackColor = Color.FromArgb(31, 110, 140);
+            int x = 7;
+            int y = 241;
+            Point HoverPanel = new Point(x, y);
+            panelHover.Location = HoverPanel;
+
+            SelectedPanel = "panelProduct";
+            LoadTable(SelectedPanel);
+        }
+        private void panelCategory_Click(object sender, EventArgs e)
+        {
+            panelHover.BackColor = Color.FromArgb(31, 110, 140);
+            int x = 251;
+            int y = 241;
+            Point HoverPanel = new Point(x, y);
+            panelHover.Location = HoverPanel;
+
+            SelectedPanel = "panelCategory";
+            LoadTable(SelectedPanel);
+        }
+
+        private void panelStocks_Click(object sender, EventArgs e)
+        {
+            panelHover.BackColor = Color.FromArgb(31, 110, 140);
+            int x = 495;
+            int y = 241;
+            Point HoverPanel = new Point(x, y);
+            panelHover.Location = HoverPanel;
+        }
+
+        private void panelLowStock_Click(object sender, EventArgs e)
+        {
+            panelHover.BackColor = Color.FromArgb(31, 110, 140);
+            int x = 738;
+            int y = 241;
+            Point HoverPanel = new Point(x, y);
+            panelHover.Location = HoverPanel;
+        }
+        private void LoadTable(String selectedPanel)
+        {
+            if(selectedPanel.Equals("panelProduct"))
+            {
+                dgv_Summary.DataSource = db.sp_SelectProduct().ToList();
+                dgv_Summary.Columns["product_Name"].HeaderText = "Product Name";
+                dgv_Summary.Columns["ID"].Width = 30;
+                dgv_Summary.Columns["Quantity"].Width = 80;
+                dgv_Summary.Columns["Price"].Width = 100;
+            }
+            else if (selectedPanel.Equals("panelCategory"))
+            {
+                dgv_Summary.DataSource = db.sp_SelectCategory();
+                dgv_Summary.Columns["categoryName"].HeaderText = "Category Name";
+                dgv_Summary.Columns["ID"].Width = 90;
+            }
         }
     }
 }

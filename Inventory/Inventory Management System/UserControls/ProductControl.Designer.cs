@@ -103,7 +103,7 @@
             this.dgv_Products.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.PaleTurquoise;
             this.dgv_Products.RowsDefaultCellStyle = dataGridViewCellStyle4;
-            this.dgv_Products.Size = new System.Drawing.Size(957, 270);
+            this.dgv_Products.Size = new System.Drawing.Size(957, 389);
             this.dgv_Products.TabIndex = 1;
             this.dgv_Products.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
             this.dgv_Products.ThemeStyle.AlternatingRowsStyle.Font = null;

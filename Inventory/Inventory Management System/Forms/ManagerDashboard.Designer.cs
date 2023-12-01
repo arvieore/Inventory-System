@@ -1,6 +1,6 @@
-﻿namespace Inventory_Management_System.Forms
+﻿namespace Inventory_Management_System.Functions
 {
-    partial class AdminDashboard
+    partial class ManagerDashboard
     {
         /// <summary>
         /// Required designer variable.
@@ -31,7 +31,7 @@
             this.guna2GradientPanel1 = new Guna.UI2.WinForms.Guna2GradientPanel();
             this.btnReport = new Guna.UI2.WinForms.Guna2Button();
             this.panelHover = new System.Windows.Forms.Panel();
-            this.btnAccounts = new Guna.UI2.WinForms.Guna2Button();
+            this.btnHistory = new Guna.UI2.WinForms.Guna2Button();
             this.btnProducts = new Guna.UI2.WinForms.Guna2Button();
             this.btnDashboard = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
@@ -48,7 +48,7 @@
             this.guna2GradientPanel1.Controls.Add(this.btnSwitchAccount);
             this.guna2GradientPanel1.Controls.Add(this.btnReport);
             this.guna2GradientPanel1.Controls.Add(this.panelHover);
-            this.guna2GradientPanel1.Controls.Add(this.btnAccounts);
+            this.guna2GradientPanel1.Controls.Add(this.btnHistory);
             this.guna2GradientPanel1.Controls.Add(this.btnProducts);
             this.guna2GradientPanel1.Controls.Add(this.btnDashboard);
             this.guna2GradientPanel1.Dock = System.Windows.Forms.DockStyle.Left;
@@ -57,7 +57,7 @@
             this.guna2GradientPanel1.Location = new System.Drawing.Point(0, 0);
             this.guna2GradientPanel1.Name = "guna2GradientPanel1";
             this.guna2GradientPanel1.Size = new System.Drawing.Size(200, 610);
-            this.guna2GradientPanel1.TabIndex = 11;
+            this.guna2GradientPanel1.TabIndex = 14;
             // 
             // btnReport
             // 
@@ -86,24 +86,24 @@
             this.panelHover.Size = new System.Drawing.Size(11, 43);
             this.panelHover.TabIndex = 1;
             // 
-            // btnAccounts
+            // btnHistory
             // 
-            this.btnAccounts.BackColor = System.Drawing.Color.Transparent;
-            this.btnAccounts.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnAccounts.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnAccounts.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnAccounts.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnAccounts.FillColor = System.Drawing.Color.Transparent;
-            this.btnAccounts.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.btnAccounts.ForeColor = System.Drawing.Color.White;
-            this.btnAccounts.HoverState.FillColor = System.Drawing.Color.White;
-            this.btnAccounts.HoverState.ForeColor = System.Drawing.Color.Black;
-            this.btnAccounts.Location = new System.Drawing.Point(12, 129);
-            this.btnAccounts.Name = "btnAccounts";
-            this.btnAccounts.Size = new System.Drawing.Size(188, 43);
-            this.btnAccounts.TabIndex = 1;
-            this.btnAccounts.Text = "Accounts";
-            this.btnAccounts.Click += new System.EventHandler(this.btnAccounts_Click);
+            this.btnHistory.BackColor = System.Drawing.Color.Transparent;
+            this.btnHistory.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnHistory.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnHistory.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnHistory.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnHistory.FillColor = System.Drawing.Color.Transparent;
+            this.btnHistory.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.btnHistory.ForeColor = System.Drawing.Color.White;
+            this.btnHistory.HoverState.FillColor = System.Drawing.Color.White;
+            this.btnHistory.HoverState.ForeColor = System.Drawing.Color.Black;
+            this.btnHistory.Location = new System.Drawing.Point(12, 129);
+            this.btnHistory.Name = "btnHistory";
+            this.btnHistory.Size = new System.Drawing.Size(188, 43);
+            this.btnHistory.TabIndex = 1;
+            this.btnHistory.Text = "History Transaction";
+            this.btnHistory.Click += new System.EventHandler(this.btnHistory_Click);
             // 
             // btnProducts
             // 
@@ -151,7 +151,7 @@
             this.guna2Panel1.Location = new System.Drawing.Point(200, 0);
             this.guna2Panel1.Name = "guna2Panel1";
             this.guna2Panel1.Size = new System.Drawing.Size(996, 24);
-            this.guna2Panel1.TabIndex = 12;
+            this.guna2Panel1.TabIndex = 15;
             // 
             // MainPanel
             // 
@@ -159,7 +159,7 @@
             this.MainPanel.Location = new System.Drawing.Point(200, 24);
             this.MainPanel.Name = "MainPanel";
             this.MainPanel.Size = new System.Drawing.Size(996, 586);
-            this.MainPanel.TabIndex = 13;
+            this.MainPanel.TabIndex = 16;
             // 
             // ExitIcon
             // 
@@ -199,11 +199,11 @@
             this.btnSwitchAccount.Name = "btnSwitchAccount";
             this.btnSwitchAccount.PressedColor = System.Drawing.Color.Transparent;
             this.btnSwitchAccount.Size = new System.Drawing.Size(188, 44);
-            this.btnSwitchAccount.TabIndex = 4;
+            this.btnSwitchAccount.TabIndex = 5;
             this.btnSwitchAccount.Text = "Switch account";
             this.btnSwitchAccount.Click += new System.EventHandler(this.btnSwitchAccount_Click);
             // 
-            // AdminDashboard
+            // ManagerDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -212,9 +212,9 @@
             this.Controls.Add(this.guna2Panel1);
             this.Controls.Add(this.guna2GradientPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "AdminDashboard";
+            this.Name = "ManagerDashboard";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Admin Dashboard";
+            this.Text = "ManagerDashboard";
             this.guna2GradientPanel1.ResumeLayout(false);
             this.guna2Panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ExitIcon)).EndInit();
@@ -225,14 +225,14 @@
         #endregion
 
         private Guna.UI2.WinForms.Guna2GradientPanel guna2GradientPanel1;
+        private Guna.UI2.WinForms.Guna2Button btnReport;
+        private System.Windows.Forms.Panel panelHover;
+        private Guna.UI2.WinForms.Guna2Button btnHistory;
+        private Guna.UI2.WinForms.Guna2Button btnProducts;
+        private Guna.UI2.WinForms.Guna2Button btnDashboard;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
         private Guna.UI2.WinForms.Guna2PictureBox ExitIcon;
         private System.Windows.Forms.Panel MainPanel;
-        private Guna.UI2.WinForms.Guna2Button btnDashboard;
-        private System.Windows.Forms.Panel panelHover;
-        private Guna.UI2.WinForms.Guna2Button btnProducts;
-        private Guna.UI2.WinForms.Guna2Button btnAccounts;
-        private Guna.UI2.WinForms.Guna2Button btnReport;
         private Guna.UI2.WinForms.Guna2Button btnSwitchAccount;
     }
 }

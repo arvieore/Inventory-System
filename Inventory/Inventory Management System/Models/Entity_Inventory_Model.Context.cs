@@ -173,6 +173,20 @@ public partial class DB_InventoryEntities : DbContext
         return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_AccountFilter_Result>("sp_AccountFilter", accountFilteredParameter);
     }
 
+
+    public virtual ObjectResult<sp_SelectProduct_Result> sp_SelectProduct()
+    {
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_SelectProduct_Result>("sp_SelectProduct");
+    }
+
+
+    public virtual ObjectResult<sp_SelectCategory1_Result> sp_SelectCategory()
+    {
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_SelectCategory1_Result>("sp_SelectCategory");
+    }
+
 }
 
 }

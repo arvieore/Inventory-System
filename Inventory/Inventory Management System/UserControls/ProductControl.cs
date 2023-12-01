@@ -38,33 +38,7 @@ namespace Inventory_Management_System.UserControls
         {
             dgv_Products.DataSource = db.sp_CategoryFilter(Cbox_Category.Text).ToList();
 
-            if (dgv_Products != null && dgv_Products.Columns != null)
-            {
-                // Modify the column headers if the column exists
-                ModifyColumnHeader("productID", "ID");
-                ModifyColumnHeader("product_Name", "Product Name");
-                ModifyColumnHeader("product_Sku", "SKU");
-                ModifyColumnHeader("product_Quantity", "Quantity");
-                ModifyColumnHeader("product_Price", "Price");
-                ModifyColumnHeader("product_Description", "Description");
-
-                dgv_Products.Columns["productID"].Width = 30;
-                dgv_Products.Columns["product_Name"].Width = 180;
-                dgv_Products.Columns["product_Sku"].Width = 180;
-                dgv_Products.Columns["product_Quantity"].Width = 80;
-                dgv_Products.Columns["product_Price"].Width = 100;
-                //dgv_Products.Columns["product_Description"].Width = 210;
-            }
-        }
-        private void ModifyColumnHeader(string columnName, string newHeaderText)
-        {
-            var column = dgv_Products.Columns[columnName];
-
-            // Check if the column is not null
-            if (column != null)
-            {
-                column.HeaderText = newHeaderText;
-            }
+            Tables.DisplayProducts(dgv_Products);
         }
         private void ProductControl_Load(object sender, EventArgs e)
         {

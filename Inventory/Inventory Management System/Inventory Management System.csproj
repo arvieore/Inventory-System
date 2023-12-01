@@ -74,6 +74,12 @@
     <Compile Include="Forms\AdminDashboard.Designer.cs">
       <DependentUpon>AdminDashboard.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\ClerksDashboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ClerksDashboard.Designer.cs">
+      <DependentUpon>ClerksDashboard.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Create.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -106,6 +112,13 @@
     </Compile>
     <Compile Include="Functions\Commands.cs" />
     <Compile Include="Functions\LoginFunction.cs" />
+    <Compile Include="Forms\ManagerDashboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ManagerDashboard.Designer.cs">
+      <DependentUpon>ManagerDashboard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Functions\Tables.cs" />
     <Compile Include="Functions\UserRegistration.cs" />
     <Compile Include="Models\Accounts.cs">
       <DependentUpon>Entity_Inventory_Model.tt</DependentUpon>
@@ -140,7 +153,22 @@
     <Compile Include="Models\sp_CategoryFilter_Result.cs">
       <DependentUpon>Entity_Inventory_Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\sp_SelectCategory1_Result.cs">
+      <DependentUpon>Entity_Inventory_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_SelectCategory_Result.cs">
+      <DependentUpon>Entity_Inventory_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_SelectedPanel_Result.cs">
+      <DependentUpon>Entity_Inventory_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_SelectProduct_Result.cs">
+      <DependentUpon>Entity_Inventory_Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\sp_ValidateAccount_Result.cs">
+      <DependentUpon>Entity_Inventory_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vw_SelectedPanel_Result.cs">
       <DependentUpon>Entity_Inventory_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
@@ -157,6 +185,12 @@
     <Compile Include="UserControls\ProductControl.Designer.cs">
       <DependentUpon>ProductControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\SalesReport.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\SalesReport.Designer.cs">
+      <DependentUpon>SalesReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Summary.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -168,6 +202,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\AdminDashboard.resx">
       <DependentUpon>AdminDashboard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ClerksDashboard.resx">
+      <DependentUpon>ClerksDashboard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Create.resx">
       <DependentUpon>Create.cs</DependentUpon>
@@ -184,6 +221,9 @@
     <EmbeddedResource Include="Forms\Registration.resx">
       <DependentUpon>Registration.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ManagerDashboard.resx">
+      <DependentUpon>ManagerDashboard.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
@@ -194,6 +234,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\ProductControl.resx">
       <DependentUpon>ProductControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\SalesReport.resx">
+      <DependentUpon>SalesReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Summary.resx">
       <DependentUpon>Summary.cs</DependentUpon>
@@ -251,6 +294,7 @@
       <DependentUpon>Entity_Inventory_Model.edmx</DependentUpon>
       <LastGenOutput>Entity_Inventory_Model.cs</LastGenOutput>
     </Content>
+    <None Include="Resources\Switch account.png" />
     <None Include="Resources\View.png" />
     <None Include="Resources\Hide.png" />
     <None Include="Resources\refresh.png" />

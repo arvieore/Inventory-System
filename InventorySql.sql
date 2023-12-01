@@ -1,9 +1,6 @@
 CREATE DATABASE InventoryDB;
 
 use InventoryDB;
-
-SELECT * FROM Accounts
-SELECT * FROM [Role]
 ----------------------- Create Account --------------------------------
 CREATE PROCEDURE sp_AddAccount
 	@firstname varchar(50),
@@ -88,11 +85,6 @@ BEGIN
 	)
 	SELECT @ProductID = SCOPE_IDENTITY();
 END
-
-
-SELECT * FROM Category
-SELECT * FROM Products
-
 ----------------------- CATEGORY FILTER --------------------------------
 Create Procedure sp_CategoryFilter 
 	@CategoryFiltered varchar(50)
@@ -113,12 +105,8 @@ BEGIN
 		WHERE c.categoryName = @CategoryFiltered;
 	END
 END
-`
-SELECT * FROM Accounts
-
 ----------------------- Account Filter --------------------------------
 CREATE PROCEDURE sp_AccountFilter
-	@AccountFiltered varchar(50)
 AS
 BEGIN
 	IF @AccountFiltered = 'All'
@@ -145,3 +133,30 @@ BEGIN
 		WHERE user_position = @AccountFiltered;
 	END
 END
+---------------------------------------------- Selected Panel -------------------------------------------------------
+------------ Product ---------------
+CREATE PROCEDURE sp_SelectProduct
+AS
+BEGIN
+	SELECT productID as ID,
+	product_Name as 'Product Name',
+	product_Sku as SKU,
+	product_Quantity as Quantity,
+	product_Price as Price,
+	product_Description as Description
+	FROM Products
+END
+------------ Category ---------------
+CREATE PROCEDURE sp_SelectCategory
+AS
+BEGIN
+	SELECT categoryID as ID,
+	categoryName
+	FROM Category
+END
+-------------------------------------------------------------------------------------------------------------------
+
+SELECT * FROM Category
+SELECT * FROM Products
+SELECT * FROM Accounts
+SELECT * FROM [Role]

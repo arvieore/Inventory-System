@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Inventory_Management_System.Models;
 using System.Data.Entity;
+using Inventory_Management_System.Functions;
 
 namespace Inventory_Management_System
 {
@@ -48,18 +49,20 @@ namespace Inventory_Management_System
                             AdminDashboard Form_Admin = new AdminDashboard();
                             Form_Admin.Show();
                             break;
+                        case "Manager":
+                            MessageBox.Show("Welcome Manager!");
+                            this.Hide();
+                            ManagerDashboard Form_Manager = new ManagerDashboard();
+                            Form_Manager.Show();
+                            break;
                     }
-                }
-                else
-                {
-                    MessageBox.Show("Invalid Account!");
                 }
             }
         }
 
         private void ExitIcon_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Application.Exit();
         }
         private void UsernameLineLabel()
         {

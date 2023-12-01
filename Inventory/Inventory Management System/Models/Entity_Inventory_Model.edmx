@@ -98,6 +98,8 @@
         <Function Name="sp_CategoryFilter" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="CategoryFiltered" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="sp_SelectCategory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_SelectProduct" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="sp_ValidateAccount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="user_name" Type="varchar" Mode="In" />
           <Parameter Name="user_password" Type="varchar" Mode="In" />
@@ -181,6 +183,9 @@
           <FunctionImport Name="sp_AccountFilter" ReturnType="Collection(InventoryDBModel.sp_AccountFilter_Result)">
           <Parameter Name="AccountFiltered" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="sp_SelectProduct" ReturnType="Collection(InventoryDBModel.sp_SelectProduct_Result)">
+          </FunctionImport>
+          <FunctionImport Name="sp_SelectCategory" ReturnType="Collection(InventoryDBModel.sp_SelectCategory1_Result)" />
         </EntityContainer>
         <ComplexType Name="sp_ValidateAccount_Result">
           <Property Type="Int32" Name="user_ID" Nullable="false" />
@@ -255,6 +260,38 @@
           <Property Type="String" Name="Phone" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="Position" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="Username" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="vw_SelectedPanel_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Product_Name" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="SKU" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Quantity" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="Price" Nullable="true" Precision="10" Scale="2" />
+          <Property Type="String" Name="Description" Nullable="true" MaxLength="255" />
+        </ComplexType>
+        <ComplexType Name="sp_SelectedPanel_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Product_Name" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="SKU" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Quantity" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="Price" Nullable="true" Precision="10" Scale="2" />
+          <Property Type="String" Name="Description" Nullable="true" MaxLength="255" />
+        </ComplexType>
+        <ComplexType Name="sp_SelectCategory_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="categoryName" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="sp_SelectProduct_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Product_Name" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="SKU" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Quantity" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="Price" Nullable="true" Precision="10" Scale="2" />
+          <Property Type="String" Name="Description" Nullable="true" MaxLength="255" />
+        </ComplexType>
+        <ComplexType Name="sp_SelectCategory1_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="categoryName" Nullable="true" MaxLength="50" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -342,6 +379,26 @@
                 <ScalarProperty Name="Phone" ColumnName="Phone" />
                 <ScalarProperty Name="Position" ColumnName="Position" />
                 <ScalarProperty Name="Username" ColumnName="Username" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_SelectProduct" FunctionName="InventoryDBModel.Store.sp_SelectProduct">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="InventoryDBModel.sp_SelectProduct_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Product_Name" ColumnName="Product Name" />
+                <ScalarProperty Name="SKU" ColumnName="SKU" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_SelectCategory" FunctionName="InventoryDBModel.Store.sp_SelectCategory">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="InventoryDBModel.sp_SelectCategory1_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="categoryName" ColumnName="categoryName" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

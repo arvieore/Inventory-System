@@ -84,5 +84,25 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_SelectProduct" FunctionName="InventoryDBModel.Store.sp_SelectProduct">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="InventoryDBModel.sp_SelectProduct_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Product_Name" ColumnName="Product Name" />
+          <ScalarProperty Name="SKU" ColumnName="SKU" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_SelectCategory" FunctionName="InventoryDBModel.Store.sp_SelectCategory">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="InventoryDBModel.sp_SelectCategory1_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="categoryName" ColumnName="categoryName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

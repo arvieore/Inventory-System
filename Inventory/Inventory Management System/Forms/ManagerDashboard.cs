@@ -9,69 +9,20 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Inventory_Management_System.Forms
+namespace Inventory_Management_System.Functions
 {
-    public partial class AdminDashboard : Form
+    public partial class ManagerDashboard : Form
     {
-        public AdminDashboard()
+        public ManagerDashboard()
         {
             InitializeComponent();
 
             DisplayDashBoardUserControl();
         }
+
         private void ExitIcon_Click(object sender, EventArgs e)
         {
             Application.Exit();
-        }
-
-        private void btnProducts_Click(object sender, EventArgs e)
-        {
-            btnDashboard.FillColor = Color.Transparent;
-            btnDashboard.BackColor = Color.Transparent;
-            btnDashboard.ForeColor = Color.White;
-
-            btnAccounts.FillColor = Color.Transparent;
-            btnAccounts.BackColor = Color.Transparent;
-            btnAccounts.ForeColor = Color.White;
-
-            btnReport.FillColor = Color.Transparent;
-            btnReport.BackColor = Color.Transparent;
-            btnReport.ForeColor = Color.White;
-
-            btnProducts.BackColor = Color.White;
-            btnProducts.ForeColor = Color.Black;
-            int x = 0;
-            int y = 86;
-            Point HoverPanel = new Point(x, y);
-            panelHover.Location = HoverPanel;
-            
-            //Display the product User Control
-            ProductControl productControl = new ProductControl();
-            DisplayUserControl(productControl);
-        }
-
-        private void btnDashboard_Click(object sender, EventArgs e)
-        {
-            btnProducts.FillColor = Color.Transparent;
-            btnProducts.BackColor = Color.Transparent;
-            btnProducts.ForeColor = Color.White;
-
-            btnAccounts.FillColor = Color.Transparent;
-            btnAccounts.BackColor = Color.Transparent;
-            btnAccounts.ForeColor = Color.White;
-
-            btnReport.FillColor = Color.Transparent;
-            btnReport.BackColor = Color.Transparent;
-            btnReport.ForeColor = Color.White;
-
-            btnDashboard.BackColor = Color.White;
-            btnDashboard.ForeColor = Color.Black;
-            int x = 0;
-            int y = 43;
-            Point HoverPanel = new Point(x, y);
-            panelHover.Location = HoverPanel;
-
-            DisplayDashBoardUserControl();
         }
         private void DisplayDashBoardUserControl()
         {
@@ -86,8 +37,57 @@ namespace Inventory_Management_System.Forms
             MainPanel.Controls.Add(userControl);
             userControl.BringToFront();
         }
+        private void btnDashboard_Click(object sender, EventArgs e)
+        {
+            btnProducts.FillColor = Color.Transparent;
+            btnProducts.BackColor = Color.Transparent;
+            btnProducts.ForeColor = Color.White;
 
-        private void btnAccounts_Click(object sender, EventArgs e)
+            btnHistory.FillColor = Color.Transparent;
+            btnHistory.BackColor = Color.Transparent;
+            btnHistory.ForeColor = Color.White;
+
+            btnReport.FillColor = Color.Transparent;
+            btnReport.BackColor = Color.Transparent;
+            btnReport.ForeColor = Color.White;
+
+            btnDashboard.BackColor = Color.White;
+            btnDashboard.ForeColor = Color.Black;
+            int x = 0;
+            int y = 43;
+            Point HoverPanel = new Point(x, y);
+            panelHover.Location = HoverPanel;
+
+            DisplayDashBoardUserControl();
+        }
+
+        private void btnProducts_Click(object sender, EventArgs e)
+        {
+            btnDashboard.FillColor = Color.Transparent;
+            btnDashboard.BackColor = Color.Transparent;
+            btnDashboard.ForeColor = Color.White;
+
+            btnHistory.FillColor = Color.Transparent;
+            btnHistory.BackColor = Color.Transparent;
+            btnHistory.ForeColor = Color.White;
+
+            btnReport.FillColor = Color.Transparent;
+            btnReport.BackColor = Color.Transparent;
+            btnReport.ForeColor = Color.White;
+
+            btnProducts.BackColor = Color.White;
+            btnProducts.ForeColor = Color.Black;
+            int x = 0;
+            int y = 86;
+            Point HoverPanel = new Point(x, y);
+            panelHover.Location = HoverPanel;
+
+            //Display the product User Control
+            ProductControl productControl = new ProductControl();
+            DisplayUserControl(productControl);
+        }
+
+        private void btnHistory_Click(object sender, EventArgs e)
         {
             btnProducts.FillColor = Color.Transparent;
             btnProducts.BackColor = Color.Transparent;
@@ -101,15 +101,12 @@ namespace Inventory_Management_System.Forms
             btnReport.BackColor = Color.Transparent;
             btnReport.ForeColor = Color.White;
 
-            btnAccounts.BackColor = Color.White;
-            btnAccounts.ForeColor = Color.Black;
+            btnHistory.BackColor = Color.White;
+            btnHistory.ForeColor = Color.Black;
             int x = 0;
             int y = 129;
             Point HoverPanel = new Point(x, y);
             panelHover.Location = HoverPanel;
-
-            ManageAccount manageAccount = new ManageAccount();
-            DisplayUserControl(manageAccount);
         }
 
         private void btnReport_Click(object sender, EventArgs e)
@@ -122,9 +119,9 @@ namespace Inventory_Management_System.Forms
             btnDashboard.BackColor = Color.Transparent;
             btnDashboard.ForeColor = Color.White;
 
-            btnAccounts.FillColor = Color.Transparent;
-            btnAccounts.BackColor = Color.Transparent;
-            btnAccounts.ForeColor = Color.White;
+            btnHistory.FillColor = Color.Transparent;
+            btnHistory.BackColor = Color.Transparent;
+            btnHistory.ForeColor = Color.White;
 
             btnReport.BackColor = Color.White;
             btnReport.ForeColor = Color.Black;

@@ -7,6 +7,7 @@ using Inventory_Management_System.Models;
 using System.Data.Entity;
 using System.Collections;
 using System.Web.UI.WebControls;
+using System.Windows.Forms;
 
 namespace Inventory_Management_System
 {
@@ -18,20 +19,23 @@ namespace Inventory_Management_System
         {
             //GET THE ID BY USING SPECIFIC USERNAME AND PASSWORD
             db = new DB_InventoryEntities();
-            int userID = db.Accounts.Where(a => a.user_name == username && a.user_password == userpass).Select(a => a.user_ID).FirstOrDefault();
-            if (userID != 0)
+
+            var account = db.Accounts.Where(a => a.user_name == username && a.user_password == userpass).FirstOrDefault();
+            if (account != null)
             {
-                return userID;
+                if (account.user_Status == "Active")
+                {
+                    return account.user_ID;
+                }
+                else
+                {
+                    MessageBox.Show("The account is Inactive.");
+                    return 0;
+                }
             }
             else
+                MessageBox.Show("Account does not exist");
                 return 0;
-            //var account =  db.Accounts.Where(a => a.user_name == username && a.user_password == userpass).FirstOrDefault();
-            //if (account != null)
-            //{
-            //    return account.user_ID;
-            //}
-            //else
-            //    return null;
         }
         public String GetPosition(int id)
         {
