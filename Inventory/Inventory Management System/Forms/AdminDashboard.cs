@@ -13,6 +13,7 @@ namespace Inventory_Management_System.Forms
 {
     public partial class AdminDashboard : Form
     {
+        public string account_fullname;
         public AdminDashboard()
         {
             InitializeComponent();
@@ -142,6 +143,11 @@ namespace Inventory_Management_System.Forms
             this.Hide();
             Login switch_account = new Login();
             switch_account.Show();
+        }
+
+        private void AdminDashboard_Load(object sender, EventArgs e)
+        {
+            lblFullname.Text = account_fullname;
         }
     }
 }

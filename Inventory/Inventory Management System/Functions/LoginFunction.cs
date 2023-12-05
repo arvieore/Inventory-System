@@ -42,5 +42,14 @@ namespace Inventory_Management_System
             //SELECT THE POSITION BY SPECIFIC ID
             return db.Accounts.Where(a => a.user_ID == id).Select(a => a.user_position).FirstOrDefault();
         }
+        public string FullName(int id)
+        {
+            using (var db = new DB_InventoryEntities())
+            {
+                var fullName = db.Accounts.Where(a => a.user_ID == id).Select(a => a.user_firstname + " " + a.user_lastname).FirstOrDefault();
+
+                return fullName;
+            }
+        }
     }
 }

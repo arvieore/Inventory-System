@@ -13,6 +13,7 @@ namespace Inventory_Management_System.Functions
 {
     public partial class ManagerDashboard : Form
     {
+        public string account_fullname;
         public ManagerDashboard()
         {
             InitializeComponent();
@@ -139,6 +140,11 @@ namespace Inventory_Management_System.Functions
             this.Hide();
             Login switch_account = new Login();
             switch_account.Show();
+        }
+
+        private void ManagerDashboard_Load(object sender, EventArgs e)
+        {
+            lblFullname.Text = account_fullname;
         }
     }
 }

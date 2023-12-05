@@ -13,9 +13,11 @@ namespace Inventory_Management_System.Forms
 {
     public partial class ClerksDashboard : Form
     {
+        public string account_fullname;
         public ClerksDashboard()
         {
             InitializeComponent();
+            DisplayDashBoardUserControl();
         }
 
         private void ExitIcon_Click(object sender, EventArgs e)
@@ -64,8 +66,8 @@ namespace Inventory_Management_System.Forms
             panelHover.Location = HoverPanel;
 
             //Display the product User Control
-            ProductControl productControl = new ProductControl();
-            DisplayUserControl(productControl);
+            OrderProduct orderControl = new OrderProduct();
+            DisplayUserControl(orderControl);
         }
 
         private void btnDashboard_Click(object sender, EventArgs e)
@@ -90,6 +92,11 @@ namespace Inventory_Management_System.Forms
             panelHover.Location = HoverPanel;
 
             DisplayDashBoardUserControl();
+        }
+
+        private void ClerksDashboard_Load(object sender, EventArgs e)
+        {
+            lblFullname.Text = account_fullname;
         }
     }
 }

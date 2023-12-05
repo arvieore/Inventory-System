@@ -179,6 +179,12 @@
     <Compile Include="UserControls\ManageAccount.Designer.cs">
       <DependentUpon>ManageAccount.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\OrderProduct.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\OrderProduct.Designer.cs">
+      <DependentUpon>OrderProduct.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\ProductControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -231,6 +237,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\ManageAccount.resx">
       <DependentUpon>ManageAccount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\OrderProduct.resx">
+      <DependentUpon>OrderProduct.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\ProductControl.resx">
       <DependentUpon>ProductControl.cs</DependentUpon>
@@ -294,6 +303,7 @@
       <DependentUpon>Entity_Inventory_Model.edmx</DependentUpon>
       <LastGenOutput>Entity_Inventory_Model.cs</LastGenOutput>
     </Content>
+    <None Include="Resources\add-to-cart.png" />
     <None Include="Resources\Switch account.png" />
     <None Include="Resources\View.png" />
     <None Include="Resources\Hide.png" />

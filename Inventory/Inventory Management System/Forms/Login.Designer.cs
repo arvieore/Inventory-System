@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.lblUsername = new System.Windows.Forms.Label();
             this.lblPassword = new System.Windows.Forms.Label();
-            this.txtLogin = new Guna.UI2.WinForms.Guna2Button();
+            this.btnLogin = new Guna.UI2.WinForms.Guna2Button();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
             this.ExitIcon = new Guna.UI2.WinForms.Guna2PictureBox();
@@ -69,22 +69,22 @@
             this.lblPassword.TabIndex = 7;
             this.lblPassword.Text = "_____________________________________";
             // 
-            // txtLogin
+            // btnLogin
             // 
-            this.txtLogin.BorderRadius = 10;
-            this.txtLogin.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.txtLogin.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.txtLogin.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.txtLogin.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.txtLogin.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.txtLogin.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.txtLogin.ForeColor = System.Drawing.Color.White;
-            this.txtLogin.Location = new System.Drawing.Point(517, 304);
-            this.txtLogin.Name = "txtLogin";
-            this.txtLogin.Size = new System.Drawing.Size(159, 35);
-            this.txtLogin.TabIndex = 3;
-            this.txtLogin.Text = "Login";
-            this.txtLogin.Click += new System.EventHandler(this.txtLogin_Click);
+            this.btnLogin.BorderRadius = 10;
+            this.btnLogin.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnLogin.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnLogin.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnLogin.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnLogin.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnLogin.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.btnLogin.ForeColor = System.Drawing.Color.White;
+            this.btnLogin.Location = new System.Drawing.Point(517, 304);
+            this.btnLogin.Name = "btnLogin";
+            this.btnLogin.Size = new System.Drawing.Size(159, 35);
+            this.btnLogin.TabIndex = 3;
+            this.btnLogin.Text = "Login";
+            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
             // errorProvider
             // 
@@ -246,7 +246,7 @@
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.guna2GradientPanel1);
             this.Controls.Add(this.guna2Panel1);
-            this.Controls.Add(this.txtLogin);
+            this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.lblPassword);
             this.Controls.Add(this.lblUsername);
             this.Controls.Add(this.txtPassword);
@@ -275,7 +275,7 @@
         private Guna.UI2.WinForms.Guna2PictureBox UserBackImage;
         private System.Windows.Forms.Label lblUsername;
         private System.Windows.Forms.Label lblPassword;
-        private Guna.UI2.WinForms.Guna2Button txtLogin;
+        private Guna.UI2.WinForms.Guna2Button btnLogin;
         private System.Windows.Forms.ErrorProvider errorProvider;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
         private Guna.UI2.WinForms.Guna2PictureBox ExitIcon;

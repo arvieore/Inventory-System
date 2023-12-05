@@ -151,6 +151,5 @@ namespace Inventory_Management_System.UserControls
                 dgv_Products.DataSource = filteredData;
             }
         }
-
     }
 }

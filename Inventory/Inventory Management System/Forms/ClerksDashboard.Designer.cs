@@ -29,15 +29,17 @@
         private void InitializeComponent()
         {
             this.guna2GradientPanel1 = new Guna.UI2.WinForms.Guna2GradientPanel();
+            this.btnSwitchAccount = new Guna.UI2.WinForms.Guna2Button();
             this.btnReport = new Guna.UI2.WinForms.Guna2Button();
             this.panelHover = new System.Windows.Forms.Panel();
             this.btnHistory = new Guna.UI2.WinForms.Guna2Button();
             this.btnOrder = new Guna.UI2.WinForms.Guna2Button();
             this.btnDashboard = new Guna.UI2.WinForms.Guna2Button();
-            this.btnSwitchAccount = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
             this.ExitIcon = new Guna.UI2.WinForms.Guna2PictureBox();
             this.MainPanel = new System.Windows.Forms.Panel();
+            this.lblFullname = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.guna2GradientPanel1.SuspendLayout();
             this.guna2Panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ExitIcon)).BeginInit();
@@ -58,6 +60,32 @@
             this.guna2GradientPanel1.Name = "guna2GradientPanel1";
             this.guna2GradientPanel1.Size = new System.Drawing.Size(200, 610);
             this.guna2GradientPanel1.TabIndex = 15;
+            // 
+            // btnSwitchAccount
+            // 
+            this.btnSwitchAccount.BackColor = System.Drawing.Color.Transparent;
+            this.btnSwitchAccount.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSwitchAccount.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnSwitchAccount.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnSwitchAccount.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnSwitchAccount.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnSwitchAccount.FillColor = System.Drawing.Color.Transparent;
+            this.btnSwitchAccount.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.btnSwitchAccount.ForeColor = System.Drawing.Color.White;
+            this.btnSwitchAccount.HoverState.BorderColor = System.Drawing.Color.Transparent;
+            this.btnSwitchAccount.HoverState.CustomBorderColor = System.Drawing.Color.Transparent;
+            this.btnSwitchAccount.HoverState.FillColor = System.Drawing.Color.Transparent;
+            this.btnSwitchAccount.HoverState.ForeColor = System.Drawing.Color.Black;
+            this.btnSwitchAccount.Image = global::Inventory_Management_System.Properties.Resources.Switch_account;
+            this.btnSwitchAccount.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnSwitchAccount.ImageSize = new System.Drawing.Size(38, 38);
+            this.btnSwitchAccount.Location = new System.Drawing.Point(12, 554);
+            this.btnSwitchAccount.Name = "btnSwitchAccount";
+            this.btnSwitchAccount.PressedColor = System.Drawing.Color.Transparent;
+            this.btnSwitchAccount.Size = new System.Drawing.Size(188, 44);
+            this.btnSwitchAccount.TabIndex = 5;
+            this.btnSwitchAccount.Text = "Switch account";
+            this.btnSwitchAccount.Click += new System.EventHandler(this.btnSwitchAccount_Click);
             // 
             // btnReport
             // 
@@ -141,40 +169,16 @@
             this.btnDashboard.Text = "Dashboard";
             this.btnDashboard.Click += new System.EventHandler(this.btnDashboard_Click);
             // 
-            // btnSwitchAccount
-            // 
-            this.btnSwitchAccount.BackColor = System.Drawing.Color.Transparent;
-            this.btnSwitchAccount.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSwitchAccount.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnSwitchAccount.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnSwitchAccount.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnSwitchAccount.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnSwitchAccount.FillColor = System.Drawing.Color.Transparent;
-            this.btnSwitchAccount.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.btnSwitchAccount.ForeColor = System.Drawing.Color.White;
-            this.btnSwitchAccount.HoverState.BorderColor = System.Drawing.Color.Transparent;
-            this.btnSwitchAccount.HoverState.CustomBorderColor = System.Drawing.Color.Transparent;
-            this.btnSwitchAccount.HoverState.FillColor = System.Drawing.Color.Transparent;
-            this.btnSwitchAccount.HoverState.ForeColor = System.Drawing.Color.Black;
-            this.btnSwitchAccount.Image = global::Inventory_Management_System.Properties.Resources.Switch_account;
-            this.btnSwitchAccount.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnSwitchAccount.ImageSize = new System.Drawing.Size(38, 38);
-            this.btnSwitchAccount.Location = new System.Drawing.Point(12, 554);
-            this.btnSwitchAccount.Name = "btnSwitchAccount";
-            this.btnSwitchAccount.PressedColor = System.Drawing.Color.Transparent;
-            this.btnSwitchAccount.Size = new System.Drawing.Size(188, 44);
-            this.btnSwitchAccount.TabIndex = 5;
-            this.btnSwitchAccount.Text = "Switch account";
-            this.btnSwitchAccount.Click += new System.EventHandler(this.btnSwitchAccount_Click);
-            // 
             // guna2Panel1
             // 
+            this.guna2Panel1.Controls.Add(this.lblFullname);
+            this.guna2Panel1.Controls.Add(this.label1);
             this.guna2Panel1.Controls.Add(this.ExitIcon);
             this.guna2Panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.guna2Panel1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(110)))), ((int)(((byte)(140)))));
             this.guna2Panel1.Location = new System.Drawing.Point(200, 0);
             this.guna2Panel1.Name = "guna2Panel1";
-            this.guna2Panel1.Size = new System.Drawing.Size(996, 24);
+            this.guna2Panel1.Size = new System.Drawing.Size(996, 37);
             this.guna2Panel1.TabIndex = 16;
             // 
             // ExitIcon
@@ -187,7 +191,7 @@
             this.ExitIcon.ImageRotate = 0F;
             this.ExitIcon.Location = new System.Drawing.Point(977, 0);
             this.ExitIcon.Name = "ExitIcon";
-            this.ExitIcon.Size = new System.Drawing.Size(19, 24);
+            this.ExitIcon.Size = new System.Drawing.Size(19, 37);
             this.ExitIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.ExitIcon.TabIndex = 0;
             this.ExitIcon.TabStop = false;
@@ -196,10 +200,36 @@
             // MainPanel
             // 
             this.MainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.MainPanel.Location = new System.Drawing.Point(200, 24);
+            this.MainPanel.Location = new System.Drawing.Point(200, 37);
             this.MainPanel.Name = "MainPanel";
-            this.MainPanel.Size = new System.Drawing.Size(996, 586);
+            this.MainPanel.Size = new System.Drawing.Size(996, 573);
             this.MainPanel.TabIndex = 17;
+            // 
+            // lblFullname
+            // 
+            this.lblFullname.AutoSize = true;
+            this.lblFullname.BackColor = System.Drawing.Color.Transparent;
+            this.lblFullname.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFullname.ForeColor = System.Drawing.Color.White;
+            this.lblFullname.Location = new System.Drawing.Point(24, 9);
+            this.lblFullname.Margin = new System.Windows.Forms.Padding(0);
+            this.lblFullname.Name = "lblFullname";
+            this.lblFullname.Size = new System.Drawing.Size(82, 20);
+            this.lblFullname.TabIndex = 4;
+            this.lblFullname.Text = "Fullname";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(1, 9);
+            this.label1.Margin = new System.Windows.Forms.Padding(0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(26, 20);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Hi";
             // 
             // ClerksDashboard
             // 
@@ -213,8 +243,10 @@
             this.Name = "ClerksDashboard";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ClerksDashboard";
+            this.Load += new System.EventHandler(this.ClerksDashboard_Load);
             this.guna2GradientPanel1.ResumeLayout(false);
             this.guna2Panel1.ResumeLayout(false);
+            this.guna2Panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ExitIcon)).EndInit();
             this.ResumeLayout(false);
 
@@ -232,5 +264,7 @@
         private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
         private Guna.UI2.WinForms.Guna2PictureBox ExitIcon;
         private System.Windows.Forms.Panel MainPanel;
+        private System.Windows.Forms.Label lblFullname;
+        private System.Windows.Forms.Label label1;
     }
 }

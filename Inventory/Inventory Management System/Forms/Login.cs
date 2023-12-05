@@ -17,12 +17,29 @@ namespace Inventory_Management_System
     public partial class Login : Form
     {
         private readonly LoginFunction validate;
+
+        private readonly AdminDashboard Form_Admin;
+        private readonly ManagerDashboard Form_Manager;
+        private readonly ClerksDashboard Form_Clerk;
         public Login()
         {
             InitializeComponent();
             validate = new LoginFunction();
+
+            Form_Admin = new AdminDashboard();
+            Form_Manager = new ManagerDashboard();
+            Form_Clerk = new ClerksDashboard();
         }
-        private void txtLogin_Click(object sender, EventArgs e)
+        private void ExitIcon_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+        private void UsernameLineLabel()
+        {
+            lblPassword.ForeColor = Color.Black;
+            lblUsername.ForeColor = Color.Blue;
+        }
+        private void btnLogin_Click(object sender, EventArgs e)
         {
             if (String.IsNullOrEmpty(txtUsername.Text))
             {
@@ -37,37 +54,37 @@ namespace Inventory_Management_System
                 int account = validate.GetAccount(txtUsername.Text, txtPassword.Text);
 
                 String position = validate.GetPosition(account);
+                String fullName = validate.FullName(account);
 
                 //Determine the position of the user.
                 if (account != 0)
                 {
-                    switch(position)
+                    switch (position)
                     {
                         case "Admin":
                             MessageBox.Show("Welcome Admin!");
                             this.Hide();
-                            AdminDashboard Form_Admin = new AdminDashboard();
+                            //AdminDashboard Form_Admin = new AdminDashboard();
+                            Form_Admin.account_fullname = "Admin "+fullName;
                             Form_Admin.Show();
                             break;
                         case "Manager":
                             MessageBox.Show("Welcome Manager!");
                             this.Hide();
-                            ManagerDashboard Form_Manager = new ManagerDashboard();
+                            //ManagerDashboard Form_Manager = new ManagerDashboard();
+                            Form_Manager.account_fullname = "Manager " + fullName;
                             Form_Manager.Show();
+                            break;
+                        case "Clerk":
+                            MessageBox.Show("Welcome Clerk!");
+                            this.Hide();
+                            //ClerksDashboard Form_Clerk = new ClerksDashboard();
+                            Form_Clerk.account_fullname = "Clerk " + fullName;
+                            Form_Clerk.Show();
                             break;
                     }
                 }
             }
-        }
-
-        private void ExitIcon_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
-        private void UsernameLineLabel()
-        {
-            lblPassword.ForeColor = Color.Black;
-            lblUsername.ForeColor = Color.Blue;
         }
 
         private void txtUsername_Click(object sender, EventArgs e)
