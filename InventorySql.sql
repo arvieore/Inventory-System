@@ -155,7 +155,68 @@ BEGIN
 	FROM Category
 END
 -------------------------------------------------------------------------------------------------------------------
+CREATE PROCEDURE sp_OrderDisplay
+	@orderNo int
+AS
+BEGIN
+	SELECT
+		Lower(CONCAT(Accounts.user_ID, '-',Accounts.user_firstname, Accounts.user_lastname)) AS 'Clerk',
+		cart.OrderNo AS 'Order no.',
+		Products.product_Name AS 'Product',
+		cart.OrderQuantity AS 'Quantity',
+		Products.product_Price AS 'Price',
+		Category.categoryName AS 'Category',
+		cart.customer_name AS 'Customer',
+		cart.customer_address AS 'Address',
+		cart.Order_status AS 'Status'
+	FROM 
+		cart
+	JOIN
+		Accounts ON cart.user_ID = Accounts.user_ID
+	JOIN 
+		Products ON cart.productID = Products.productID
+	JOIN 
+		Category ON cart.categoryID = Category.categoryID
+	WHERE cart.OrderNo = @orderNo;
+END;
+------------------------------ Order Number Display ----------------------------
 
+CREATE VIEW vw_LastOrderNumber
+AS
+	SELECT TOP 1 OrderNo
+	FROM Cart
+	ORDER BY OrderNo DESC;
+--------------------------------------------------------------------------------
+
+CREATE VIEW vw_PendingOrders AS
+SELECT
+	cart.CartID AS 'ID',
+	Products.productID AS 'ProductID',
+    Lower(CONCAT(Accounts.user_ID, '-',Accounts.user_firstname, Accounts.user_lastname)) AS 'Clerk',
+    cart.OrderNo AS 'Order no.',
+    Products.product_Name AS 'Product',
+    cart.OrderQuantity AS 'Quantity',
+    Products.product_Price AS 'Price',
+    Category.categoryName AS 'Category',
+    cart.customer_name AS 'Customer',
+    cart.customer_address AS 'Address',
+	cart.Order_status AS 'Status'
+FROM 
+    cart
+JOIN
+    Accounts ON cart.user_ID = Accounts.user_ID
+JOIN 
+    Products ON cart.productID = Products.productID
+JOIN 
+    Category ON cart.categoryID = Category.categoryID
+WHERE 
+    cart.Order_status = 'Pending';
+
+------------------------------------------------------------------------------------------------------------------
+
+SELECT * FROM vw_PendingOrders
+
+SELECT * FROM Cart
 SELECT * FROM Category
 SELECT * FROM Products
 SELECT * FROM Accounts

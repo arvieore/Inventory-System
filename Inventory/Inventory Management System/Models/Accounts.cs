@@ -18,6 +18,15 @@ using System;
 public partial class Accounts
 {
 
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+    public Accounts()
+    {
+
+        this.Cart = new HashSet<Cart>();
+
+    }
+
+
     public int user_ID { get; set; }
 
     public string user_name { get; set; }
@@ -47,6 +56,10 @@ public partial class Accounts
 
 
     public virtual Role Role { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+
+    public virtual ICollection<Cart> Cart { get; set; }
 
 }
 

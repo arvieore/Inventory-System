@@ -18,6 +18,20 @@
     <Property Name="user_Status" Type="varchar" MaxLength="10" />
     <Property Name="roleID" Type="int" />
   </EntityType>
+  <EntityType Name="Cart">
+    <Key>
+      <PropertyRef Name="CartID" />
+    </Key>
+    <Property Name="CartID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OrderNo" Type="int" Nullable="false" />
+    <Property Name="productID" Type="int" Nullable="false" />
+    <Property Name="categoryID" Type="int" Nullable="false" />
+    <Property Name="user_ID" Type="int" Nullable="false" />
+    <Property Name="OrderQuantity" Type="int" Nullable="false" />
+    <Property Name="customer_name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="customer_address" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Order_status" Type="varchar" MaxLength="15" />
+  </EntityType>
   <EntityType Name="Category">
     <Key>
       <PropertyRef Name="categoryID" />
@@ -44,6 +58,37 @@
     <Property Name="roleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="roleName" Type="varchar" MaxLength="50" />
   </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'InventoryDB.dbo.vw_LastOrderNumber' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vw_LastOrderNumber">
+    <Key>
+      <PropertyRef Name="OrderNo" />
+    </Key>
+    <Property Name="OrderNo" Type="int" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'InventoryDB.dbo.vw_PendingOrders' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vw_PendingOrders">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="ProductID" />
+      <PropertyRef Name="Order no." />
+      <PropertyRef Name="Quantity" />
+      <PropertyRef Name="Customer" />
+      <PropertyRef Name="Address" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="ProductID" Type="int" Nullable="false" />
+    <Property Name="Clerk" Type="varchar" MaxLength="113" />
+    <Property Name="Order no." Type="int" Nullable="false" />
+    <Property Name="Product" Type="varchar" MaxLength="50" />
+    <Property Name="Quantity" Type="int" Nullable="false" />
+    <Property Name="Price" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="Category" Type="varchar" MaxLength="50" />
+    <Property Name="Customer" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Address" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Status" Type="varchar" MaxLength="15" />
+  </EntityType>
   <Association Name="FK_Accounts_Role">
     <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
     <End Role="Accounts" Type="Self.Accounts" Multiplicity="*" />
@@ -53,6 +98,42 @@
       </Principal>
       <Dependent Role="Accounts">
         <PropertyRef Name="roleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Cart_Accounts">
+    <End Role="Accounts" Type="Self.Accounts" Multiplicity="1" />
+    <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Accounts">
+        <PropertyRef Name="user_ID" />
+      </Principal>
+      <Dependent Role="Cart">
+        <PropertyRef Name="user_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Cart_Category">
+    <End Role="Category" Type="Self.Category" Multiplicity="1" />
+    <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="categoryID" />
+      </Principal>
+      <Dependent Role="Cart">
+        <PropertyRef Name="categoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Cart_Products">
+    <End Role="Products" Type="Self.Products" Multiplicity="1" />
+    <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="productID" />
+      </Principal>
+      <Dependent Role="Cart">
+        <PropertyRef Name="productID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -93,6 +174,9 @@
   <Function Name="sp_CategoryFilter" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="CategoryFiltered" Type="varchar" Mode="In" />
   </Function>
+  <Function Name="sp_OrderDisplay" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="orderNo" Type="int" Mode="In" />
+  </Function>
   <Function Name="sp_SelectCategory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="sp_SelectProduct" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="sp_ValidateAccount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -101,12 +185,45 @@
   </Function>
   <EntityContainer Name="InventoryDBModelStoreContainer">
     <EntitySet Name="Accounts" EntityType="Self.Accounts" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Cart" EntityType="Self.Cart" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="vw_LastOrderNumber" EntityType="Self.vw_LastOrderNumber" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vw_LastOrderNumber].[OrderNo] AS [OrderNo]
+    FROM [dbo].[vw_LastOrderNumber] AS [vw_LastOrderNumber]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vw_PendingOrders" EntityType="Self.vw_PendingOrders" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vw_PendingOrders].[ID] AS [ID], 
+    [vw_PendingOrders].[ProductID] AS [ProductID], 
+    [vw_PendingOrders].[Clerk] AS [Clerk], 
+    [vw_PendingOrders].[Order no.] AS [Order no.], 
+    [vw_PendingOrders].[Product] AS [Product], 
+    [vw_PendingOrders].[Quantity] AS [Quantity], 
+    [vw_PendingOrders].[Price] AS [Price], 
+    [vw_PendingOrders].[Category] AS [Category], 
+    [vw_PendingOrders].[Customer] AS [Customer], 
+    [vw_PendingOrders].[Address] AS [Address], 
+    [vw_PendingOrders].[Status] AS [Status]
+    FROM [dbo].[vw_PendingOrders] AS [vw_PendingOrders]</DefiningQuery>
+    </EntitySet>
     <AssociationSet Name="FK_Accounts_Role" Association="Self.FK_Accounts_Role">
       <End Role="Role" EntitySet="Role" />
       <End Role="Accounts" EntitySet="Accounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Cart_Accounts" Association="Self.FK_Cart_Accounts">
+      <End Role="Accounts" EntitySet="Accounts" />
+      <End Role="Cart" EntitySet="Cart" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Cart_Category" Association="Self.FK_Cart_Category">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="Cart" EntitySet="Cart" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Cart_Products" Association="Self.FK_Cart_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="Cart" EntitySet="Cart" />
     </AssociationSet>
     <AssociationSet Name="FK_Products_Category" Association="Self.FK_Products_Category">
       <End Role="Category" EntitySet="Category" />

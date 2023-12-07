@@ -24,6 +24,8 @@ public partial class Category
 
         this.Products = new HashSet<Products>();
 
+        this.Cart = new HashSet<Cart>();
+
     }
 
 
@@ -36,6 +38,10 @@ public partial class Category
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
     public virtual ICollection<Products> Products { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+
+    public virtual ICollection<Cart> Cart { get; set; }
 
 }
 

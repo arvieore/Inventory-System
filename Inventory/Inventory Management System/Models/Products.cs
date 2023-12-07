@@ -18,6 +18,15 @@ using System;
 public partial class Products
 {
 
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+    public Products()
+    {
+
+        this.Cart = new HashSet<Cart>();
+
+    }
+
+
     public int productID { get; set; }
 
     public string product_Name { get; set; }
@@ -35,6 +44,10 @@ public partial class Products
 
 
     public virtual Category Category { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+
+    public virtual ICollection<Cart> Cart { get; set; }
 
 }
 

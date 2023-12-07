@@ -9,18 +9,33 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.VisualBasic;
 
 namespace Inventory_Management_System.UserControls
 {
     public partial class OrderProduct : UserControl
     {
-        private ProductControl productControl;
         private DB_InventoryEntities db;
+        public int accountID;
+        private DataGridViewButtonColumn addToCart;
+        private String input;
+        private Products products;
+
+        private int currentOrderNo;
         public OrderProduct()
         {
             InitializeComponent();
-            productControl = new ProductControl();
             db = new DB_InventoryEntities();
+            products = new Products();
+
+            addToCart = new DataGridViewButtonColumn
+            {
+                HeaderText = "Order",
+                Text = "Order",
+                UseColumnTextForButtonValue = true,
+                Name = "btnAddToCart",
+                FlatStyle = FlatStyle.Flat
+            };
         }
         private void panelHeader_Paint(object sender, PaintEventArgs e)
         {
@@ -35,16 +50,10 @@ namespace Inventory_Management_System.UserControls
         {
             loadCbBoxCategory();
             LoadTable();
-            // Add "Order" buttons to DataGridView columns
-            var addToCart = new DataGridViewButtonColumn
-            {
-                HeaderText = "Order",
-                Text = "Order",
-                UseColumnTextForButtonValue = true,
-                Name = "btnAddToCart",
-                FlatStyle = FlatStyle.Flat
-            };
-            dgv_Products.Columns.Add(addToCart);
+
+            var lastOrderNo = db.vw_LastOrderNumber.FirstOrDefault();
+            currentOrderNo = lastOrderNo != null ? lastOrderNo.OrderNo + 1 : 1;
+            lblOrderNo.Text = currentOrderNo.ToString();
         }
         private void Cbox_Category_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -61,36 +70,108 @@ namespace Inventory_Management_System.UserControls
         }
         public void LoadTable()
         {
+            dgv_Products.Columns.Clear();
             dgv_Products.DataSource = db.sp_CategoryFilter(Cbox_Category.Text).ToList();
 
             Tables.DisplayProducts(dgv_Products);
+            dgv_Products.Columns.Add(addToCart);
         }
-
         private void dgv_Products_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if(e.ColumnIndex == dgv_Products.Columns["btnAddToCart"].Index && e.RowIndex >= 0)
+            if (String.IsNullOrEmpty(txtCustomer.Text))
             {
-                DataGridViewRow selectedRow = dgv_Products.Rows[e.RowIndex];
-
-                Products products = new Products
+                errorProvider.SetError(txtCustomer, "Empty field!");
+            }
+            else if (String.IsNullOrEmpty(txtAddress.Text))
+            {
+                errorProvider.SetError(txtAddress, "Empty field!");
+            }
+            else
+            {
+                if (e.ColumnIndex == dgv_Products.Columns["btnAddToCart"].Index && e.RowIndex >= 0)
                 {
-                    productID = int.Parse(selectedRow.Cells["productID"].Value.ToString()),
-                    product_Name = selectedRow.Cells["product_Name"].Value.ToString(),
-                    product_Sku = selectedRow.Cells["product_Sku"].Value.ToString(),
-                    product_Quantity = selectedRow.Cells["product_Quantity"].Value.ToString(),
-                    product_Price = decimal.Parse(selectedRow.Cells["product_Price"].Value.ToString()),
-                    product_Description = selectedRow.Cells["product_Description"].Value.ToString()
-                };
-                //A form must be show after clicking the btnAddToCart, the form must contain "Enter quantity" for the product that selected.....
-                //
+                    DataGridViewRow selectedRow = dgv_Products.Rows[e.RowIndex];
+                    products = new Products
+                    {
+                        productID = int.Parse(selectedRow.Cells["productID"].Value.ToString()),
+                        product_Name = selectedRow.Cells["product_Name"].Value.ToString(),
+                        product_Sku = selectedRow.Cells["product_Sku"].Value.ToString(),
+                        product_Quantity = selectedRow.Cells["product_Quantity"].Value.ToString(),
+                        product_Price = decimal.Parse(selectedRow.Cells["product_Price"].Value.ToString()),
+                        product_Description = selectedRow.Cells["product_Description"].Value.ToString()
+                    };
+                    int quantity;
+                    bool validInput = false;
+                    do
+                    {
+                        input = Interaction.InputBox($"Enter quantity for {products.product_Name}", "Quantity");
+                        if (string.IsNullOrEmpty(input))
+                        {
+                            return;
+                        }
+                        validInput = int.TryParse(input, out quantity);
+                        if (!validInput)
+                        {
+                            MessageBox.Show("Please enter a valid numeric quantity.", "Invalid input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                        else
+                        {
+                            int categoryID = db.Products.Where(p => p.productID == products.productID).Select(p => p.categoryID).FirstOrDefault();
+                            int user_ID = db.Accounts.Where(a => a.user_ID == accountID).Select(a => a.user_ID).FirstOrDefault();
+
+                            UpdateLoadCart(products, Convert.ToInt32(input));
+
+                            AddToCart(products.productID, categoryID, user_ID, Convert.ToInt32(input));
+                            MessageBox.Show("The product has been successfully added cart.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                    } while (!validInput);
+                }
             }
         }
-
-        private void btnCart_Click(object sender, EventArgs e)
+        private void AddToCart(int product, int categoryID, int user_ID, int quantity)
         {
-            //Call the Cart Form and display the product that the customer ordered.....
-        }
+            try
+            {
+                //var lastOrderNo = db.vw_LastOrderNumber.FirstOrDefault();
+                int orderNo = Convert.ToInt32(lblOrderNo.Text);
 
+                var Order = new Cart
+                {
+                    productID = product,
+                    categoryID = categoryID,
+                    user_ID = user_ID,
+
+                    OrderNo = orderNo,
+                    OrderQuantity = quantity,
+                    customer_name = txtCustomer.Text,
+                    customer_address = txtAddress.Text,
+                    Order_status = "Pending"
+                };
+
+                db.Cart.Add(Order);
+                db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+        private void UpdateLoadCart(Products products, int inputtedQty)
+        {
+            int newQty = Convert.ToInt32(products.product_Quantity) - inputtedQty;
+
+            var checkID = db.Products.SingleOrDefault(p => p.productID == products.productID);
+            if(checkID != null)
+            {
+                checkID.product_Quantity = newQty.ToString();
+                db.SaveChanges();
+                LoadTable();
+            }
+            else
+            {
+                MessageBox.Show($"No product found with productID {checkID.productID}");
+            }
+        }
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
             FilterData(txtSearch.Text);
@@ -112,6 +193,32 @@ namespace Inventory_Management_System.UserControls
                     .ToList();
 
                 dgv_Products.DataSource = filteredData;
+            }
+        }
+
+        private void btnPrepare_Click(object sender, EventArgs e)
+        {
+            var lastOrderNo = db.vw_LastOrderNumber.FirstOrDefault();
+
+            currentOrderNo = lastOrderNo != null ? lastOrderNo.OrderNo + 1 : 1;
+            lblOrderNo.Text = currentOrderNo.ToString();
+
+            //Create a table in database to store the Order of the customer .....
+            var status = db.Cart.Where(s => s.Order_status == "Pending").ToList();
+            foreach (var order in status)
+            {
+                order.Order_status = "Completed";
+            }
+            db.SaveChanges();
+            CheckStatus();
+        }
+        private void CheckStatus()
+        {
+            var pendingOrdersExist = db.Cart.Any(s => s.Order_status == "Pending");
+
+            if (!pendingOrdersExist)
+            {
+                MessageBox.Show("All orders are complete.");
             }
         }
     }

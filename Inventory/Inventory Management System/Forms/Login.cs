@@ -80,6 +80,7 @@ namespace Inventory_Management_System
                             this.Hide();
                             //ClerksDashboard Form_Clerk = new ClerksDashboard();
                             Form_Clerk.account_fullname = "Clerk " + fullName;
+                            Form_Clerk.userID = account;
                             Form_Clerk.Show();
                             break;
                     }

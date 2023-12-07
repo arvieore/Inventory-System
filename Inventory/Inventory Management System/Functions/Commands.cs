@@ -123,5 +123,27 @@ namespace Inventory_Management_System.Functions
                 MessageBox.Show("Error: " + ex.Message);
             }
         }
+        public void UpdateProductQty(int ID, string Qty)
+        {
+            dbContext();
+
+            // Retrieve the product from the database
+            Products productInfo = db.Products.SingleOrDefault(i => i.productID == ID);
+
+            if (productInfo != null)
+            {
+                // Calculate the new quantity
+                int newQty = Convert.ToInt32(productInfo.product_Quantity) + Convert.ToInt32(Qty);
+
+                // Update the quantity of the retrieved product
+                productInfo.product_Quantity = newQty.ToString();
+
+                db.SaveChanges();
+            }
+            else
+            {
+                MessageBox.Show($"No product found with productID {ID}");
+            }
+        }
     }
 }

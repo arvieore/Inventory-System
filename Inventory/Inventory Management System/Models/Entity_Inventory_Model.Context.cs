@@ -43,6 +43,12 @@ public partial class DB_InventoryEntities : DbContext
 
     public virtual DbSet<Role> Role { get; set; }
 
+    public virtual DbSet<Cart> Cart { get; set; }
+
+    public virtual DbSet<vw_LastOrderNumber> vw_LastOrderNumber { get; set; }
+
+    public virtual DbSet<vw_PendingOrders> vw_PendingOrders { get; set; }
+
 
     public virtual ObjectResult<sp_ValidateAccount_Result> sp_ValidateAccount(string user_name, string user_password)
     {
@@ -185,6 +191,18 @@ public partial class DB_InventoryEntities : DbContext
     {
 
         return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_SelectCategory1_Result>("sp_SelectCategory");
+    }
+
+
+    public virtual ObjectResult<sp_OrderDisplay_Result> sp_OrderDisplay(Nullable<int> orderNo)
+    {
+
+        var orderNoParameter = orderNo.HasValue ?
+            new ObjectParameter("orderNo", orderNo) :
+            new ObjectParameter("orderNo", typeof(int));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_OrderDisplay_Result>("sp_OrderDisplay", orderNoParameter);
     }
 
 }

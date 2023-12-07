@@ -104,5 +104,58 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <EntitySetMapping Name="Cart">
+      <EntityTypeMapping TypeName="InventoryDBModel.Cart">
+        <MappingFragment StoreEntitySet="Cart">
+          <ScalarProperty Name="Order_status" ColumnName="Order_status" />
+          <ScalarProperty Name="customer_address" ColumnName="customer_address" />
+          <ScalarProperty Name="customer_name" ColumnName="customer_name" />
+          <ScalarProperty Name="OrderQuantity" ColumnName="OrderQuantity" />
+          <ScalarProperty Name="OrderNo" ColumnName="OrderNo" />
+          <ScalarProperty Name="user_ID" ColumnName="user_ID" />
+          <ScalarProperty Name="categoryID" ColumnName="categoryID" />
+          <ScalarProperty Name="productID" ColumnName="productID" />
+          <ScalarProperty Name="CartID" ColumnName="CartID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vw_LastOrderNumber">
+      <EntityTypeMapping TypeName="InventoryDBModel.vw_LastOrderNumber">
+        <MappingFragment StoreEntitySet="vw_LastOrderNumber">
+          <ScalarProperty Name="OrderNo" ColumnName="OrderNo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_OrderDisplay" FunctionName="InventoryDBModel.Store.sp_OrderDisplay">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="InventoryDBModel.sp_OrderDisplay_Result">
+          <ScalarProperty Name="Clerk" ColumnName="Clerk" />
+          <ScalarProperty Name="Order_no_" ColumnName="Order no." />
+          <ScalarProperty Name="Product" ColumnName="Product" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="Customer" ColumnName="Customer" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="vw_PendingOrders">
+      <EntityTypeMapping TypeName="InventoryDBModel.vw_PendingOrders">
+        <MappingFragment StoreEntitySet="vw_PendingOrders">
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Customer" ColumnName="Customer" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="Product" ColumnName="Product" />
+          <ScalarProperty Name="Order_no_" ColumnName="Order no." />
+          <ScalarProperty Name="Clerk" ColumnName="Clerk" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

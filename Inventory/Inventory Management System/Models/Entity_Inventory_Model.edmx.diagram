@@ -11,6 +11,12 @@
         <AssociationConnector Association="InventoryDBModel.FK_Products_Category" />
         <EntityTypeShape EntityType="InventoryDBModel.Role" Width="1.5" PointX="0.75" PointY="6.625" />
         <AssociationConnector Association="InventoryDBModel.FK_Accounts_Role" />
+        <EntityTypeShape EntityType="InventoryDBModel.Cart" Width="1.5" PointX="5.25" PointY="4.5" />
+        <AssociationConnector Association="InventoryDBModel.FK_Cart_Category" />
+        <AssociationConnector Association="InventoryDBModel.FK_Cart_Products" />
+        <AssociationConnector Association="InventoryDBModel.FK_Cart_Accounts" />
+        <EntityTypeShape EntityType="InventoryDBModel.vw_LastOrderNumber" Width="1.5" PointX="3.375" PointY="0.75" />
+        <EntityTypeShape EntityType="InventoryDBModel.vw_PendingOrders" Width="1.5" PointX="5.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

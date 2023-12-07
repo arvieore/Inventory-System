@@ -23,6 +23,20 @@
           <Property Name="user_Status" Type="varchar" MaxLength="10" />
           <Property Name="roleID" Type="int" />
         </EntityType>
+        <EntityType Name="Cart">
+          <Key>
+            <PropertyRef Name="CartID" />
+          </Key>
+          <Property Name="CartID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderNo" Type="int" Nullable="false" />
+          <Property Name="productID" Type="int" Nullable="false" />
+          <Property Name="categoryID" Type="int" Nullable="false" />
+          <Property Name="user_ID" Type="int" Nullable="false" />
+          <Property Name="OrderQuantity" Type="int" Nullable="false" />
+          <Property Name="customer_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="customer_address" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Order_status" Type="varchar" MaxLength="15" />
+        </EntityType>
         <EntityType Name="Category">
           <Key>
             <PropertyRef Name="categoryID" />
@@ -49,6 +63,37 @@
           <Property Name="roleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="roleName" Type="varchar" MaxLength="50" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'InventoryDB.dbo.vw_LastOrderNumber' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vw_LastOrderNumber">
+          <Key>
+            <PropertyRef Name="OrderNo" />
+          </Key>
+          <Property Name="OrderNo" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'InventoryDB.dbo.vw_PendingOrders' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vw_PendingOrders">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="ProductID" />
+            <PropertyRef Name="Order no." />
+            <PropertyRef Name="Quantity" />
+            <PropertyRef Name="Customer" />
+            <PropertyRef Name="Address" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="Clerk" Type="varchar" MaxLength="113" />
+          <Property Name="Order no." Type="int" Nullable="false" />
+          <Property Name="Product" Type="varchar" MaxLength="50" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="Category" Type="varchar" MaxLength="50" />
+          <Property Name="Customer" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Address" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Status" Type="varchar" MaxLength="15" />
+        </EntityType>
         <Association Name="FK_Accounts_Role">
           <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
           <End Role="Accounts" Type="Self.Accounts" Multiplicity="*" />
@@ -58,6 +103,42 @@
             </Principal>
             <Dependent Role="Accounts">
               <PropertyRef Name="roleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cart_Accounts">
+          <End Role="Accounts" Type="Self.Accounts" Multiplicity="1" />
+          <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accounts">
+              <PropertyRef Name="user_ID" />
+            </Principal>
+            <Dependent Role="Cart">
+              <PropertyRef Name="user_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cart_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="1" />
+          <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="categoryID" />
+            </Principal>
+            <Dependent Role="Cart">
+              <PropertyRef Name="categoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cart_Products">
+          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="productID" />
+            </Principal>
+            <Dependent Role="Cart">
+              <PropertyRef Name="productID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -98,6 +179,9 @@
         <Function Name="sp_CategoryFilter" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="CategoryFiltered" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="sp_OrderDisplay" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="orderNo" Type="int" Mode="In" />
+        </Function>
         <Function Name="sp_SelectCategory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="sp_SelectProduct" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="sp_ValidateAccount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -106,12 +190,45 @@
         </Function>
         <EntityContainer Name="InventoryDBModelStoreContainer">
           <EntitySet Name="Accounts" EntityType="Self.Accounts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cart" EntityType="Self.Cart" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="vw_LastOrderNumber" EntityType="Self.vw_LastOrderNumber" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_LastOrderNumber].[OrderNo] AS [OrderNo]
+    FROM [dbo].[vw_LastOrderNumber] AS [vw_LastOrderNumber]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vw_PendingOrders" EntityType="Self.vw_PendingOrders" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_PendingOrders].[ID] AS [ID], 
+    [vw_PendingOrders].[ProductID] AS [ProductID], 
+    [vw_PendingOrders].[Clerk] AS [Clerk], 
+    [vw_PendingOrders].[Order no.] AS [Order no.], 
+    [vw_PendingOrders].[Product] AS [Product], 
+    [vw_PendingOrders].[Quantity] AS [Quantity], 
+    [vw_PendingOrders].[Price] AS [Price], 
+    [vw_PendingOrders].[Category] AS [Category], 
+    [vw_PendingOrders].[Customer] AS [Customer], 
+    [vw_PendingOrders].[Address] AS [Address], 
+    [vw_PendingOrders].[Status] AS [Status]
+    FROM [dbo].[vw_PendingOrders] AS [vw_PendingOrders]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_Accounts_Role" Association="Self.FK_Accounts_Role">
             <End Role="Role" EntitySet="Role" />
             <End Role="Accounts" EntitySet="Accounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cart_Accounts" Association="Self.FK_Cart_Accounts">
+            <End Role="Accounts" EntitySet="Accounts" />
+            <End Role="Cart" EntitySet="Cart" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cart_Category" Association="Self.FK_Cart_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Cart" EntitySet="Cart" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cart_Products" Association="Self.FK_Cart_Products">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="Cart" EntitySet="Cart" />
           </AssociationSet>
           <AssociationSet Name="FK_Products_Category" Association="Self.FK_Products_Category">
             <End Role="Category" EntitySet="Category" />
@@ -140,6 +257,7 @@
           <Property Name="user_gender" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="user_birthdate" Type="DateTime" Precision="0" />
           <Property Name="user_Status" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Cart" Relationship="InventoryDBModel.FK_Cart_Accounts" FromRole="Accounts" ToRole="Cart" />
         </EntityType>
         <EntityContainer Name="DB_InventoryEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Accounts" EntityType="Self.Accounts" />
@@ -186,6 +304,24 @@
           <FunctionImport Name="sp_SelectProduct" ReturnType="Collection(InventoryDBModel.sp_SelectProduct_Result)">
           </FunctionImport>
           <FunctionImport Name="sp_SelectCategory" ReturnType="Collection(InventoryDBModel.sp_SelectCategory1_Result)" />
+          <EntitySet Name="Cart" EntityType="InventoryDBModel.Cart" />
+          <AssociationSet Name="FK_Cart_Category" Association="InventoryDBModel.FK_Cart_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Cart" EntitySet="Cart" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cart_Products" Association="InventoryDBModel.FK_Cart_Products">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="Cart" EntitySet="Cart" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cart_Accounts" Association="InventoryDBModel.FK_Cart_Accounts">
+            <End Role="Accounts" EntitySet="Accounts" />
+            <End Role="Cart" EntitySet="Cart" />
+          </AssociationSet>
+          <EntitySet Name="vw_LastOrderNumber" EntityType="InventoryDBModel.vw_LastOrderNumber" />
+          <FunctionImport Name="sp_OrderDisplay" ReturnType="Collection(InventoryDBModel.sp_OrderDisplay_Result)">
+          <Parameter Name="orderNo" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="vw_PendingOrders" EntityType="InventoryDBModel.vw_PendingOrders" />
         </EntityContainer>
         <ComplexType Name="sp_ValidateAccount_Result">
           <Property Type="Int32" Name="user_ID" Nullable="false" />
@@ -198,6 +334,7 @@
           <Property Name="categoryID" Type="Int32" Nullable="false" />
           <Property Name="categoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Products" Relationship="InventoryDBModel.FK_Products_Category" FromRole="Category" ToRole="Products" />
+          <NavigationProperty Name="Cart" Relationship="InventoryDBModel.FK_Cart_Category" FromRole="Category" ToRole="Cart" />
         </EntityType>
         <EntityType Name="Products">
           <Key>
@@ -211,6 +348,7 @@
           <Property Name="product_Description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="categoryID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Category" Relationship="InventoryDBModel.FK_Products_Category" FromRole="Products" ToRole="Category" />
+          <NavigationProperty Name="Cart" Relationship="InventoryDBModel.FK_Cart_Products" FromRole="Products" ToRole="Cart" />
         </EntityType>
         <Association Name="FK_Products_Category">
           <End Type="InventoryDBModel.Category" Role="Category" Multiplicity="1" />
@@ -293,6 +431,114 @@
           <Property Type="Int32" Name="ID" Nullable="false" />
           <Property Type="String" Name="categoryName" Nullable="true" MaxLength="50" />
         </ComplexType>
+        <EntityType Name="Cart">
+          <Key>
+            <PropertyRef Name="CartID" />
+          </Key>
+          <Property Name="CartID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="productID" Type="Int32" Nullable="false" />
+          <Property Name="categoryID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Category" Relationship="InventoryDBModel.FK_Cart_Category" FromRole="Cart" ToRole="Category" />
+          <NavigationProperty Name="Products" Relationship="InventoryDBModel.FK_Cart_Products" FromRole="Cart" ToRole="Products" />
+          <Property Name="user_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Accounts" Relationship="InventoryDBModel.FK_Cart_Accounts" FromRole="Cart" ToRole="Accounts" />
+          <Property Name="OrderNo" Type="Int32" Nullable="false" />
+          <Property Name="OrderQuantity" Type="Int32" Nullable="false" />
+          <Property Name="customer_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="customer_address" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Order_status" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_Cart_Category">
+          <End Type="InventoryDBModel.Category" Role="Category" Multiplicity="1" />
+          <End Type="InventoryDBModel.Cart" Role="Cart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="categoryID" />
+            </Principal>
+            <Dependent Role="Cart">
+              <PropertyRef Name="categoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cart_Products">
+          <End Type="InventoryDBModel.Products" Role="Products" Multiplicity="1" />
+          <End Type="InventoryDBModel.Cart" Role="Cart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="productID" />
+            </Principal>
+            <Dependent Role="Cart">
+              <PropertyRef Name="productID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cart_Accounts">
+          <End Type="InventoryDBModel.Accounts" Role="Accounts" Multiplicity="1" />
+          <End Type="InventoryDBModel.Cart" Role="Cart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accounts">
+              <PropertyRef Name="user_ID" />
+            </Principal>
+            <Dependent Role="Cart">
+              <PropertyRef Name="user_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="sp_CartDisplay_Result">
+          <Property Type="Int32" Name="Cart_ID" Nullable="false" />
+          <Property Type="String" Name="Clerk_name" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Product" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Quantity" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="Price" Nullable="true" Precision="10" Scale="2" />
+          <Property Type="String" Name="Category" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="sp_CartDisplay_Result1">
+          <Property Type="String" Name="Clerk" Nullable="true" MaxLength="113" />
+          <Property Type="Int32" Name="Order_no_" Nullable="false" />
+          <Property Type="String" Name="Product" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="Quantity" Nullable="false" />
+          <Property Type="Decimal" Name="Price" Nullable="true" Precision="10" Scale="2" />
+          <Property Type="String" Name="Category" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Customer" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Address" Nullable="false" MaxLength="100" />
+        </ComplexType>
+        <EntityType Name="vw_LastOrderNumber">
+          <Key>
+            <PropertyRef Name="OrderNo" />
+          </Key>
+          <Property Name="OrderNo" Type="Int32" Nullable="false" />
+        </EntityType>
+        <ComplexType Name="sp_OrderDisplay_Result">
+          <Property Type="String" Name="Clerk" Nullable="true" MaxLength="113" />
+          <Property Type="Int32" Name="Order_no_" Nullable="false" />
+          <Property Type="String" Name="Product" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="Quantity" Nullable="false" />
+          <Property Type="Decimal" Name="Price" Nullable="true" Precision="10" Scale="2" />
+          <Property Type="String" Name="Category" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Customer" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Address" Nullable="false" MaxLength="100" />
+        </ComplexType>
+        <EntityType Name="vw_PendingOrders">
+          <Key>
+            <PropertyRef Name="Order_no_" />
+            <PropertyRef Name="Quantity" />
+            <PropertyRef Name="Customer" />
+            <PropertyRef Name="Address" />
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="Clerk" Type="String" MaxLength="113" FixedLength="false" Unicode="false" />
+          <Property Name="Order_no_" Type="Int32" Nullable="false" />
+          <Property Name="Product" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="Category" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Customer" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -402,6 +648,59 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="Cart">
+            <EntityTypeMapping TypeName="InventoryDBModel.Cart">
+              <MappingFragment StoreEntitySet="Cart">
+                <ScalarProperty Name="Order_status" ColumnName="Order_status" />
+                <ScalarProperty Name="customer_address" ColumnName="customer_address" />
+                <ScalarProperty Name="customer_name" ColumnName="customer_name" />
+                <ScalarProperty Name="OrderQuantity" ColumnName="OrderQuantity" />
+                <ScalarProperty Name="OrderNo" ColumnName="OrderNo" />
+                <ScalarProperty Name="user_ID" ColumnName="user_ID" />
+                <ScalarProperty Name="categoryID" ColumnName="categoryID" />
+                <ScalarProperty Name="productID" ColumnName="productID" />
+                <ScalarProperty Name="CartID" ColumnName="CartID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_LastOrderNumber">
+            <EntityTypeMapping TypeName="InventoryDBModel.vw_LastOrderNumber">
+              <MappingFragment StoreEntitySet="vw_LastOrderNumber">
+                <ScalarProperty Name="OrderNo" ColumnName="OrderNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_OrderDisplay" FunctionName="InventoryDBModel.Store.sp_OrderDisplay">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="InventoryDBModel.sp_OrderDisplay_Result">
+                <ScalarProperty Name="Clerk" ColumnName="Clerk" />
+                <ScalarProperty Name="Order_no_" ColumnName="Order no." />
+                <ScalarProperty Name="Product" ColumnName="Product" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="Customer" ColumnName="Customer" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="vw_PendingOrders">
+            <EntityTypeMapping TypeName="InventoryDBModel.vw_PendingOrders">
+              <MappingFragment StoreEntitySet="vw_PendingOrders">
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Customer" ColumnName="Customer" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Product" ColumnName="Product" />
+                <ScalarProperty Name="Order_no_" ColumnName="Order no." />
+                <ScalarProperty Name="Clerk" ColumnName="Clerk" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

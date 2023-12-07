@@ -36,10 +36,11 @@
             this.btnOrder = new Guna.UI2.WinForms.Guna2Button();
             this.btnDashboard = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
-            this.ExitIcon = new Guna.UI2.WinForms.Guna2PictureBox();
-            this.MainPanel = new System.Windows.Forms.Panel();
             this.lblFullname = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.ExitIcon = new Guna.UI2.WinForms.Guna2PictureBox();
+            this.MainPanel = new System.Windows.Forms.Panel();
+            this.btnCart = new Guna.UI2.WinForms.Guna2Button();
             this.guna2GradientPanel1.SuspendLayout();
             this.guna2Panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ExitIcon)).BeginInit();
@@ -47,6 +48,7 @@
             // 
             // guna2GradientPanel1
             // 
+            this.guna2GradientPanel1.Controls.Add(this.btnCart);
             this.guna2GradientPanel1.Controls.Add(this.btnSwitchAccount);
             this.guna2GradientPanel1.Controls.Add(this.btnReport);
             this.guna2GradientPanel1.Controls.Add(this.panelHover);
@@ -58,7 +60,7 @@
             this.guna2GradientPanel1.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(40)))), ((int)(((byte)(50)))));
             this.guna2GradientPanel1.Location = new System.Drawing.Point(0, 0);
             this.guna2GradientPanel1.Name = "guna2GradientPanel1";
-            this.guna2GradientPanel1.Size = new System.Drawing.Size(200, 610);
+            this.guna2GradientPanel1.Size = new System.Drawing.Size(200, 639);
             this.guna2GradientPanel1.TabIndex = 15;
             // 
             // btnSwitchAccount
@@ -79,7 +81,7 @@
             this.btnSwitchAccount.Image = global::Inventory_Management_System.Properties.Resources.Switch_account;
             this.btnSwitchAccount.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnSwitchAccount.ImageSize = new System.Drawing.Size(38, 38);
-            this.btnSwitchAccount.Location = new System.Drawing.Point(12, 554);
+            this.btnSwitchAccount.Location = new System.Drawing.Point(12, 583);
             this.btnSwitchAccount.Name = "btnSwitchAccount";
             this.btnSwitchAccount.PressedColor = System.Drawing.Color.Transparent;
             this.btnSwitchAccount.Size = new System.Drawing.Size(188, 44);
@@ -99,11 +101,12 @@
             this.btnReport.ForeColor = System.Drawing.Color.White;
             this.btnReport.HoverState.FillColor = System.Drawing.Color.White;
             this.btnReport.HoverState.ForeColor = System.Drawing.Color.Black;
-            this.btnReport.Location = new System.Drawing.Point(12, 172);
+            this.btnReport.Location = new System.Drawing.Point(12, 215);
             this.btnReport.Name = "btnReport";
             this.btnReport.Size = new System.Drawing.Size(188, 43);
             this.btnReport.TabIndex = 2;
             this.btnReport.Text = "Sales Report";
+            this.btnReport.Click += new System.EventHandler(this.btnReport_Click);
             // 
             // panelHover
             // 
@@ -125,11 +128,12 @@
             this.btnHistory.ForeColor = System.Drawing.Color.White;
             this.btnHistory.HoverState.FillColor = System.Drawing.Color.White;
             this.btnHistory.HoverState.ForeColor = System.Drawing.Color.Black;
-            this.btnHistory.Location = new System.Drawing.Point(12, 129);
+            this.btnHistory.Location = new System.Drawing.Point(12, 172);
             this.btnHistory.Name = "btnHistory";
             this.btnHistory.Size = new System.Drawing.Size(188, 43);
             this.btnHistory.TabIndex = 1;
             this.btnHistory.Text = "History Transaction";
+            this.btnHistory.Click += new System.EventHandler(this.btnHistory_Click);
             // 
             // btnOrder
             // 
@@ -181,30 +185,6 @@
             this.guna2Panel1.Size = new System.Drawing.Size(996, 37);
             this.guna2Panel1.TabIndex = 16;
             // 
-            // ExitIcon
-            // 
-            this.ExitIcon.BackColor = System.Drawing.Color.Transparent;
-            this.ExitIcon.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ExitIcon.Dock = System.Windows.Forms.DockStyle.Right;
-            this.ExitIcon.FillColor = System.Drawing.Color.Transparent;
-            this.ExitIcon.Image = global::Inventory_Management_System.Properties.Resources.reject_removebg_preview;
-            this.ExitIcon.ImageRotate = 0F;
-            this.ExitIcon.Location = new System.Drawing.Point(977, 0);
-            this.ExitIcon.Name = "ExitIcon";
-            this.ExitIcon.Size = new System.Drawing.Size(19, 37);
-            this.ExitIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.ExitIcon.TabIndex = 0;
-            this.ExitIcon.TabStop = false;
-            this.ExitIcon.Click += new System.EventHandler(this.ExitIcon_Click);
-            // 
-            // MainPanel
-            // 
-            this.MainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.MainPanel.Location = new System.Drawing.Point(200, 37);
-            this.MainPanel.Name = "MainPanel";
-            this.MainPanel.Size = new System.Drawing.Size(996, 573);
-            this.MainPanel.TabIndex = 17;
-            // 
             // lblFullname
             // 
             this.lblFullname.AutoSize = true;
@@ -231,11 +211,54 @@
             this.label1.TabIndex = 3;
             this.label1.Text = "Hi";
             // 
+            // ExitIcon
+            // 
+            this.ExitIcon.BackColor = System.Drawing.Color.Transparent;
+            this.ExitIcon.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ExitIcon.Dock = System.Windows.Forms.DockStyle.Right;
+            this.ExitIcon.FillColor = System.Drawing.Color.Transparent;
+            this.ExitIcon.Image = global::Inventory_Management_System.Properties.Resources.reject_removebg_preview;
+            this.ExitIcon.ImageRotate = 0F;
+            this.ExitIcon.Location = new System.Drawing.Point(977, 0);
+            this.ExitIcon.Name = "ExitIcon";
+            this.ExitIcon.Size = new System.Drawing.Size(19, 37);
+            this.ExitIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.ExitIcon.TabIndex = 0;
+            this.ExitIcon.TabStop = false;
+            this.ExitIcon.Click += new System.EventHandler(this.ExitIcon_Click);
+            // 
+            // MainPanel
+            // 
+            this.MainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MainPanel.Location = new System.Drawing.Point(200, 37);
+            this.MainPanel.Name = "MainPanel";
+            this.MainPanel.Size = new System.Drawing.Size(996, 602);
+            this.MainPanel.TabIndex = 17;
+            // 
+            // btnCart
+            // 
+            this.btnCart.BackColor = System.Drawing.Color.Transparent;
+            this.btnCart.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnCart.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnCart.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnCart.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnCart.FillColor = System.Drawing.Color.Transparent;
+            this.btnCart.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCart.ForeColor = System.Drawing.Color.White;
+            this.btnCart.HoverState.FillColor = System.Drawing.Color.White;
+            this.btnCart.HoverState.ForeColor = System.Drawing.Color.Black;
+            this.btnCart.Location = new System.Drawing.Point(12, 129);
+            this.btnCart.Name = "btnCart";
+            this.btnCart.Size = new System.Drawing.Size(188, 43);
+            this.btnCart.TabIndex = 6;
+            this.btnCart.Text = "Cart";
+            this.btnCart.Click += new System.EventHandler(this.btnCart_Click);
+            // 
             // ClerksDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1196, 610);
+            this.ClientSize = new System.Drawing.Size(1196, 639);
             this.Controls.Add(this.MainPanel);
             this.Controls.Add(this.guna2Panel1);
             this.Controls.Add(this.guna2GradientPanel1);
@@ -266,5 +289,6 @@
         private System.Windows.Forms.Panel MainPanel;
         private System.Windows.Forms.Label lblFullname;
         private System.Windows.Forms.Label label1;
+        private Guna.UI2.WinForms.Guna2Button btnCart;
     }
 }

@@ -42,6 +42,7 @@
     <Reference Include="Guna.UI2, Version=2.0.4.5, Culture=neutral, PublicKeyToken=8b9d14aa5142e261, processorArchitecture=MSIL">
       <HintPath>..\packages\Guna.UI2.WinForms.2.0.4.5\lib\net472\Guna.UI2.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -123,6 +124,9 @@
     <Compile Include="Models\Accounts.cs">
       <DependentUpon>Entity_Inventory_Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Cart.cs">
+      <DependentUpon>Entity_Inventory_Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Category.cs">
       <DependentUpon>Entity_Inventory_Model.tt</DependentUpon>
     </Compile>
@@ -150,7 +154,16 @@
     <Compile Include="Models\sp_AccountFilter_Result.cs">
       <DependentUpon>Entity_Inventory_Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\sp_CartDisplay_Result.cs">
+      <DependentUpon>Entity_Inventory_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_CartDisplay_Result1.cs">
+      <DependentUpon>Entity_Inventory_Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\sp_CategoryFilter_Result.cs">
+      <DependentUpon>Entity_Inventory_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_OrderDisplay_Result.cs">
       <DependentUpon>Entity_Inventory_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sp_SelectCategory1_Result.cs">
@@ -168,11 +181,23 @@
     <Compile Include="Models\sp_ValidateAccount_Result.cs">
       <DependentUpon>Entity_Inventory_Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\vw_LastOrderNumber.cs">
+      <DependentUpon>Entity_Inventory_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vw_PendingOrders.cs">
+      <DependentUpon>Entity_Inventory_Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\vw_SelectedPanel_Result.cs">
       <DependentUpon>Entity_Inventory_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserControls\CartProduct.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\CartProduct.Designer.cs">
+      <DependentUpon>CartProduct.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\ManageAccount.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -234,6 +259,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\CartProduct.resx">
+      <DependentUpon>CartProduct.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\ManageAccount.resx">
       <DependentUpon>ManageAccount.cs</DependentUpon>
@@ -303,6 +331,8 @@
       <DependentUpon>Entity_Inventory_Model.edmx</DependentUpon>
       <LastGenOutput>Entity_Inventory_Model.cs</LastGenOutput>
     </Content>
+    <None Include="Resources\Prepare.png" />
+    <None Include="Resources\inventory.png" />
     <None Include="Resources\add-to-cart.png" />
     <None Include="Resources\Switch account.png" />
     <None Include="Resources\View.png" />
