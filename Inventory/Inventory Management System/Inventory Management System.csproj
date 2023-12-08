@@ -145,6 +145,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Entity_Inventory_Model.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\HistoryTransaction.cs">
+      <DependentUpon>Entity_Inventory_Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Products.cs">
       <DependentUpon>Entity_Inventory_Model.tt</DependentUpon>
     </Compile>
@@ -152,6 +155,9 @@
       <DependentUpon>Entity_Inventory_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sp_AccountFilter_Result.cs">
+      <DependentUpon>Entity_Inventory_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_CartCategoryFilter_Result.cs">
       <DependentUpon>Entity_Inventory_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sp_CartDisplay_Result.cs">
@@ -197,6 +203,12 @@
     </Compile>
     <Compile Include="UserControls\CartProduct.Designer.cs">
       <DependentUpon>CartProduct.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\HistoryControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\HistoryControl.Designer.cs">
+      <DependentUpon>HistoryControl.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\ManageAccount.cs">
       <SubType>UserControl</SubType>
@@ -262,6 +274,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\CartProduct.resx">
       <DependentUpon>CartProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\HistoryControl.resx">
+      <DependentUpon>HistoryControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\ManageAccount.resx">
       <DependentUpon>ManageAccount.cs</DependentUpon>

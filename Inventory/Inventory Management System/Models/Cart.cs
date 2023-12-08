@@ -18,6 +18,15 @@ using System;
 public partial class Cart
 {
 
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+    public Cart()
+    {
+
+        this.HistoryTransaction = new HashSet<HistoryTransaction>();
+
+    }
+
+
     public int CartID { get; set; }
 
     public int productID { get; set; }
@@ -43,6 +52,10 @@ public partial class Cart
     public virtual Products Products { get; set; }
 
     public virtual Accounts Accounts { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+
+    public virtual ICollection<HistoryTransaction> HistoryTransaction { get; set; }
 
 }
 

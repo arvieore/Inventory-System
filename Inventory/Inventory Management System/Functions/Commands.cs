@@ -123,17 +123,17 @@ namespace Inventory_Management_System.Functions
                 MessageBox.Show("Error: " + ex.Message);
             }
         }
-        public void UpdateProductQty(int ID, string Qty)
+        public void UpdateProductQty(int ProductID, string CartQty)
         {
             dbContext();
 
             // Retrieve the product from the database
-            Products productInfo = db.Products.SingleOrDefault(i => i.productID == ID);
+            Products productInfo = db.Products.SingleOrDefault(i => i.productID == ProductID);
 
             if (productInfo != null)
             {
                 // Calculate the new quantity
-                int newQty = Convert.ToInt32(productInfo.product_Quantity) + Convert.ToInt32(Qty);
+                int newQty = Convert.ToInt32(productInfo.product_Quantity) + Convert.ToInt32(CartQty);
 
                 // Update the quantity of the retrieved product
                 productInfo.product_Quantity = newQty.ToString();
@@ -142,7 +142,67 @@ namespace Inventory_Management_System.Functions
             }
             else
             {
-                MessageBox.Show($"No product found with productID {ID}");
+                MessageBox.Show($"No product found with productID {ProductID}");
+            }
+        }
+        public void RemoveProductInCart(int ID)
+        {
+            using (var db = new DB_InventoryEntities())
+            {
+                var removeUsingID = db.Cart.Where(i => i.CartID == ID);
+                foreach (var productInfo in removeUsingID)
+                {
+                    db.Cart.Remove(productInfo);
+                }
+                db.SaveChanges();
+                MessageBox.Show("Remove product successfully!", "Remove", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+        public void EditCartQuantity(int ID, int ProductID, int TotalQuantity, int newInputtedQuantity)
+        {
+            using (var db = new DB_InventoryEntities())
+            {
+                Cart cartQuantity = db.Cart.SingleOrDefault(q => q.CartID == ID);
+                Products productInfo = db.Products.SingleOrDefault(p => p.productID == ProductID);
+                if (cartQuantity != null)
+                {
+                    productInfo.product_Quantity = Convert.ToString(TotalQuantity - newInputtedQuantity);
+                    cartQuantity.OrderQuantity = newInputtedQuantity;
+
+                    db.SaveChanges();
+                    MessageBox.Show($"Edited successfully! The product_Quantity is now: {productInfo.product_Quantity}", "Edit", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show($"Can't find the product ID: {cartQuantity.productID}");
+                }
+            }
+        }
+        public void UpdateCartStatus(int CartID, String CartStatus)
+        {
+            try
+            {
+                using (var db = new DB_InventoryEntities())
+                {
+                    Cart cartStatus = db.Cart.SingleOrDefault(c => c.CartID == CartID);
+                    {
+                        if (CartStatus.Equals("Pending"))
+                        {
+                            cartStatus.Order_status = "Completed";
+                            MessageBox.Show("Order is ready");
+                            db.SaveChanges();
+                        }
+                        else
+                        {
+                            cartStatus.Order_status = "Pending";
+                            db.SaveChanges();
+                        }
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
             }
         }
     }

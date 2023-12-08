@@ -49,6 +49,8 @@ public partial class DB_InventoryEntities : DbContext
 
     public virtual DbSet<vw_PendingOrders> vw_PendingOrders { get; set; }
 
+    public virtual DbSet<HistoryTransaction> HistoryTransaction { get; set; }
+
 
     public virtual ObjectResult<sp_ValidateAccount_Result> sp_ValidateAccount(string user_name, string user_password)
     {
@@ -203,6 +205,18 @@ public partial class DB_InventoryEntities : DbContext
 
 
         return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_OrderDisplay_Result>("sp_OrderDisplay", orderNoParameter);
+    }
+
+
+    public virtual ObjectResult<sp_CartCategoryFilter_Result> sp_CartCategoryFilter(string categoryFiltered)
+    {
+
+        var categoryFilteredParameter = categoryFiltered != null ?
+            new ObjectParameter("CategoryFiltered", categoryFiltered) :
+            new ObjectParameter("CategoryFiltered", typeof(string));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_CartCategoryFilter_Result>("sp_CartCategoryFilter", categoryFilteredParameter);
     }
 
 }

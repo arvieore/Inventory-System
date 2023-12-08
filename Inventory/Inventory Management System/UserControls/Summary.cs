@@ -44,6 +44,12 @@ namespace Inventory_Management_System.UserControls
 
             int countCategory = db.Category.Count();
             lblTotalCategory.Text = countCategory.ToString();
+
+            var countOutOfStock = db.Products.Count(p => p.product_Quantity == "0");
+            lblOutOfStock.Text = countOutOfStock.ToString();
+
+            var countLowOfStock = db.sp_SelectProduct().Where(p => Convert.ToInt32(p.Quantity) <= 5 && Convert.ToInt32(p.Quantity) != 0).Count();
+            lblLowOfStock.Text = countLowOfStock.ToString();
         }
 
         private void panelProduct_Click(object sender, EventArgs e)
@@ -76,6 +82,9 @@ namespace Inventory_Management_System.UserControls
             int y = 241;
             Point HoverPanel = new Point(x, y);
             panelHover.Location = HoverPanel;
+
+            SelectedPanel = "panelOutOfStocks";
+            LoadTable(SelectedPanel);
         }
 
         private void panelLowStock_Click(object sender, EventArgs e)
@@ -85,6 +94,9 @@ namespace Inventory_Management_System.UserControls
             int y = 241;
             Point HoverPanel = new Point(x, y);
             panelHover.Location = HoverPanel;
+
+            SelectedPanel = "panelLowOfStock";
+            LoadTable(SelectedPanel);
         }
         private void LoadTable(String selectedPanel)
         {
@@ -101,6 +113,22 @@ namespace Inventory_Management_System.UserControls
                 dgv_Summary.DataSource = db.sp_SelectCategory();
                 dgv_Summary.Columns["categoryName"].HeaderText = "Category Name";
                 dgv_Summary.Columns["ID"].Width = 90;
+            }
+            else if (selectedPanel.Equals("panelOutOfStocks"))
+            {
+                dgv_Summary.DataSource = db.sp_SelectProduct().Where(p => Convert.ToInt32(p.Quantity) == 0).ToList();
+                dgv_Summary.Columns["product_Name"].HeaderText = "Product Name";
+                dgv_Summary.Columns["ID"].Width = 30;
+                dgv_Summary.Columns["Quantity"].Width = 80;
+                dgv_Summary.Columns["Price"].Width = 100;
+            }
+            else if (selectedPanel.Equals("panelLowOfStock"))
+            {
+                dgv_Summary.DataSource = db.sp_SelectProduct().Where(p => Convert.ToInt32(p.Quantity) <= 5 && Convert.ToInt32(p.Quantity) != 0).ToList();
+                dgv_Summary.Columns["product_Name"].HeaderText = "Product Name";
+                dgv_Summary.Columns["ID"].Width = 30;
+                dgv_Summary.Columns["Quantity"].Width = 80;
+                dgv_Summary.Columns["Price"].Width = 100;
             }
         }
     }

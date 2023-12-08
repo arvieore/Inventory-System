@@ -157,5 +157,32 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_CartCategoryFilter" FunctionName="InventoryDBModel.Store.sp_CartCategoryFilter">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="InventoryDBModel.sp_CartCategoryFilter_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="Clerk" ColumnName="Clerk" />
+          <ScalarProperty Name="Order_no_" ColumnName="Order no." />
+          <ScalarProperty Name="Product" ColumnName="Product" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="Customer" ColumnName="Customer" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="HistoryTransaction">
+      <EntityTypeMapping TypeName="InventoryDBModel.HistoryTransaction">
+        <MappingFragment StoreEntitySet="HistoryTransaction">
+          <ScalarProperty Name="productID" ColumnName="productID" />
+          <ScalarProperty Name="user_ID" ColumnName="user_ID" />
+          <ScalarProperty Name="CartID" ColumnName="CartID" />
+          <ScalarProperty Name="Transact_ID" ColumnName="Transact_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

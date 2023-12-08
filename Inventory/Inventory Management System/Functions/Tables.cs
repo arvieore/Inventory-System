@@ -13,7 +13,6 @@ namespace Inventory_Management_System.Functions
 {
     public class Tables
     {
-        private DB_InventoryEntities db;
         public static void DisplayProducts(DataGridView dgv)
         {
             if (dgv != null && dgv.Columns != null)

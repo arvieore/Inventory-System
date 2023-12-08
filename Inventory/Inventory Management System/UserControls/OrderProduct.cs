@@ -71,7 +71,7 @@ namespace Inventory_Management_System.UserControls
         public void LoadTable()
         {
             dgv_Products.Columns.Clear();
-            dgv_Products.DataSource = db.sp_CategoryFilter(Cbox_Category.Text).ToList();
+            dgv_Products.DataSource = db.sp_CategoryFilter(Cbox_Category.Text).Where(p => Convert.ToInt32(p.product_Quantity) > 0).ToList();
 
             Tables.DisplayProducts(dgv_Products);
             dgv_Products.Columns.Add(addToCart);
@@ -109,19 +109,27 @@ namespace Inventory_Management_System.UserControls
                         {
                             return;
                         }
+                        if(input.Equals("0"))
+                        {
+                            MessageBox.Show("Please enter a quantity greater than 0.", "Invalid input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
                         validInput = int.TryParse(input, out quantity);
                         if (!validInput)
                         {
                             MessageBox.Show("Please enter a valid numeric quantity.", "Invalid input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
-                        else
+                        if(Convert.ToInt32(products.product_Quantity) < quantity)
+                        {
+                            MessageBox.Show($"The available quantity of this product is {products.product_Quantity}", "Invalid input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                        else if (validInput)
                         {
                             int categoryID = db.Products.Where(p => p.productID == products.productID).Select(p => p.categoryID).FirstOrDefault();
                             int user_ID = db.Accounts.Where(a => a.user_ID == accountID).Select(a => a.user_ID).FirstOrDefault();
 
-                            UpdateLoadCart(products, Convert.ToInt32(input));
+                            UpdateLoadCart(products, quantity);
 
-                            AddToCart(products.productID, categoryID, user_ID, Convert.ToInt32(input));
+                            AddToCart(products.productID, categoryID, user_ID, quantity);
                             MessageBox.Show("The product has been successfully added cart.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                     } while (!validInput);
@@ -134,6 +142,7 @@ namespace Inventory_Management_System.UserControls
             {
                 //var lastOrderNo = db.vw_LastOrderNumber.FirstOrDefault();
                 int orderNo = Convert.ToInt32(lblOrderNo.Text);
+                DateTime currentDate = DateTime.Now;
 
                 var Order = new Cart
                 {

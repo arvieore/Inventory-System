@@ -66,3 +66,4 @@ C:\Users\acer\OneDrive\Desktop\Inventory\Inventory-System\Inventory\Inventory Ma
 C:\Users\acer\OneDrive\Desktop\Inventory\Inventory-System\Inventory\Inventory Management System\obj\Debug\Inventory_Management_System.Forms.ClerksDashboard.resources
 C:\Users\acer\OneDrive\Desktop\Inventory\Inventory-System\Inventory\Inventory Management System\obj\Debug\Inventory_Management_System.UserControls.OrderProduct.resources
 C:\Users\acer\OneDrive\Desktop\Inventory\Inventory-System\Inventory\Inventory Management System\obj\Debug\Inventory_Management_System.UserControls.CartProduct.resources
+C:\Users\acer\OneDrive\Desktop\Inventory\Inventory-System\Inventory\Inventory Management System\obj\Debug\Inventory_Management_System.UserControls.HistoryControl.resources

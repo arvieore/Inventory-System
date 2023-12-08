@@ -202,7 +202,7 @@ SELECT
     cart.customer_address AS 'Address',
 	cart.Order_status AS 'Status'
 FROM 
-    cart
+    Cart
 JOIN
     Accounts ON cart.user_ID = Accounts.user_ID
 JOIN 
@@ -213,6 +213,65 @@ WHERE
     cart.Order_status = 'Pending';
 
 ------------------------------------------------------------------------------------------------------------------
+
+Create Procedure sp_CartCategoryFilter 
+	@CategoryFiltered varchar(50)
+AS
+BEGIN
+	IF @CategoryFiltered = 'All'
+	BEGIN
+		SELECT
+			cart.CartID AS 'ID',
+			Products.productID AS 'ProductID',
+			Lower(CONCAT(Accounts.user_ID, '-',Accounts.user_firstname, Accounts.user_lastname)) AS 'Clerk',
+			cart.OrderNo AS 'Order no.',
+			Products.product_Name AS 'Product',
+			cart.OrderQuantity AS 'Quantity',
+			Products.product_Price AS 'Price',
+			Category.categoryName AS 'Category',
+			cart.customer_name AS 'Customer',
+			cart.customer_address AS 'Address',
+			cart.Order_status AS 'Status'
+		FROM 
+			cart
+		JOIN
+			Accounts ON cart.user_ID = Accounts.user_ID
+		JOIN 
+			Products ON cart.productID = Products.productID
+		JOIN 
+			Category ON cart.categoryID = Category.categoryID
+		WHERE 
+			cart.Order_status = 'Pending';
+	END
+	ELSE
+	BEGIN
+		SELECT
+			cart.CartID AS 'ID',
+			Products.productID AS 'ProductID',
+			Lower(CONCAT(Accounts.user_ID, '-',Accounts.user_firstname, Accounts.user_lastname)) AS 'Clerk',
+			cart.OrderNo AS 'Order no.',
+			Products.product_Name AS 'Product',
+			cart.OrderQuantity AS 'Quantity',
+			Products.product_Price AS 'Price',
+			Category.categoryName AS 'Category',
+			cart.customer_name AS 'Customer',
+			cart.customer_address AS 'Address',
+			cart.Order_status AS 'Status'
+		FROM 
+			cart
+		JOIN
+			Accounts ON cart.user_ID = Accounts.user_ID
+		JOIN 
+			Products ON cart.productID = Products.productID
+		JOIN 
+			Category ON cart.categoryID = Category.categoryID
+		WHERE 
+			cart.Order_status = 'Pending' AND Category.categoryName = @CategoryFiltered;
+	END
+END;
+
+----------------------------------------------------------------------------------------------------------------------------------------
+
 
 SELECT * FROM vw_PendingOrders
 

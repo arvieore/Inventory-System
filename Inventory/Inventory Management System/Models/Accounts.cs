@@ -24,6 +24,8 @@ public partial class Accounts
 
         this.Cart = new HashSet<Cart>();
 
+        this.HistoryTransaction = new HashSet<HistoryTransaction>();
+
     }
 
 
@@ -60,6 +62,10 @@ public partial class Accounts
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
     public virtual ICollection<Cart> Cart { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+
+    public virtual ICollection<HistoryTransaction> HistoryTransaction { get; set; }
 
 }
 

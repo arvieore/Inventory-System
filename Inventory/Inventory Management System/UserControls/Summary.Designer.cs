@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panelStocks = new Guna.UI2.WinForms.Guna2GradientPanel();
-            this.label5 = new System.Windows.Forms.Label();
+            this.lblOutOfStock = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.panelCategory = new Guna.UI2.WinForms.Guna2GradientPanel();
             this.lblTotalCategory = new System.Windows.Forms.Label();
@@ -44,25 +44,25 @@
             this.panelHeader = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.dgv_Summary = new Guna.UI2.WinForms.Guna2DataGridView();
             this.panelHover = new System.Windows.Forms.Panel();
             this.panelLowStock = new Guna.UI2.WinForms.Guna2GradientPanel();
-            this.label6 = new System.Windows.Forms.Label();
+            this.lblLowOfStock = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.dgv_Summary = new Guna.UI2.WinForms.Guna2DataGridView();
             this.panelStocks.SuspendLayout();
             this.panelCategory.SuspendLayout();
             this.panelProduct.SuspendLayout();
             this.panelHeader.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.panelLowStock.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Summary)).BeginInit();
+            this.panelLowStock.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelStocks
             // 
             this.panelStocks.BorderRadius = 10;
-            this.panelStocks.Controls.Add(this.label5);
+            this.panelStocks.Controls.Add(this.lblOutOfStock);
             this.panelStocks.Controls.Add(this.label4);
             this.panelStocks.Cursor = System.Windows.Forms.Cursors.Hand;
             this.panelStocks.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(9)))), ((int)(((byte)(125)))));
@@ -73,15 +73,16 @@
             this.panelStocks.TabIndex = 1;
             this.panelStocks.Click += new System.EventHandler(this.panelStocks_Click);
             // 
-            // label5
+            // lblOutOfStock
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(78, 74);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(0, 31);
-            this.label5.TabIndex = 2;
+            this.lblOutOfStock.AutoSize = true;
+            this.lblOutOfStock.BackColor = System.Drawing.Color.Transparent;
+            this.lblOutOfStock.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblOutOfStock.ForeColor = System.Drawing.Color.White;
+            this.lblOutOfStock.Location = new System.Drawing.Point(78, 74);
+            this.lblOutOfStock.Name = "lblOutOfStock";
+            this.lblOutOfStock.Size = new System.Drawing.Size(0, 31);
+            this.lblOutOfStock.TabIndex = 2;
             // 
             // label4
             // 
@@ -205,90 +206,38 @@
             this.panel1.TabIndex = 0;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
-            // panelHover
-            // 
-            this.panelHover.BackColor = System.Drawing.Color.Transparent;
-            this.panelHover.Location = new System.Drawing.Point(7, 241);
-            this.panelHover.Name = "panelHover";
-            this.panelHover.Size = new System.Drawing.Size(224, 10);
-            this.panelHover.TabIndex = 5;
-            // 
-            // panelLowStock
-            // 
-            this.panelLowStock.BorderRadius = 10;
-            this.panelLowStock.Controls.Add(this.label6);
-            this.panelLowStock.Controls.Add(this.label7);
-            this.panelLowStock.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.panelLowStock.FillColor = System.Drawing.Color.OrangeRed;
-            this.panelLowStock.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.panelLowStock.Location = new System.Drawing.Point(738, 56);
-            this.panelLowStock.Name = "panelLowStock";
-            this.panelLowStock.Size = new System.Drawing.Size(224, 177);
-            this.panelLowStock.TabIndex = 4;
-            this.panelLowStock.Click += new System.EventHandler(this.panelLowStock_Click);
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(90, 74);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(0, 31);
-            this.label6.TabIndex = 2;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.BackColor = System.Drawing.Color.Transparent;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(93, 46);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(61, 15);
-            this.label7.TabIndex = 2;
-            this.label7.Text = "Low stock";
-            // 
-            // panel2
-            // 
-            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel2.Location = new System.Drawing.Point(0, 251);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(967, 267);
-            this.panel2.TabIndex = 3;
-            // 
             // dgv_Summary
             // 
             this.dgv_Summary.AllowUserToAddRows = false;
             this.dgv_Summary.AllowUserToResizeColumns = false;
             this.dgv_Summary.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            this.dgv_Summary.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv_Summary.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.White;
+            this.dgv_Summary.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv_Summary.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
             this.dgv_Summary.ColumnHeadersHeight = 20;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv_Summary.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv_Summary.DefaultCellStyle = dataGridViewCellStyle11;
             this.dgv_Summary.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dgv_Summary.Location = new System.Drawing.Point(4, 263);
             this.dgv_Summary.Name = "dgv_Summary";
             this.dgv_Summary.ReadOnly = true;
             this.dgv_Summary.RowHeadersVisible = false;
             this.dgv_Summary.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.PaleTurquoise;
-            this.dgv_Summary.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.PaleTurquoise;
+            this.dgv_Summary.RowsDefaultCellStyle = dataGridViewCellStyle12;
             this.dgv_Summary.Size = new System.Drawing.Size(957, 252);
             this.dgv_Summary.TabIndex = 6;
             this.dgv_Summary.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
@@ -313,6 +262,59 @@
             this.dgv_Summary.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dgv_Summary.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
             // 
+            // panelHover
+            // 
+            this.panelHover.BackColor = System.Drawing.Color.Transparent;
+            this.panelHover.Location = new System.Drawing.Point(7, 241);
+            this.panelHover.Name = "panelHover";
+            this.panelHover.Size = new System.Drawing.Size(224, 10);
+            this.panelHover.TabIndex = 5;
+            // 
+            // panelLowStock
+            // 
+            this.panelLowStock.BorderRadius = 10;
+            this.panelLowStock.Controls.Add(this.lblLowOfStock);
+            this.panelLowStock.Controls.Add(this.label7);
+            this.panelLowStock.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.panelLowStock.FillColor = System.Drawing.Color.OrangeRed;
+            this.panelLowStock.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.panelLowStock.Location = new System.Drawing.Point(738, 56);
+            this.panelLowStock.Name = "panelLowStock";
+            this.panelLowStock.Size = new System.Drawing.Size(224, 177);
+            this.panelLowStock.TabIndex = 4;
+            this.panelLowStock.Click += new System.EventHandler(this.panelLowStock_Click);
+            // 
+            // lblLowOfStock
+            // 
+            this.lblLowOfStock.AutoSize = true;
+            this.lblLowOfStock.BackColor = System.Drawing.Color.Transparent;
+            this.lblLowOfStock.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLowOfStock.ForeColor = System.Drawing.Color.White;
+            this.lblLowOfStock.Location = new System.Drawing.Point(90, 74);
+            this.lblLowOfStock.Name = "lblLowOfStock";
+            this.lblLowOfStock.Size = new System.Drawing.Size(0, 31);
+            this.lblLowOfStock.TabIndex = 2;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.BackColor = System.Drawing.Color.Transparent;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.White;
+            this.label7.Location = new System.Drawing.Point(93, 46);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(61, 15);
+            this.label7.TabIndex = 2;
+            this.label7.Text = "Low stock";
+            // 
+            // panel2
+            // 
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel2.Location = new System.Drawing.Point(0, 251);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(967, 267);
+            this.panel2.TabIndex = 3;
+            // 
             // Summary
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -331,9 +333,9 @@
             this.panelHeader.ResumeLayout(false);
             this.panelHeader.PerformLayout();
             this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_Summary)).EndInit();
             this.panelLowStock.ResumeLayout(false);
             this.panelLowStock.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_Summary)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -346,14 +348,14 @@
         private System.Windows.Forms.Label lblTotalProduct;
         private System.Windows.Forms.Label lblTotalCategory;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lblOutOfStock;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Panel panelHeader;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private Guna.UI2.WinForms.Guna2GradientPanel panelLowStock;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label lblLowOfStock;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Panel panelHover;
         private Guna.UI2.WinForms.Guna2DataGridView dgv_Summary;

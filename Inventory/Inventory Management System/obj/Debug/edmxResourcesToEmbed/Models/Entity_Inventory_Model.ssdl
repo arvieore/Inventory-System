@@ -39,6 +39,15 @@
     <Property Name="categoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="categoryName" Type="varchar" MaxLength="50" />
   </EntityType>
+  <EntityType Name="HistoryTransaction">
+    <Key>
+      <PropertyRef Name="Transact_ID" />
+    </Key>
+    <Property Name="Transact_ID" Type="int" Nullable="false" />
+    <Property Name="CartID" Type="int" Nullable="false" />
+    <Property Name="user_ID" Type="int" Nullable="false" />
+    <Property Name="productID" Type="int" Nullable="false" />
+  </EntityType>
   <EntityType Name="Products">
     <Key>
       <PropertyRef Name="productID" />
@@ -137,6 +146,42 @@ warning 6002: The table/view 'InventoryDB.dbo.vw_PendingOrders' does not have a 
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_HistoryTransaction_Accounts">
+    <End Role="Accounts" Type="Self.Accounts" Multiplicity="1" />
+    <End Role="HistoryTransaction" Type="Self.HistoryTransaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Accounts">
+        <PropertyRef Name="user_ID" />
+      </Principal>
+      <Dependent Role="HistoryTransaction">
+        <PropertyRef Name="user_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HistoryTransaction_Cart">
+    <End Role="Cart" Type="Self.Cart" Multiplicity="1" />
+    <End Role="HistoryTransaction" Type="Self.HistoryTransaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cart">
+        <PropertyRef Name="CartID" />
+      </Principal>
+      <Dependent Role="HistoryTransaction">
+        <PropertyRef Name="CartID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HistoryTransaction_Products">
+    <End Role="Products" Type="Self.Products" Multiplicity="1" />
+    <End Role="HistoryTransaction" Type="Self.HistoryTransaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="productID" />
+      </Principal>
+      <Dependent Role="HistoryTransaction">
+        <PropertyRef Name="productID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Products_Category">
     <End Role="Category" Type="Self.Category" Multiplicity="1" />
     <End Role="Products" Type="Self.Products" Multiplicity="*" />
@@ -171,6 +216,9 @@ warning 6002: The table/view 'InventoryDB.dbo.vw_PendingOrders' does not have a 
     <Parameter Name="product_price" Type="decimal" Mode="In" />
     <Parameter Name="product_description" Type="varchar" Mode="In" />
   </Function>
+  <Function Name="sp_CartCategoryFilter" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CategoryFiltered" Type="varchar" Mode="In" />
+  </Function>
   <Function Name="sp_CategoryFilter" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="CategoryFiltered" Type="varchar" Mode="In" />
   </Function>
@@ -187,6 +235,7 @@ warning 6002: The table/view 'InventoryDB.dbo.vw_PendingOrders' does not have a 
     <EntitySet Name="Accounts" EntityType="Self.Accounts" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Cart" EntityType="Self.Cart" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HistoryTransaction" EntityType="Self.HistoryTransaction" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="vw_LastOrderNumber" EntityType="Self.vw_LastOrderNumber" store:Type="Views" store:Schema="dbo">
@@ -224,6 +273,18 @@ warning 6002: The table/view 'InventoryDB.dbo.vw_PendingOrders' does not have a 
     <AssociationSet Name="FK_Cart_Products" Association="Self.FK_Cart_Products">
       <End Role="Products" EntitySet="Products" />
       <End Role="Cart" EntitySet="Cart" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HistoryTransaction_Accounts" Association="Self.FK_HistoryTransaction_Accounts">
+      <End Role="Accounts" EntitySet="Accounts" />
+      <End Role="HistoryTransaction" EntitySet="HistoryTransaction" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HistoryTransaction_Cart" Association="Self.FK_HistoryTransaction_Cart">
+      <End Role="Cart" EntitySet="Cart" />
+      <End Role="HistoryTransaction" EntitySet="HistoryTransaction" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HistoryTransaction_Products" Association="Self.FK_HistoryTransaction_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="HistoryTransaction" EntitySet="HistoryTransaction" />
     </AssociationSet>
     <AssociationSet Name="FK_Products_Category" Association="Self.FK_Products_Category">
       <End Role="Category" EntitySet="Category" />
