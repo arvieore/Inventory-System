@@ -178,6 +178,7 @@
     <EntitySetMapping Name="HistoryTransaction">
       <EntityTypeMapping TypeName="InventoryDBModel.HistoryTransaction">
         <MappingFragment StoreEntitySet="HistoryTransaction">
+          <ScalarProperty Name="categoryID" ColumnName="categoryID" />
           <ScalarProperty Name="productID" ColumnName="productID" />
           <ScalarProperty Name="user_ID" ColumnName="user_ID" />
           <ScalarProperty Name="CartID" ColumnName="CartID" />
@@ -185,14 +186,15 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="vw_History">
-      <EntityTypeMapping TypeName="InventoryDBModel.vw_History">
-        <MappingFragment StoreEntitySet="vw_History">
+    <EntitySetMapping Name="vw_HistoryTransaction">
+      <EntityTypeMapping TypeName="InventoryDBModel.vw_HistoryTransaction">
+        <MappingFragment StoreEntitySet="vw_HistoryTransaction">
           <ScalarProperty Name="Address" ColumnName="Address" />
           <ScalarProperty Name="Customer" ColumnName="Customer" />
           <ScalarProperty Name="Date" ColumnName="Date" />
           <ScalarProperty Name="Total" ColumnName="Total" />
           <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
           <ScalarProperty Name="Products" ColumnName="Products" />
           <ScalarProperty Name="Clerk" ColumnName="Clerk" />
           <ScalarProperty Name="Order_no" ColumnName="Order no" />

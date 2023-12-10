@@ -68,6 +68,7 @@
             this.txtSearch.SelectedText = "";
             this.txtSearch.Size = new System.Drawing.Size(200, 36);
             this.txtSearch.TabIndex = 3;
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
             // panelHeader
             // 
@@ -117,6 +118,7 @@
             this.Cbox_Category.Name = "Cbox_Category";
             this.Cbox_Category.Size = new System.Drawing.Size(140, 36);
             this.Cbox_Category.TabIndex = 2;
+            this.Cbox_Category.SelectedIndexChanged += new System.EventHandler(this.Cbox_Category_SelectedIndexChanged);
             // 
             // panel2
             // 

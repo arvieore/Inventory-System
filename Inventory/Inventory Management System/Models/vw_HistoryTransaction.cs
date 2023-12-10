@@ -15,7 +15,7 @@ namespace Inventory_Management_System.Models
 using System;
     using System.Collections.Generic;
     
-public partial class vw_History
+public partial class vw_HistoryTransaction
 {
 
     public int ID { get; set; }
@@ -25,6 +25,8 @@ public partial class vw_History
     public string Clerk { get; set; }
 
     public string Products { get; set; }
+
+    public string Category { get; set; }
 
     public string Quantity { get; set; }
 

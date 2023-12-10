@@ -53,6 +53,7 @@
           <Property Name="CartID" Type="int" Nullable="false" />
           <Property Name="user_ID" Type="int" Nullable="false" />
           <Property Name="productID" Type="int" Nullable="false" />
+          <Property Name="categoryID" Type="int" />
         </EntityType>
         <EntityType Name="Products">
           <Key>
@@ -74,8 +75,8 @@
           <Property Name="roleName" Type="varchar" MaxLength="50" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'InventoryDB.dbo.vw_History' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <EntityType Name="vw_History">
+warning 6002: The table/view 'InventoryDB.dbo.vw_HistoryTransaction' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vw_HistoryTransaction">
           <Key>
             <PropertyRef Name="ID" />
             <PropertyRef Name="Order no" />
@@ -86,6 +87,7 @@ warning 6002: The table/view 'InventoryDB.dbo.vw_History' does not have a primar
           <Property Name="Order no" Type="int" Nullable="false" />
           <Property Name="Clerk" Type="varchar" MaxLength="114" />
           <Property Name="Products" Type="varchar" MaxLength="50" />
+          <Property Name="Category" Type="varchar" MaxLength="50" />
           <Property Name="Quantity" Type="varchar" MaxLength="50" />
           <Property Name="Total" Type="decimal" Precision="38" Scale="2" />
           <Property Name="Date" Type="date" />
@@ -195,6 +197,18 @@ warning 6002: The table/view 'InventoryDB.dbo.vw_PendingOrders' does not have a 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_HistoryTransaction_Category1">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="HistoryTransaction" Type="Self.HistoryTransaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="categoryID" />
+            </Principal>
+            <Dependent Role="HistoryTransaction">
+              <PropertyRef Name="categoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_HistoryTransaction_Products">
           <End Role="Products" Type="Self.Products" Multiplicity="1" />
           <End Role="HistoryTransaction" Type="Self.HistoryTransaction" Multiplicity="*" />
@@ -263,18 +277,19 @@ warning 6002: The table/view 'InventoryDB.dbo.vw_PendingOrders' does not have a 
           <EntitySet Name="HistoryTransaction" EntityType="Self.HistoryTransaction" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="vw_History" EntityType="Self.vw_History" store:Type="Views" store:Schema="dbo">
+          <EntitySet Name="vw_HistoryTransaction" EntityType="Self.vw_HistoryTransaction" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
-    [vw_History].[ID] AS [ID], 
-    [vw_History].[Order no] AS [Order no], 
-    [vw_History].[Clerk] AS [Clerk], 
-    [vw_History].[Products] AS [Products], 
-    [vw_History].[Quantity] AS [Quantity], 
-    [vw_History].[Total] AS [Total], 
-    [vw_History].[Date] AS [Date], 
-    [vw_History].[Customer] AS [Customer], 
-    [vw_History].[Address] AS [Address]
-    FROM [dbo].[vw_History] AS [vw_History]</DefiningQuery>
+    [vw_HistoryTransaction].[ID] AS [ID], 
+    [vw_HistoryTransaction].[Order no] AS [Order no], 
+    [vw_HistoryTransaction].[Clerk] AS [Clerk], 
+    [vw_HistoryTransaction].[Products] AS [Products], 
+    [vw_HistoryTransaction].[Category] AS [Category], 
+    [vw_HistoryTransaction].[Quantity] AS [Quantity], 
+    [vw_HistoryTransaction].[Total] AS [Total], 
+    [vw_HistoryTransaction].[Date] AS [Date], 
+    [vw_HistoryTransaction].[Customer] AS [Customer], 
+    [vw_HistoryTransaction].[Address] AS [Address]
+    FROM [dbo].[vw_HistoryTransaction] AS [vw_HistoryTransaction]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="vw_LastOrderNumber" EntityType="Self.vw_LastOrderNumber" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -318,6 +333,10 @@ warning 6002: The table/view 'InventoryDB.dbo.vw_PendingOrders' does not have a 
           </AssociationSet>
           <AssociationSet Name="FK_HistoryTransaction_Cart" Association="Self.FK_HistoryTransaction_Cart">
             <End Role="Cart" EntitySet="Cart" />
+            <End Role="HistoryTransaction" EntitySet="HistoryTransaction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HistoryTransaction_Category1" Association="Self.FK_HistoryTransaction_Category1">
+            <End Role="Category" EntitySet="Category" />
             <End Role="HistoryTransaction" EntitySet="HistoryTransaction" />
           </AssociationSet>
           <AssociationSet Name="FK_HistoryTransaction_Products" Association="Self.FK_HistoryTransaction_Products">
@@ -429,11 +448,15 @@ warning 6002: The table/view 'InventoryDB.dbo.vw_PendingOrders' does not have a 
             <End Role="Cart" EntitySet="Cart" />
             <End Role="HistoryTransaction" EntitySet="HistoryTransaction" />
           </AssociationSet>
+          <AssociationSet Name="FK_HistoryTransaction_Category1" Association="InventoryDBModel.FK_HistoryTransaction_Category1">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="HistoryTransaction" EntitySet="HistoryTransaction" />
+          </AssociationSet>
           <AssociationSet Name="FK_HistoryTransaction_Products" Association="InventoryDBModel.FK_HistoryTransaction_Products">
             <End Role="Products" EntitySet="Products" />
             <End Role="HistoryTransaction" EntitySet="HistoryTransaction" />
           </AssociationSet>
-          <EntitySet Name="vw_History" EntityType="InventoryDBModel.vw_History" />
+          <EntitySet Name="vw_HistoryTransaction" EntityType="InventoryDBModel.vw_HistoryTransaction" />
         </EntityContainer>
         <ComplexType Name="sp_ValidateAccount_Result">
           <Property Type="Int32" Name="user_ID" Nullable="false" />
@@ -447,6 +470,7 @@ warning 6002: The table/view 'InventoryDB.dbo.vw_PendingOrders' does not have a 
           <Property Name="categoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Products" Relationship="InventoryDBModel.FK_Products_Category" FromRole="Category" ToRole="Products" />
           <NavigationProperty Name="Cart" Relationship="InventoryDBModel.FK_Cart_Category" FromRole="Category" ToRole="Cart" />
+          <NavigationProperty Name="HistoryTransaction" Relationship="InventoryDBModel.FK_HistoryTransaction_Category1" FromRole="Category" ToRole="HistoryTransaction" />
         </EntityType>
         <EntityType Name="Products">
           <Key>
@@ -560,8 +584,8 @@ warning 6002: The table/view 'InventoryDB.dbo.vw_PendingOrders' does not have a 
           <Property Name="customer_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="customer_address" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Order_status" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="HistoryTransaction" Relationship="InventoryDBModel.FK_HistoryTransaction_Cart" FromRole="Cart" ToRole="HistoryTransaction" />
           <Property Name="Order_Date" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="HistoryTransaction" Relationship="InventoryDBModel.FK_HistoryTransaction_Cart" FromRole="Cart" ToRole="HistoryTransaction" />
         </EntityType>
         <Association Name="FK_Cart_Category">
           <End Type="InventoryDBModel.Category" Role="Category" Multiplicity="1" />
@@ -671,12 +695,14 @@ warning 6002: The table/view 'InventoryDB.dbo.vw_PendingOrders' does not have a 
           <Key>
             <PropertyRef Name="Transact_ID" />
           </Key>
-          <Property Name="Transact_ID" Type="Int32" Nullable="false" />
+          <Property Name="Transact_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CartID" Type="Int32" Nullable="false" />
           <Property Name="user_ID" Type="Int32" Nullable="false" />
           <Property Name="productID" Type="Int32" Nullable="false" />
+          <Property Name="categoryID" Type="Int32" />
           <NavigationProperty Name="Accounts" Relationship="InventoryDBModel.FK_HistoryTransaction_Accounts" FromRole="HistoryTransaction" ToRole="Accounts" />
           <NavigationProperty Name="Cart" Relationship="InventoryDBModel.FK_HistoryTransaction_Cart" FromRole="HistoryTransaction" ToRole="Cart" />
+          <NavigationProperty Name="Category" Relationship="InventoryDBModel.FK_HistoryTransaction_Category1" FromRole="HistoryTransaction" ToRole="Category" />
           <NavigationProperty Name="Products" Relationship="InventoryDBModel.FK_HistoryTransaction_Products" FromRole="HistoryTransaction" ToRole="Products" />
         </EntityType>
         <Association Name="FK_HistoryTransaction_Accounts">
@@ -703,6 +729,18 @@ warning 6002: The table/view 'InventoryDB.dbo.vw_PendingOrders' does not have a 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_HistoryTransaction_Category1">
+          <End Type="InventoryDBModel.Category" Role="Category" Multiplicity="0..1" />
+          <End Type="InventoryDBModel.HistoryTransaction" Role="HistoryTransaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="categoryID" />
+            </Principal>
+            <Dependent Role="HistoryTransaction">
+              <PropertyRef Name="categoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_HistoryTransaction_Products">
           <End Type="InventoryDBModel.Products" Role="Products" Multiplicity="1" />
           <End Type="InventoryDBModel.HistoryTransaction" Role="HistoryTransaction" Multiplicity="*" />
@@ -715,7 +753,7 @@ warning 6002: The table/view 'InventoryDB.dbo.vw_PendingOrders' does not have a 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="vw_History">
+        <EntityType Name="vw_HistoryTransaction">
           <Key>
             <PropertyRef Name="ID" />
             <PropertyRef Name="Order_no" />
@@ -726,6 +764,7 @@ warning 6002: The table/view 'InventoryDB.dbo.vw_PendingOrders' does not have a 
           <Property Name="Order_no" Type="Int32" Nullable="false" />
           <Property Name="Clerk" Type="String" MaxLength="114" FixedLength="false" Unicode="false" />
           <Property Name="Products" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Category" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Quantity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Total" Type="Decimal" Precision="38" Scale="2" />
           <Property Name="Date" Type="DateTime" Precision="0" />
@@ -915,6 +954,7 @@ warning 6002: The table/view 'InventoryDB.dbo.vw_PendingOrders' does not have a 
           <EntitySetMapping Name="HistoryTransaction">
             <EntityTypeMapping TypeName="InventoryDBModel.HistoryTransaction">
               <MappingFragment StoreEntitySet="HistoryTransaction">
+                <ScalarProperty Name="categoryID" ColumnName="categoryID" />
                 <ScalarProperty Name="productID" ColumnName="productID" />
                 <ScalarProperty Name="user_ID" ColumnName="user_ID" />
                 <ScalarProperty Name="CartID" ColumnName="CartID" />
@@ -922,14 +962,15 @@ warning 6002: The table/view 'InventoryDB.dbo.vw_PendingOrders' does not have a 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="vw_History">
-            <EntityTypeMapping TypeName="InventoryDBModel.vw_History">
-              <MappingFragment StoreEntitySet="vw_History">
+          <EntitySetMapping Name="vw_HistoryTransaction">
+            <EntityTypeMapping TypeName="InventoryDBModel.vw_HistoryTransaction">
+              <MappingFragment StoreEntitySet="vw_HistoryTransaction">
                 <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="Customer" ColumnName="Customer" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="Total" ColumnName="Total" />
                 <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
                 <ScalarProperty Name="Products" ColumnName="Products" />
                 <ScalarProperty Name="Clerk" ColumnName="Clerk" />
                 <ScalarProperty Name="Order_no" ColumnName="Order no" />

@@ -11,6 +11,7 @@ using Guna.UI2.WinForms.Suite;
 using System.Xml.Linq;
 using Inventory_Management_System.Models;
 using Inventory_Management_System.UserControls;
+using System.Linq.Expressions;
 
 namespace Inventory_Management_System.Functions
 {
@@ -235,7 +236,7 @@ namespace Inventory_Management_System.Functions
                 MessageBox.Show("Error: " + ex.Message);
             }
         }
-        public void AddHistoryTransac(int cartID, int userID, int productID)
+        public void AddHistoryTransac(int cartID, int userID, int productID, int categoryID)
         {
             try
             {
@@ -245,7 +246,8 @@ namespace Inventory_Management_System.Functions
                     {
                         CartID = cartID,
                         user_ID = userID,
-                        productID = productID
+                        productID = productID,
+                        categoryID = categoryID
                     };
                     db.HistoryTransaction.Add(historyTransaction);
                     db.SaveChanges();

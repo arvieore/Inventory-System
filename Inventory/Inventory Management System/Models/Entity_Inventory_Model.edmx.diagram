@@ -17,11 +17,12 @@
         <AssociationConnector Association="InventoryDBModel.FK_Cart_Accounts" />
         <EntityTypeShape EntityType="InventoryDBModel.vw_LastOrderNumber" Width="1.5" PointX="3.375" PointY="0.75" />
         <EntityTypeShape EntityType="InventoryDBModel.vw_PendingOrders" Width="1.5" PointX="5.375" PointY="0.75" />
-        <EntityTypeShape EntityType="InventoryDBModel.HistoryTransaction" Width="1.5" PointX="8.5" PointY="3.125" />
+        <EntityTypeShape EntityType="InventoryDBModel.HistoryTransaction" Width="1.5" PointX="8.5" PointY="3" />
         <AssociationConnector Association="InventoryDBModel.FK_HistoryTransaction_Accounts" />
         <AssociationConnector Association="InventoryDBModel.FK_HistoryTransaction_Cart" />
+        <AssociationConnector Association="InventoryDBModel.FK_HistoryTransaction_Category1" />
         <AssociationConnector Association="InventoryDBModel.FK_HistoryTransaction_Products" />
-        <EntityTypeShape EntityType="InventoryDBModel.vw_History" Width="1.5" PointX="7.375" PointY="6.75" />
+        <EntityTypeShape EntityType="InventoryDBModel.vw_HistoryTransaction" Width="1.5" PointX="8.5" PointY="6.375" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

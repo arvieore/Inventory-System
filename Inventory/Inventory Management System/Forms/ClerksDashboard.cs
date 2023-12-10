@@ -191,6 +191,9 @@ namespace Inventory_Management_System.Forms
             int y = 215;
             Point HoverPanel = new Point(x, y);
             panelHover.Location = HoverPanel;
+
+            SalesReport report = new SalesReport();
+            DisplayUserControl(report);
         }
     }
 }

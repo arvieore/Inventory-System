@@ -95,11 +95,15 @@
       <End Role="Cart" EntitySet="Cart" />
       <End Role="HistoryTransaction" EntitySet="HistoryTransaction" />
     </AssociationSet>
+    <AssociationSet Name="FK_HistoryTransaction_Category1" Association="InventoryDBModel.FK_HistoryTransaction_Category1">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="HistoryTransaction" EntitySet="HistoryTransaction" />
+    </AssociationSet>
     <AssociationSet Name="FK_HistoryTransaction_Products" Association="InventoryDBModel.FK_HistoryTransaction_Products">
       <End Role="Products" EntitySet="Products" />
       <End Role="HistoryTransaction" EntitySet="HistoryTransaction" />
     </AssociationSet>
-    <EntitySet Name="vw_History" EntityType="InventoryDBModel.vw_History" />
+    <EntitySet Name="vw_HistoryTransaction" EntityType="InventoryDBModel.vw_HistoryTransaction" />
   </EntityContainer>
   <ComplexType Name="sp_ValidateAccount_Result">
     <Property Type="Int32" Name="user_ID" Nullable="false" />
@@ -113,6 +117,7 @@
     <Property Name="categoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="Products" Relationship="InventoryDBModel.FK_Products_Category" FromRole="Category" ToRole="Products" />
     <NavigationProperty Name="Cart" Relationship="InventoryDBModel.FK_Cart_Category" FromRole="Category" ToRole="Cart" />
+    <NavigationProperty Name="HistoryTransaction" Relationship="InventoryDBModel.FK_HistoryTransaction_Category1" FromRole="Category" ToRole="HistoryTransaction" />
   </EntityType>
   <EntityType Name="Products">
     <Key>
@@ -226,8 +231,8 @@
     <Property Name="customer_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="customer_address" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="Order_status" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="HistoryTransaction" Relationship="InventoryDBModel.FK_HistoryTransaction_Cart" FromRole="Cart" ToRole="HistoryTransaction" />
     <Property Name="Order_Date" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="HistoryTransaction" Relationship="InventoryDBModel.FK_HistoryTransaction_Cart" FromRole="Cart" ToRole="HistoryTransaction" />
   </EntityType>
   <Association Name="FK_Cart_Category">
     <End Type="InventoryDBModel.Category" Role="Category" Multiplicity="1" />
@@ -337,12 +342,14 @@
     <Key>
       <PropertyRef Name="Transact_ID" />
     </Key>
-    <Property Name="Transact_ID" Type="Int32" Nullable="false" />
+    <Property Name="Transact_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="CartID" Type="Int32" Nullable="false" />
     <Property Name="user_ID" Type="Int32" Nullable="false" />
     <Property Name="productID" Type="Int32" Nullable="false" />
+    <Property Name="categoryID" Type="Int32" />
     <NavigationProperty Name="Accounts" Relationship="InventoryDBModel.FK_HistoryTransaction_Accounts" FromRole="HistoryTransaction" ToRole="Accounts" />
     <NavigationProperty Name="Cart" Relationship="InventoryDBModel.FK_HistoryTransaction_Cart" FromRole="HistoryTransaction" ToRole="Cart" />
+    <NavigationProperty Name="Category" Relationship="InventoryDBModel.FK_HistoryTransaction_Category1" FromRole="HistoryTransaction" ToRole="Category" />
     <NavigationProperty Name="Products" Relationship="InventoryDBModel.FK_HistoryTransaction_Products" FromRole="HistoryTransaction" ToRole="Products" />
   </EntityType>
   <Association Name="FK_HistoryTransaction_Accounts">
@@ -369,6 +376,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_HistoryTransaction_Category1">
+    <End Type="InventoryDBModel.Category" Role="Category" Multiplicity="0..1" />
+    <End Type="InventoryDBModel.HistoryTransaction" Role="HistoryTransaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="categoryID" />
+      </Principal>
+      <Dependent Role="HistoryTransaction">
+        <PropertyRef Name="categoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_HistoryTransaction_Products">
     <End Type="InventoryDBModel.Products" Role="Products" Multiplicity="1" />
     <End Type="InventoryDBModel.HistoryTransaction" Role="HistoryTransaction" Multiplicity="*" />
@@ -381,7 +400,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityType Name="vw_History">
+  <EntityType Name="vw_HistoryTransaction">
     <Key>
       <PropertyRef Name="ID" />
       <PropertyRef Name="Order_no" />
@@ -392,6 +411,7 @@
     <Property Name="Order_no" Type="Int32" Nullable="false" />
     <Property Name="Clerk" Type="String" MaxLength="114" FixedLength="false" Unicode="false" />
     <Property Name="Products" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Category" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Quantity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Total" Type="Decimal" Precision="38" Scale="2" />
     <Property Name="Date" Type="DateTime" Precision="0" />

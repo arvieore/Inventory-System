@@ -232,11 +232,14 @@ namespace Inventory_Management_System.UserControls
                 int ProductID = Convert.ToInt32(selectedRow.Cells["ProductID"].Value); //ID sa Products
                 int CartID = Convert.ToInt32(selectedRow.Cells["ID"].Value);
                 String CartStatus = selectedRow.Cells["Status"].Value.ToString();
+                String CategoryName = selectedRow.Cells["Category"].Value.ToString();
+
+                int categoryID = db.Category.Where(c => c.categoryName == CategoryName).Select(c => c.categoryID).FirstOrDefault();
 
                 cmd.UpdateCartStatus(CartID, CartStatus);
                 LoadCart();
 
-                cmd.AddHistoryTransac(CartID, accountID, ProductID);
+                cmd.AddHistoryTransac(CartID, accountID, ProductID, categoryID);
             }
         }
     }

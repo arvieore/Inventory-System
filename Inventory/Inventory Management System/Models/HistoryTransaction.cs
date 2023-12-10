@@ -26,11 +26,15 @@ public partial class HistoryTransaction
 
     public int productID { get; set; }
 
+    public Nullable<int> categoryID { get; set; }
+
 
 
     public virtual Accounts Accounts { get; set; }
 
     public virtual Cart Cart { get; set; }
+
+    public virtual Category Category { get; set; }
 
     public virtual Products Products { get; set; }
 
