@@ -21,6 +21,7 @@
         <AssociationConnector Association="InventoryDBModel.FK_HistoryTransaction_Accounts" />
         <AssociationConnector Association="InventoryDBModel.FK_HistoryTransaction_Cart" />
         <AssociationConnector Association="InventoryDBModel.FK_HistoryTransaction_Products" />
+        <EntityTypeShape EntityType="InventoryDBModel.vw_History" Width="1.5" PointX="7.375" PointY="6.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -229,11 +229,14 @@ namespace Inventory_Management_System.UserControls
             }
             if (e.ColumnIndex == dgv_Products.Columns["btnDone"].Index && e.RowIndex >= 0)
             {
+                int ProductID = Convert.ToInt32(selectedRow.Cells["ProductID"].Value); //ID sa Products
                 int CartID = Convert.ToInt32(selectedRow.Cells["ID"].Value);
                 String CartStatus = selectedRow.Cells["Status"].Value.ToString();
 
                 cmd.UpdateCartStatus(CartID, CartStatus);
                 LoadCart();
+
+                cmd.AddHistoryTransac(CartID, accountID, ProductID);
             }
         }
     }

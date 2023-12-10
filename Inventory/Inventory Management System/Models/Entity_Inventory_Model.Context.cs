@@ -51,6 +51,8 @@ public partial class DB_InventoryEntities : DbContext
 
     public virtual DbSet<HistoryTransaction> HistoryTransaction { get; set; }
 
+    public virtual DbSet<vw_History> vw_History { get; set; }
+
 
     public virtual ObjectResult<sp_ValidateAccount_Result> sp_ValidateAccount(string user_name, string user_password)
     {

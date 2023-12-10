@@ -123,6 +123,39 @@ namespace Inventory_Management_System.Functions
                 MessageBox.Show("Error: " + ex.Message);
             }
         }
+        public void AddToCart(int OrderNo, int product, int categoryID, int user_ID, int quantity, string customerName, string customerAddress)
+        {
+            try
+            {
+                using (var db = new DB_InventoryEntities())
+                {
+                    //var lastOrderNo = db.vw_LastOrderNumber.FirstOrDefault();
+                    DateTime currentDate = DateTime.Now;
+                    string formattedDate = currentDate.ToString("dddd, dd MMMM yyyy");
+
+                    var Order = new Cart
+                    {
+                        productID = product,
+                        categoryID = categoryID,
+                        user_ID = user_ID,
+
+                        OrderNo = OrderNo,
+                        OrderQuantity = quantity,
+                        customer_name = customerName,
+                        customer_address = customerAddress,
+                        Order_status = "Pending",
+                        Order_Date = currentDate
+                    };
+
+                    db.Cart.Add(Order);
+                    db.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
         public void UpdateProductQty(int ProductID, string CartQty)
         {
             dbContext();
@@ -132,10 +165,7 @@ namespace Inventory_Management_System.Functions
 
             if (productInfo != null)
             {
-                // Calculate the new quantity
                 int newQty = Convert.ToInt32(productInfo.product_Quantity) + Convert.ToInt32(CartQty);
-
-                // Update the quantity of the retrieved product
                 productInfo.product_Quantity = newQty.ToString();
 
                 db.SaveChanges();
@@ -201,6 +231,27 @@ namespace Inventory_Management_System.Functions
                 }
             }
             catch(Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+        public void AddHistoryTransac(int cartID, int userID, int productID)
+        {
+            try
+            {
+                using (var db = new DB_InventoryEntities())
+                {
+                    var historyTransaction = new HistoryTransaction
+                    {
+                        CartID = cartID,
+                        user_ID = userID,
+                        productID = productID
+                    };
+                    db.HistoryTransaction.Add(historyTransaction);
+                    db.SaveChanges();
+                }
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show("Error: " + ex.Message);
             }

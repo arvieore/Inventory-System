@@ -45,6 +45,8 @@ public partial class Cart
 
     public string Order_status { get; set; }
 
+    public Nullable<System.DateTime> Order_Date { get; set; }
+
 
 
     public virtual Category Category { get; set; }

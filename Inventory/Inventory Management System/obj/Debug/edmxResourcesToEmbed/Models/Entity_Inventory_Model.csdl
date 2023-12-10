@@ -99,6 +99,7 @@
       <End Role="Products" EntitySet="Products" />
       <End Role="HistoryTransaction" EntitySet="HistoryTransaction" />
     </AssociationSet>
+    <EntitySet Name="vw_History" EntityType="InventoryDBModel.vw_History" />
   </EntityContainer>
   <ComplexType Name="sp_ValidateAccount_Result">
     <Property Type="Int32" Name="user_ID" Nullable="false" />
@@ -226,6 +227,7 @@
     <Property Name="customer_address" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="Order_status" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="HistoryTransaction" Relationship="InventoryDBModel.FK_HistoryTransaction_Cart" FromRole="Cart" ToRole="HistoryTransaction" />
+    <Property Name="Order_Date" Type="DateTime" Precision="0" />
   </EntityType>
   <Association Name="FK_Cart_Category">
     <End Type="InventoryDBModel.Category" Role="Category" Multiplicity="1" />
@@ -379,4 +381,21 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityType Name="vw_History">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="Order_no" />
+      <PropertyRef Name="Customer" />
+      <PropertyRef Name="Address" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="Order_no" Type="Int32" Nullable="false" />
+    <Property Name="Clerk" Type="String" MaxLength="114" FixedLength="false" Unicode="false" />
+    <Property Name="Products" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Quantity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Total" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="Date" Type="DateTime" Precision="0" />
+    <Property Name="Customer" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
 </Schema>

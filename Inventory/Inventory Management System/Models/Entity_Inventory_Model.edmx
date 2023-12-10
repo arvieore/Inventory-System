@@ -36,6 +36,7 @@
           <Property Name="customer_name" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="customer_address" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Order_status" Type="varchar" MaxLength="15" />
+          <Property Name="Order_Date" Type="date" />
         </EntityType>
         <EntityType Name="Category">
           <Key>
@@ -48,7 +49,7 @@
           <Key>
             <PropertyRef Name="Transact_ID" />
           </Key>
-          <Property Name="Transact_ID" Type="int" Nullable="false" />
+          <Property Name="Transact_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CartID" Type="int" Nullable="false" />
           <Property Name="user_ID" Type="int" Nullable="false" />
           <Property Name="productID" Type="int" Nullable="false" />
@@ -71,6 +72,25 @@
           </Key>
           <Property Name="roleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="roleName" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'InventoryDB.dbo.vw_History' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vw_History">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="Order no" />
+            <PropertyRef Name="Customer" />
+            <PropertyRef Name="Address" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Order no" Type="int" Nullable="false" />
+          <Property Name="Clerk" Type="varchar" MaxLength="114" />
+          <Property Name="Products" Type="varchar" MaxLength="50" />
+          <Property Name="Quantity" Type="varchar" MaxLength="50" />
+          <Property Name="Total" Type="decimal" Precision="38" Scale="2" />
+          <Property Name="Date" Type="date" />
+          <Property Name="Customer" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Address" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'InventoryDB.dbo.vw_LastOrderNumber' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -243,6 +263,19 @@ warning 6002: The table/view 'InventoryDB.dbo.vw_PendingOrders' does not have a 
           <EntitySet Name="HistoryTransaction" EntityType="Self.HistoryTransaction" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="vw_History" EntityType="Self.vw_History" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_History].[ID] AS [ID], 
+    [vw_History].[Order no] AS [Order no], 
+    [vw_History].[Clerk] AS [Clerk], 
+    [vw_History].[Products] AS [Products], 
+    [vw_History].[Quantity] AS [Quantity], 
+    [vw_History].[Total] AS [Total], 
+    [vw_History].[Date] AS [Date], 
+    [vw_History].[Customer] AS [Customer], 
+    [vw_History].[Address] AS [Address]
+    FROM [dbo].[vw_History] AS [vw_History]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="vw_LastOrderNumber" EntityType="Self.vw_LastOrderNumber" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [vw_LastOrderNumber].[OrderNo] AS [OrderNo]
@@ -400,6 +433,7 @@ warning 6002: The table/view 'InventoryDB.dbo.vw_PendingOrders' does not have a 
             <End Role="Products" EntitySet="Products" />
             <End Role="HistoryTransaction" EntitySet="HistoryTransaction" />
           </AssociationSet>
+          <EntitySet Name="vw_History" EntityType="InventoryDBModel.vw_History" />
         </EntityContainer>
         <ComplexType Name="sp_ValidateAccount_Result">
           <Property Type="Int32" Name="user_ID" Nullable="false" />
@@ -527,6 +561,7 @@ warning 6002: The table/view 'InventoryDB.dbo.vw_PendingOrders' does not have a 
           <Property Name="customer_address" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Order_status" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="HistoryTransaction" Relationship="InventoryDBModel.FK_HistoryTransaction_Cart" FromRole="Cart" ToRole="HistoryTransaction" />
+          <Property Name="Order_Date" Type="DateTime" Precision="0" />
         </EntityType>
         <Association Name="FK_Cart_Category">
           <End Type="InventoryDBModel.Category" Role="Category" Multiplicity="1" />
@@ -680,6 +715,23 @@ warning 6002: The table/view 'InventoryDB.dbo.vw_PendingOrders' does not have a 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="vw_History">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="Order_no" />
+            <PropertyRef Name="Customer" />
+            <PropertyRef Name="Address" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Order_no" Type="Int32" Nullable="false" />
+          <Property Name="Clerk" Type="String" MaxLength="114" FixedLength="false" Unicode="false" />
+          <Property Name="Products" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Quantity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Total" Type="Decimal" Precision="38" Scale="2" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
+          <Property Name="Customer" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -792,6 +844,7 @@ warning 6002: The table/view 'InventoryDB.dbo.vw_PendingOrders' does not have a 
           <EntitySetMapping Name="Cart">
             <EntityTypeMapping TypeName="InventoryDBModel.Cart">
               <MappingFragment StoreEntitySet="Cart">
+                <ScalarProperty Name="Order_Date" ColumnName="Order_Date" />
                 <ScalarProperty Name="Order_status" ColumnName="Order_status" />
                 <ScalarProperty Name="customer_address" ColumnName="customer_address" />
                 <ScalarProperty Name="customer_name" ColumnName="customer_name" />
@@ -866,6 +919,21 @@ warning 6002: The table/view 'InventoryDB.dbo.vw_PendingOrders' does not have a 
                 <ScalarProperty Name="user_ID" ColumnName="user_ID" />
                 <ScalarProperty Name="CartID" ColumnName="CartID" />
                 <ScalarProperty Name="Transact_ID" ColumnName="Transact_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_History">
+            <EntityTypeMapping TypeName="InventoryDBModel.vw_History">
+              <MappingFragment StoreEntitySet="vw_History">
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Customer" ColumnName="Customer" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Products" ColumnName="Products" />
+                <ScalarProperty Name="Clerk" ColumnName="Clerk" />
+                <ScalarProperty Name="Order_no" ColumnName="Order no" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

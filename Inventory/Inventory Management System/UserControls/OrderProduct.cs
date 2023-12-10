@@ -10,6 +10,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.VisualBasic;
+using System.Globalization;
+using System.Web;
 
 namespace Inventory_Management_System.UserControls
 {
@@ -20,6 +22,7 @@ namespace Inventory_Management_System.UserControls
         private DataGridViewButtonColumn addToCart;
         private String input;
         private Products products;
+        private Commands cmd;
 
         private int currentOrderNo;
         public OrderProduct()
@@ -27,6 +30,7 @@ namespace Inventory_Management_System.UserControls
             InitializeComponent();
             db = new DB_InventoryEntities();
             products = new Products();
+            cmd = new Commands();
 
             addToCart = new DataGridViewButtonColumn
             {
@@ -129,40 +133,16 @@ namespace Inventory_Management_System.UserControls
 
                             UpdateLoadCart(products, quantity);
 
-                            AddToCart(products.productID, categoryID, user_ID, quantity);
+
+                            string customerName = txtCustomer.Text;
+                            string customerAddress = txtAddress.Text;
+                            int OrderNo = Convert.ToInt32(lblOrderNo.Text);
+
+                            cmd.AddToCart(OrderNo, products.productID, categoryID, user_ID, quantity, customerName, customerAddress);
                             MessageBox.Show("The product has been successfully added cart.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                     } while (!validInput);
                 }
-            }
-        }
-        private void AddToCart(int product, int categoryID, int user_ID, int quantity)
-        {
-            try
-            {
-                //var lastOrderNo = db.vw_LastOrderNumber.FirstOrDefault();
-                int orderNo = Convert.ToInt32(lblOrderNo.Text);
-                DateTime currentDate = DateTime.Now;
-
-                var Order = new Cart
-                {
-                    productID = product,
-                    categoryID = categoryID,
-                    user_ID = user_ID,
-
-                    OrderNo = orderNo,
-                    OrderQuantity = quantity,
-                    customer_name = txtCustomer.Text,
-                    customer_address = txtAddress.Text,
-                    Order_status = "Pending"
-                };
-
-                db.Cart.Add(Order);
-                db.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error: " + ex.Message);
             }
         }
         private void UpdateLoadCart(Products products, int inputtedQty)

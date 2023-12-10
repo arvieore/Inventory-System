@@ -31,6 +31,7 @@
     <Property Name="customer_name" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="customer_address" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="Order_status" Type="varchar" MaxLength="15" />
+    <Property Name="Order_Date" Type="date" />
   </EntityType>
   <EntityType Name="Category">
     <Key>
@@ -43,7 +44,7 @@
     <Key>
       <PropertyRef Name="Transact_ID" />
     </Key>
-    <Property Name="Transact_ID" Type="int" Nullable="false" />
+    <Property Name="Transact_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="CartID" Type="int" Nullable="false" />
     <Property Name="user_ID" Type="int" Nullable="false" />
     <Property Name="productID" Type="int" Nullable="false" />
@@ -66,6 +67,25 @@
     </Key>
     <Property Name="roleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="roleName" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'InventoryDB.dbo.vw_History' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vw_History">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="Order no" />
+      <PropertyRef Name="Customer" />
+      <PropertyRef Name="Address" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="Order no" Type="int" Nullable="false" />
+    <Property Name="Clerk" Type="varchar" MaxLength="114" />
+    <Property Name="Products" Type="varchar" MaxLength="50" />
+    <Property Name="Quantity" Type="varchar" MaxLength="50" />
+    <Property Name="Total" Type="decimal" Precision="38" Scale="2" />
+    <Property Name="Date" Type="date" />
+    <Property Name="Customer" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Address" Type="varchar" MaxLength="100" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
 warning 6002: The table/view 'InventoryDB.dbo.vw_LastOrderNumber' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -238,6 +258,19 @@ warning 6002: The table/view 'InventoryDB.dbo.vw_PendingOrders' does not have a 
     <EntitySet Name="HistoryTransaction" EntityType="Self.HistoryTransaction" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="vw_History" EntityType="Self.vw_History" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vw_History].[ID] AS [ID], 
+    [vw_History].[Order no] AS [Order no], 
+    [vw_History].[Clerk] AS [Clerk], 
+    [vw_History].[Products] AS [Products], 
+    [vw_History].[Quantity] AS [Quantity], 
+    [vw_History].[Total] AS [Total], 
+    [vw_History].[Date] AS [Date], 
+    [vw_History].[Customer] AS [Customer], 
+    [vw_History].[Address] AS [Address]
+    FROM [dbo].[vw_History] AS [vw_History]</DefiningQuery>
+    </EntitySet>
     <EntitySet Name="vw_LastOrderNumber" EntityType="Self.vw_LastOrderNumber" store:Type="Views" store:Schema="dbo">
       <DefiningQuery>SELECT 
     [vw_LastOrderNumber].[OrderNo] AS [OrderNo]
