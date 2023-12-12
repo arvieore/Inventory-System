@@ -31,6 +31,10 @@ namespace Inventory_Management_System.Forms
             btnDashboard.BackColor = Color.Transparent;
             btnDashboard.ForeColor = Color.White;
 
+            btnHistory.FillColor = Color.Transparent;
+            btnHistory.BackColor = Color.Transparent;
+            btnHistory.ForeColor = Color.White;
+
             btnAccounts.FillColor = Color.Transparent;
             btnAccounts.BackColor = Color.Transparent;
             btnAccounts.ForeColor = Color.White;
@@ -50,12 +54,45 @@ namespace Inventory_Management_System.Forms
             ProductControl productControl = new ProductControl();
             DisplayUserControl(productControl);
         }
+        private void btnHistory_Click(object sender, EventArgs e)
+        {
+            btnDashboard.FillColor = Color.Transparent;
+            btnDashboard.BackColor = Color.Transparent;
+            btnDashboard.ForeColor = Color.White;
+
+            btnAccounts.FillColor = Color.Transparent;
+            btnAccounts.BackColor = Color.Transparent;
+            btnAccounts.ForeColor = Color.White;
+
+            btnReport.FillColor = Color.Transparent;
+            btnReport.BackColor = Color.Transparent;
+            btnReport.ForeColor = Color.White;
+
+            btnProducts.FillColor = Color.Transparent;
+            btnProducts.BackColor = Color.Transparent;
+            btnProducts.ForeColor = Color.White;
+
+            btnHistory.BackColor = Color.White;
+            btnHistory.ForeColor = Color.Black;
+            int x = 0;
+            int y = 129;
+            Point HoverPanel = new Point(x, y);
+            panelHover.Location = HoverPanel;
+
+            //Display the product User Control
+            HistoryControl historyControl = new HistoryControl();
+            DisplayUserControl(historyControl);
+        }
 
         private void btnDashboard_Click(object sender, EventArgs e)
         {
             btnProducts.FillColor = Color.Transparent;
             btnProducts.BackColor = Color.Transparent;
             btnProducts.ForeColor = Color.White;
+
+            btnHistory.FillColor = Color.Transparent;
+            btnHistory.BackColor = Color.Transparent;
+            btnHistory.ForeColor = Color.White;
 
             btnAccounts.FillColor = Color.Transparent;
             btnAccounts.BackColor = Color.Transparent;
@@ -94,6 +131,10 @@ namespace Inventory_Management_System.Forms
             btnProducts.BackColor = Color.Transparent;
             btnProducts.ForeColor = Color.White;
 
+            btnHistory.FillColor = Color.Transparent;
+            btnHistory.BackColor = Color.Transparent;
+            btnHistory.ForeColor = Color.White;
+
             btnDashboard.FillColor = Color.Transparent;
             btnDashboard.BackColor = Color.Transparent;
             btnDashboard.ForeColor = Color.White;
@@ -105,7 +146,7 @@ namespace Inventory_Management_System.Forms
             btnAccounts.BackColor = Color.White;
             btnAccounts.ForeColor = Color.Black;
             int x = 0;
-            int y = 129;
+            int y = 172;
             Point HoverPanel = new Point(x, y);
             panelHover.Location = HoverPanel;
 
@@ -119,6 +160,10 @@ namespace Inventory_Management_System.Forms
             btnProducts.BackColor = Color.Transparent;
             btnProducts.ForeColor = Color.White;
 
+            btnHistory.FillColor = Color.Transparent;
+            btnHistory.BackColor = Color.Transparent;
+            btnHistory.ForeColor = Color.White;
+
             btnDashboard.FillColor = Color.Transparent;
             btnDashboard.BackColor = Color.Transparent;
             btnDashboard.ForeColor = Color.White;
@@ -130,14 +175,13 @@ namespace Inventory_Management_System.Forms
             btnReport.BackColor = Color.White;
             btnReport.ForeColor = Color.Black;
             int x = 0;
-            int y = 172;
+            int y = 215;
             Point HoverPanel = new Point(x, y);
             panelHover.Location = HoverPanel;
 
             SalesReport sales = new SalesReport();
             DisplayUserControl(sales);
         }
-
         private void btnSwitchAccount_Click(object sender, EventArgs e)
         {
             this.Hide();

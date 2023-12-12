@@ -70,7 +70,12 @@ namespace Inventory_Management_System.UserControls
                 dgv_Transactions.Columns["Date"].Width = 85;
 
                 decimal? total = db.vw_HistoryTransaction.Where(s => s.Category == Cbox_Category.Text).Select(s => s.Total).Sum();
-                lblTotal.Text = total?.ToString("#,##0.00");
+                if (total > 0)
+                {
+                    lblTotal.Text = "₱ " + total?.ToString("#,##0.00");
+                }
+                else
+                    lblTotal.Text = "₱ 0.00";
             }
             else
             {
@@ -85,41 +90,58 @@ namespace Inventory_Management_System.UserControls
                 dgv_Transactions.Columns["Date"].Width = 85;
 
                 decimal? total = db.vw_HistoryTransaction.Select(s => s.Total).Sum();
-                lblTotal.Text = total?.ToString("#,##0.00");
+                if (total > 0)
+                {
+                    lblTotal.Text = "₱ " + total?.ToString("#,##0.00");
+                }
+                else
+                    lblTotal.Text = "₱ 0.00";
             }
         }
         private void FilterData(string searchText)
         {
-            if (string.IsNullOrEmpty(searchText))
+            try
             {
-                LoadReport();
+                if (string.IsNullOrEmpty(searchText))
+                {
+                    LoadReport();
+                }
+                else
+                {
+                    var filteredData = db.vw_HistoryTransaction
+                        .Where(p =>
+                            p.Order_no.ToString().Contains(searchText) ||
+                            p.Clerk.Contains(searchText) ||
+                            p.Products.Contains(searchText) ||
+                            p.Category.Contains(searchText) ||
+                            p.Customer.Contains(searchText) ||
+                            p.Address.Contains(searchText)
+                        ).ToList();
+                    dgv_Transactions.DataSource = filteredData;
+
+                    var filteredTotal = db.vw_HistoryTransaction
+                        .Where(p =>
+                            p.Order_no.ToString().Contains(searchText) ||
+                            p.Clerk.Contains(searchText) ||
+                            p.Products.Contains(searchText) ||
+                            p.Category.Contains(searchText) ||
+                            p.Customer.Contains(searchText) ||
+                            p.Address.Contains(searchText)
+                        ).Select(p => p.Total).Sum().ToString();
+
+                    decimal? total = Decimal.Parse(filteredTotal);
+
+                    if (total > 0)
+                    {
+                        lblTotal.Text = "₱ " + total?.ToString("#,##0.00");
+                    }
+                    else
+                        lblTotal.Text = "₱ 0.00";
+                }
             }
-            else
+            catch(Exception ex)
             {
-                var filteredData = db.vw_HistoryTransaction
-                    .Where(p =>
-                        p.Order_no.ToString().Contains(searchText) ||
-                        p.Clerk.Contains(searchText) ||
-                        p.Products.Contains(searchText) ||
-                        p.Category.Contains(searchText) ||
-                        p.Customer.Contains(searchText) ||
-                        p.Address.Contains(searchText)
-                    ).ToList();
-                dgv_Transactions.DataSource = filteredData;
-
-                var filteredTotal = db.vw_HistoryTransaction
-                    .Where(p =>
-                        p.Order_no.ToString().Contains(searchText) ||
-                        p.Clerk.Contains(searchText) ||
-                        p.Products.Contains(searchText) ||
-                        p.Category.Contains(searchText) ||
-                        p.Customer.Contains(searchText) ||
-                        p.Address.Contains(searchText)
-                    ).Select(p => p.Total).Sum().ToString();
-
-                decimal? total = Decimal.Parse(filteredTotal);
-
-                lblTotal.Text = "₱" + total?.ToString("#,##0.00");
+                Console.WriteLine("Error: " + ex);
             }
         }
     }

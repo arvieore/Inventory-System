@@ -36,10 +36,11 @@
             this.btnProducts = new Guna.UI2.WinForms.Guna2Button();
             this.btnDashboard = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
+            this.lblFullname = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.ExitIcon = new Guna.UI2.WinForms.Guna2PictureBox();
             this.MainPanel = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.lblFullname = new System.Windows.Forms.Label();
+            this.btnHistory = new Guna.UI2.WinForms.Guna2Button();
             this.guna2GradientPanel1.SuspendLayout();
             this.guna2Panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ExitIcon)).BeginInit();
@@ -47,6 +48,7 @@
             // 
             // guna2GradientPanel1
             // 
+            this.guna2GradientPanel1.Controls.Add(this.btnHistory);
             this.guna2GradientPanel1.Controls.Add(this.btnSwitchAccount);
             this.guna2GradientPanel1.Controls.Add(this.btnReport);
             this.guna2GradientPanel1.Controls.Add(this.panelHover);
@@ -99,7 +101,7 @@
             this.btnReport.ForeColor = System.Drawing.Color.White;
             this.btnReport.HoverState.FillColor = System.Drawing.Color.White;
             this.btnReport.HoverState.ForeColor = System.Drawing.Color.Black;
-            this.btnReport.Location = new System.Drawing.Point(12, 172);
+            this.btnReport.Location = new System.Drawing.Point(12, 215);
             this.btnReport.Name = "btnReport";
             this.btnReport.Size = new System.Drawing.Size(188, 43);
             this.btnReport.TabIndex = 2;
@@ -126,7 +128,7 @@
             this.btnAccounts.ForeColor = System.Drawing.Color.White;
             this.btnAccounts.HoverState.FillColor = System.Drawing.Color.White;
             this.btnAccounts.HoverState.ForeColor = System.Drawing.Color.Black;
-            this.btnAccounts.Location = new System.Drawing.Point(12, 129);
+            this.btnAccounts.Location = new System.Drawing.Point(12, 172);
             this.btnAccounts.Name = "btnAccounts";
             this.btnAccounts.Size = new System.Drawing.Size(188, 43);
             this.btnAccounts.TabIndex = 1;
@@ -183,6 +185,32 @@
             this.guna2Panel1.Size = new System.Drawing.Size(996, 37);
             this.guna2Panel1.TabIndex = 12;
             // 
+            // lblFullname
+            // 
+            this.lblFullname.AutoSize = true;
+            this.lblFullname.BackColor = System.Drawing.Color.Transparent;
+            this.lblFullname.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFullname.ForeColor = System.Drawing.Color.White;
+            this.lblFullname.Location = new System.Drawing.Point(26, 9);
+            this.lblFullname.Margin = new System.Windows.Forms.Padding(0);
+            this.lblFullname.Name = "lblFullname";
+            this.lblFullname.Size = new System.Drawing.Size(82, 20);
+            this.lblFullname.TabIndex = 2;
+            this.lblFullname.Text = "Fullname";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(3, 9);
+            this.label1.Margin = new System.Windows.Forms.Padding(0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(26, 20);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Hi";
+            // 
             // ExitIcon
             // 
             this.ExitIcon.BackColor = System.Drawing.Color.Transparent;
@@ -207,31 +235,24 @@
             this.MainPanel.Size = new System.Drawing.Size(996, 573);
             this.MainPanel.TabIndex = 13;
             // 
-            // label1
+            // btnHistory
             // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(3, 9);
-            this.label1.Margin = new System.Windows.Forms.Padding(0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(26, 20);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Hi";
-            // 
-            // lblFullname
-            // 
-            this.lblFullname.AutoSize = true;
-            this.lblFullname.BackColor = System.Drawing.Color.Transparent;
-            this.lblFullname.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFullname.ForeColor = System.Drawing.Color.White;
-            this.lblFullname.Location = new System.Drawing.Point(26, 9);
-            this.lblFullname.Margin = new System.Windows.Forms.Padding(0);
-            this.lblFullname.Name = "lblFullname";
-            this.lblFullname.Size = new System.Drawing.Size(82, 20);
-            this.lblFullname.TabIndex = 2;
-            this.lblFullname.Text = "Fullname";
+            this.btnHistory.BackColor = System.Drawing.Color.Transparent;
+            this.btnHistory.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnHistory.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnHistory.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnHistory.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnHistory.FillColor = System.Drawing.Color.Transparent;
+            this.btnHistory.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.btnHistory.ForeColor = System.Drawing.Color.White;
+            this.btnHistory.HoverState.FillColor = System.Drawing.Color.White;
+            this.btnHistory.HoverState.ForeColor = System.Drawing.Color.Black;
+            this.btnHistory.Location = new System.Drawing.Point(12, 129);
+            this.btnHistory.Name = "btnHistory";
+            this.btnHistory.Size = new System.Drawing.Size(188, 43);
+            this.btnHistory.TabIndex = 5;
+            this.btnHistory.Text = "History Transaction";
+            this.btnHistory.Click += new System.EventHandler(this.btnHistory_Click);
             // 
             // AdminDashboard
             // 
@@ -268,5 +289,6 @@
         private Guna.UI2.WinForms.Guna2Button btnSwitchAccount;
         private System.Windows.Forms.Label lblFullname;
         private System.Windows.Forms.Label label1;
+        private Guna.UI2.WinForms.Guna2Button btnHistory;
     }
 }

@@ -108,6 +108,9 @@ namespace Inventory_Management_System.Functions
             int y = 129;
             Point HoverPanel = new Point(x, y);
             panelHover.Location = HoverPanel;
+
+            HistoryControl historyControl = new HistoryControl();
+            DisplayUserControl(historyControl);
         }
 
         private void btnReport_Click(object sender, EventArgs e)
