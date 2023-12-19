@@ -55,10 +55,6 @@ namespace Inventory_Management_System.Forms
             btnHistory.BackColor = Color.Transparent;
             btnHistory.ForeColor = Color.White;
 
-            btnReport.FillColor = Color.Transparent;
-            btnReport.BackColor = Color.Transparent;
-            btnReport.ForeColor = Color.White;
-
             btnCart.FillColor = Color.Transparent;
             btnCart.BackColor = Color.Transparent;
             btnCart.ForeColor = Color.White;
@@ -89,10 +85,6 @@ namespace Inventory_Management_System.Forms
             btnHistory.BackColor = Color.Transparent;
             btnHistory.ForeColor = Color.White;
 
-            btnReport.FillColor = Color.Transparent;
-            btnReport.BackColor = Color.Transparent;
-            btnReport.ForeColor = Color.White;
-
             btnCart.BackColor = Color.White;
             btnCart.ForeColor = Color.Black;
             int x = 0;
@@ -118,10 +110,6 @@ namespace Inventory_Management_System.Forms
             btnHistory.FillColor = Color.Transparent;
             btnHistory.BackColor = Color.Transparent;
             btnHistory.ForeColor = Color.White;
-
-            btnReport.FillColor = Color.Transparent;
-            btnReport.BackColor = Color.Transparent;
-            btnReport.ForeColor = Color.White;
 
             btnDashboard.BackColor = Color.White;
             btnDashboard.ForeColor = Color.Black;
@@ -152,10 +140,6 @@ namespace Inventory_Management_System.Forms
             btnDashboard.BackColor = Color.Transparent;
             btnDashboard.ForeColor = Color.White;
 
-            btnReport.FillColor = Color.Transparent;
-            btnReport.BackColor = Color.Transparent;
-            btnReport.ForeColor = Color.White;
-
             btnHistory.BackColor = Color.White;
             btnHistory.ForeColor = Color.Black;
             int x = 0;
@@ -165,35 +149,6 @@ namespace Inventory_Management_System.Forms
 
             HistoryControl historyTransaction = new HistoryControl();
             DisplayUserControl(historyTransaction);
-        }
-
-        private void btnReport_Click(object sender, EventArgs e)
-        {
-            btnCart.FillColor = Color.Transparent;
-            btnCart.BackColor = Color.Transparent;
-            btnCart.ForeColor = Color.White;
-
-            btnOrder.FillColor = Color.Transparent;
-            btnOrder.BackColor = Color.Transparent;
-            btnOrder.ForeColor = Color.White;
-
-            btnDashboard.FillColor = Color.Transparent;
-            btnDashboard.BackColor = Color.Transparent;
-            btnDashboard.ForeColor = Color.White;
-
-            btnHistory.FillColor = Color.Transparent;
-            btnHistory.BackColor = Color.Transparent;
-            btnHistory.ForeColor = Color.White;
-
-            btnReport.BackColor = Color.White;
-            btnReport.ForeColor = Color.Black;
-            int x = 0;
-            int y = 215;
-            Point HoverPanel = new Point(x, y);
-            panelHover.Location = HoverPanel;
-
-            SalesReport report = new SalesReport();
-            DisplayUserControl(report);
         }
     }
 }

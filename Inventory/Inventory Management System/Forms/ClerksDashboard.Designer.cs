@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.guna2GradientPanel1 = new Guna.UI2.WinForms.Guna2GradientPanel();
+            this.btnCart = new Guna.UI2.WinForms.Guna2Button();
             this.btnSwitchAccount = new Guna.UI2.WinForms.Guna2Button();
-            this.btnReport = new Guna.UI2.WinForms.Guna2Button();
             this.panelHover = new System.Windows.Forms.Panel();
             this.btnHistory = new Guna.UI2.WinForms.Guna2Button();
             this.btnOrder = new Guna.UI2.WinForms.Guna2Button();
@@ -40,7 +40,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.ExitIcon = new Guna.UI2.WinForms.Guna2PictureBox();
             this.MainPanel = new System.Windows.Forms.Panel();
-            this.btnCart = new Guna.UI2.WinForms.Guna2Button();
             this.guna2GradientPanel1.SuspendLayout();
             this.guna2Panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ExitIcon)).BeginInit();
@@ -50,7 +49,6 @@
             // 
             this.guna2GradientPanel1.Controls.Add(this.btnCart);
             this.guna2GradientPanel1.Controls.Add(this.btnSwitchAccount);
-            this.guna2GradientPanel1.Controls.Add(this.btnReport);
             this.guna2GradientPanel1.Controls.Add(this.panelHover);
             this.guna2GradientPanel1.Controls.Add(this.btnHistory);
             this.guna2GradientPanel1.Controls.Add(this.btnOrder);
@@ -62,6 +60,25 @@
             this.guna2GradientPanel1.Name = "guna2GradientPanel1";
             this.guna2GradientPanel1.Size = new System.Drawing.Size(200, 639);
             this.guna2GradientPanel1.TabIndex = 15;
+            // 
+            // btnCart
+            // 
+            this.btnCart.BackColor = System.Drawing.Color.Transparent;
+            this.btnCart.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnCart.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnCart.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnCart.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnCart.FillColor = System.Drawing.Color.Transparent;
+            this.btnCart.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCart.ForeColor = System.Drawing.Color.White;
+            this.btnCart.HoverState.FillColor = System.Drawing.Color.White;
+            this.btnCart.HoverState.ForeColor = System.Drawing.Color.Black;
+            this.btnCart.Location = new System.Drawing.Point(12, 129);
+            this.btnCart.Name = "btnCart";
+            this.btnCart.Size = new System.Drawing.Size(188, 43);
+            this.btnCart.TabIndex = 6;
+            this.btnCart.Text = "Cart";
+            this.btnCart.Click += new System.EventHandler(this.btnCart_Click);
             // 
             // btnSwitchAccount
             // 
@@ -88,25 +105,6 @@
             this.btnSwitchAccount.TabIndex = 5;
             this.btnSwitchAccount.Text = "Switch account";
             this.btnSwitchAccount.Click += new System.EventHandler(this.btnSwitchAccount_Click);
-            // 
-            // btnReport
-            // 
-            this.btnReport.BackColor = System.Drawing.Color.Transparent;
-            this.btnReport.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnReport.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnReport.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnReport.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnReport.FillColor = System.Drawing.Color.Transparent;
-            this.btnReport.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnReport.ForeColor = System.Drawing.Color.White;
-            this.btnReport.HoverState.FillColor = System.Drawing.Color.White;
-            this.btnReport.HoverState.ForeColor = System.Drawing.Color.Black;
-            this.btnReport.Location = new System.Drawing.Point(12, 215);
-            this.btnReport.Name = "btnReport";
-            this.btnReport.Size = new System.Drawing.Size(188, 43);
-            this.btnReport.TabIndex = 2;
-            this.btnReport.Text = "Sales Report";
-            this.btnReport.Click += new System.EventHandler(this.btnReport_Click);
             // 
             // panelHover
             // 
@@ -235,25 +233,6 @@
             this.MainPanel.Size = new System.Drawing.Size(996, 602);
             this.MainPanel.TabIndex = 17;
             // 
-            // btnCart
-            // 
-            this.btnCart.BackColor = System.Drawing.Color.Transparent;
-            this.btnCart.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnCart.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnCart.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnCart.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnCart.FillColor = System.Drawing.Color.Transparent;
-            this.btnCart.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCart.ForeColor = System.Drawing.Color.White;
-            this.btnCart.HoverState.FillColor = System.Drawing.Color.White;
-            this.btnCart.HoverState.ForeColor = System.Drawing.Color.Black;
-            this.btnCart.Location = new System.Drawing.Point(12, 129);
-            this.btnCart.Name = "btnCart";
-            this.btnCart.Size = new System.Drawing.Size(188, 43);
-            this.btnCart.TabIndex = 6;
-            this.btnCart.Text = "Cart";
-            this.btnCart.Click += new System.EventHandler(this.btnCart_Click);
-            // 
             // ClerksDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -279,7 +258,6 @@
 
         private Guna.UI2.WinForms.Guna2GradientPanel guna2GradientPanel1;
         private Guna.UI2.WinForms.Guna2Button btnSwitchAccount;
-        private Guna.UI2.WinForms.Guna2Button btnReport;
         private System.Windows.Forms.Panel panelHover;
         private Guna.UI2.WinForms.Guna2Button btnHistory;
         private Guna.UI2.WinForms.Guna2Button btnOrder;
