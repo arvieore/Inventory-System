@@ -8,6 +8,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -21,6 +22,7 @@ namespace Inventory_Management_System.Forms
         private DB_InventoryEntities db;
         private Accounts Accounts;
         private bool pass = false;
+        private String pattern = @"[.,'""\]\[{^@&#!%()_=+}\\|:;*]";
         public EditAccount(int ID, ManageAccount manageAccount)
         {
             InitializeComponent();
@@ -46,7 +48,7 @@ namespace Inventory_Management_System.Forms
 
                         txtFirstname.Text = accounts.user_firstname;
                         txtLastname.Text = accounts.user_lastname;
-                        txtEmail.Text = accounts.user_email;
+                        txtEmail.Text = accounts.user_email.Replace("@gmail.com", "");
                         txtAddress.Text = accounts.user_Address;
                         txtPhone.Text = accounts.user_phone;
 
@@ -124,6 +126,41 @@ namespace Inventory_Management_System.Forms
             {
                 errorProvider.SetError(txtPassword, "Field is empty!");
             }
+            else if (Regex.IsMatch(txtFirstname.Text, pattern))
+            {
+                MessageBox.Show("Please avoid using Symbols.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                errorProvider.SetError(txtFirstname, "Avoid using symbols!");
+                txtFirstname.BorderColor = Color.Red;
+                return;
+            }
+            else if (Regex.IsMatch(txtFirstname.Text, @"\d"))
+            {
+                MessageBox.Show("The firstname contain a number(s).", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                errorProvider.SetError(txtFirstname, "Contain a number(s)!");
+                txtFirstname.BorderColor = Color.Red;
+                return;
+            }
+            else if (Regex.IsMatch(txtLastname.Text, pattern))
+            {
+                MessageBox.Show("Please avoid using Symbols.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                errorProvider.SetError(txtLastname, "Avoid using symbols!");
+                txtLastname.BorderColor = Color.Red;
+                return;
+            }
+            else if (Regex.IsMatch(txtLastname.Text, @"\d"))
+            {
+                MessageBox.Show("The lastname contain a number(s).", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                errorProvider.SetError(txtFirstname, "Contain a number(s)!");
+                txtLastname.BorderColor = Color.Red;
+                return;
+            }
+            else if (Regex.IsMatch(txtEmail.Text, pattern))
+            {
+                MessageBox.Show("Please avoid using Symbols.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                errorProvider.SetError(txtEmail, "Avoid using symbols!");
+                txtEmail.BorderColor = Color.Red;
+                return;
+            }
             else
             {
                 NoIssue();
@@ -131,22 +168,30 @@ namespace Inventory_Management_System.Forms
         }
         private void NoIssue()
         {
-            Accounts = new Accounts
+            try
             {
-                user_ID = Convert.ToInt32(txtID.Text),
-                user_firstname = txtFirstname.Text,
-                user_lastname = txtLastname.Text,
-                user_email = txtEmail.Text,
-                user_Address = txtAddress.Text,
-                user_phone = txtPhone.Text,
-                user_position = Cbox_Position.Text,
-                user_name = txtUsername.Text,
-                user_password = txtPassword.Text
-            };
-            commands = new Commands();
-            commands.EditAccountCommand(Accounts);
-            Clear();
-            RefreshTable();
+                string userEmail = txtEmail.Text + "" + DefaultEmailSmbol.Text;
+                Accounts = new Accounts
+                {
+                    user_ID = Convert.ToInt32(txtID.Text),
+                    user_firstname = txtFirstname.Text,
+                    user_lastname = txtLastname.Text,
+                    user_email = userEmail,
+                    user_Address = txtAddress.Text,
+                    user_phone = txtPhone.Text,
+                    user_position = Cbox_Position.Text,
+                    user_name = txtUsername.Text,
+                    user_password = txtPassword.Text
+                };
+                commands = new Commands();
+                commands.EditAccountCommand(Accounts);
+                Clear();
+                RefreshTable();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Invalid" + ex.Message);
+            }
         }
         private void Clear()
         {

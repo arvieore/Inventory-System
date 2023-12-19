@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="5791d7a5a0a44289b9de235bacd0385f" Name="Diagram1" ZoomLevel="62">
+      <Diagram DiagramId="5791d7a5a0a44289b9de235bacd0385f" Name="Diagram1" ZoomLevel="51">
         <EntityTypeShape EntityType="InventoryDBModel.Accounts" Width="1.5" PointX="0.75" PointY="0.5" IsExpanded="true" />
         <EntityTypeShape EntityType="InventoryDBModel.Category" Width="1.5" PointX="0.75" PointY="4.75" />
         <EntityTypeShape EntityType="InventoryDBModel.Products" Width="1.5" PointX="3" PointY="4.125" />
@@ -15,14 +15,16 @@
         <AssociationConnector Association="InventoryDBModel.FK_Cart_Category" />
         <AssociationConnector Association="InventoryDBModel.FK_Cart_Products" />
         <AssociationConnector Association="InventoryDBModel.FK_Cart_Accounts" />
-        <EntityTypeShape EntityType="InventoryDBModel.vw_LastOrderNumber" Width="1.5" PointX="3.375" PointY="0.75" />
-        <EntityTypeShape EntityType="InventoryDBModel.vw_PendingOrders" Width="1.5" PointX="5.375" PointY="0.75" />
+        <EntityTypeShape EntityType="InventoryDBModel.vw_LastOrderNumber" Width="1.5" PointX="6.375" PointY="9.75" />
+        <EntityTypeShape EntityType="InventoryDBModel.vw_PendingOrders" Width="1.5" PointX="8.25" PointY="9.75" />
         <EntityTypeShape EntityType="InventoryDBModel.HistoryTransaction" Width="1.5" PointX="8.5" PointY="3" />
         <AssociationConnector Association="InventoryDBModel.FK_HistoryTransaction_Accounts" />
         <AssociationConnector Association="InventoryDBModel.FK_HistoryTransaction_Cart" />
         <AssociationConnector Association="InventoryDBModel.FK_HistoryTransaction_Category1" />
         <AssociationConnector Association="InventoryDBModel.FK_HistoryTransaction_Products" />
-        <EntityTypeShape EntityType="InventoryDBModel.vw_HistoryTransaction" Width="1.5" PointX="8.5" PointY="6.375" />
+        <EntityTypeShape EntityType="InventoryDBModel.vw_Transaction_History" Width="1.5" PointX="4.5" PointY="9.75" />
+        <EntityTypeShape EntityType="InventoryDBModel.vw_SelectProducts" Width="1.5" PointX="0.75" PointY="9.75" />
+        <EntityTypeShape EntityType="InventoryDBModel.vw_BestSeller" Width="1.5" PointX="2.625" PointY="9.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -15,28 +15,18 @@ namespace Inventory_Management_System.Models
 using System;
     using System.Collections.Generic;
     
-public partial class vw_HistoryTransaction
+public partial class vw_BestSeller
 {
 
     public int ID { get; set; }
 
-    public int Order_no { get; set; }
-
-    public string Clerk { get; set; }
-
     public string Products { get; set; }
 
-    public string Category { get; set; }
+    public Nullable<int> Number_of_orders { get; set; }
 
-    public string Quantity { get; set; }
+    public Nullable<int> Total_quantity { get; set; }
 
     public Nullable<decimal> Total { get; set; }
-
-    public Nullable<System.DateTime> Date { get; set; }
-
-    public string Customer { get; set; }
-
-    public string Address { get; set; }
 
 }
 

@@ -1,1 +1,2 @@
-# Inventory-System
+# InventoryManagementSystemFinal
+Inventory Management System DBSYS

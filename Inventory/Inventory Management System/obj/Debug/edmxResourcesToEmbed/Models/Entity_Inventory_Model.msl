@@ -186,9 +186,9 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="vw_HistoryTransaction">
-      <EntityTypeMapping TypeName="InventoryDBModel.vw_HistoryTransaction">
-        <MappingFragment StoreEntitySet="vw_HistoryTransaction">
+    <EntitySetMapping Name="vw_Transaction_History">
+      <EntityTypeMapping TypeName="InventoryDBModel.vw_Transaction_History">
+        <MappingFragment StoreEntitySet="vw_Transaction_History">
           <ScalarProperty Name="Address" ColumnName="Address" />
           <ScalarProperty Name="Customer" ColumnName="Customer" />
           <ScalarProperty Name="Date" ColumnName="Date" />
@@ -198,6 +198,29 @@
           <ScalarProperty Name="Products" ColumnName="Products" />
           <ScalarProperty Name="Clerk" ColumnName="Clerk" />
           <ScalarProperty Name="Order_no" ColumnName="Order no" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vw_SelectProducts">
+      <EntityTypeMapping TypeName="InventoryDBModel.vw_SelectProducts">
+        <MappingFragment StoreEntitySet="vw_SelectProducts">
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="SKU" ColumnName="SKU" />
+          <ScalarProperty Name="Product_Name" ColumnName="Product Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vw_BestSeller">
+      <EntityTypeMapping TypeName="InventoryDBModel.vw_BestSeller">
+        <MappingFragment StoreEntitySet="vw_BestSeller">
+          <ScalarProperty Name="Total" ColumnName="Total" />
+          <ScalarProperty Name="Total_quantity" ColumnName="Total quantity" />
+          <ScalarProperty Name="Number_of_orders" ColumnName="Number of orders" />
+          <ScalarProperty Name="Products" ColumnName="Products" />
           <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>

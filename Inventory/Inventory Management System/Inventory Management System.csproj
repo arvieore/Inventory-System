@@ -187,7 +187,7 @@
     <Compile Include="Models\sp_ValidateAccount_Result.cs">
       <DependentUpon>Entity_Inventory_Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\vw_HistoryTransaction.cs">
+    <Compile Include="Models\vw_BestSeller.cs">
       <DependentUpon>Entity_Inventory_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\vw_LastOrderNumber.cs">
@@ -197,6 +197,12 @@
       <DependentUpon>Entity_Inventory_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\vw_SelectedPanel_Result.cs">
+      <DependentUpon>Entity_Inventory_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vw_SelectProducts.cs">
+      <DependentUpon>Entity_Inventory_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vw_Transaction_History.cs">
       <DependentUpon>Entity_Inventory_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />

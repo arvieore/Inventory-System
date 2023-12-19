@@ -103,7 +103,9 @@
       <End Role="Products" EntitySet="Products" />
       <End Role="HistoryTransaction" EntitySet="HistoryTransaction" />
     </AssociationSet>
-    <EntitySet Name="vw_HistoryTransaction" EntityType="InventoryDBModel.vw_HistoryTransaction" />
+    <EntitySet Name="vw_Transaction_History" EntityType="InventoryDBModel.vw_Transaction_History" />
+    <EntitySet Name="vw_SelectProducts" EntityType="InventoryDBModel.vw_SelectProducts" />
+    <EntitySet Name="vw_BestSeller" EntityType="InventoryDBModel.vw_BestSeller" />
   </EntityContainer>
   <ComplexType Name="sp_ValidateAccount_Result">
     <Property Type="Int32" Name="user_ID" Nullable="false" />
@@ -400,10 +402,11 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityType Name="vw_HistoryTransaction">
+  <EntityType Name="vw_Transaction_History">
     <Key>
       <PropertyRef Name="ID" />
       <PropertyRef Name="Order_no" />
+      <PropertyRef Name="Quantity" />
       <PropertyRef Name="Customer" />
       <PropertyRef Name="Address" />
     </Key>
@@ -412,10 +415,31 @@
     <Property Name="Clerk" Type="String" MaxLength="114" FixedLength="false" Unicode="false" />
     <Property Name="Products" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Category" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="Quantity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Quantity" Type="Int32" Nullable="false" />
     <Property Name="Total" Type="Decimal" Precision="38" Scale="2" />
     <Property Name="Date" Type="DateTime" Precision="0" />
     <Property Name="Customer" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Address" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="vw_SelectProducts">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Product_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SKU" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Quantity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Price" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="vw_BestSeller">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="Products" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Number_of_orders" Type="Int32" />
+    <Property Name="Total_quantity" Type="Int32" />
+    <Property Name="Total" Type="Decimal" Precision="38" Scale="2" />
   </EntityType>
 </Schema>

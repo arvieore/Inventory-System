@@ -67,3 +67,34 @@ C:\Users\acer\OneDrive\Desktop\Inventory\Inventory-System\Inventory\Inventory Ma
 C:\Users\acer\OneDrive\Desktop\Inventory\Inventory-System\Inventory\Inventory Management System\obj\Debug\Inventory_Management_System.UserControls.OrderProduct.resources
 C:\Users\acer\OneDrive\Desktop\Inventory\Inventory-System\Inventory\Inventory Management System\obj\Debug\Inventory_Management_System.UserControls.CartProduct.resources
 C:\Users\acer\OneDrive\Desktop\Inventory\Inventory-System\Inventory\Inventory Management System\obj\Debug\Inventory_Management_System.UserControls.HistoryControl.resources
+C:\Users\acer\OneDrive\Desktop\Inventory\InventoryManagementSystemFinal\Inventory\Inventory Management System\bin\Debug\Inventory Management System.exe.config
+C:\Users\acer\OneDrive\Desktop\Inventory\InventoryManagementSystemFinal\Inventory\Inventory Management System\bin\Debug\Inventory Management System.exe
+C:\Users\acer\OneDrive\Desktop\Inventory\InventoryManagementSystemFinal\Inventory\Inventory Management System\bin\Debug\Inventory Management System.pdb
+C:\Users\acer\OneDrive\Desktop\Inventory\InventoryManagementSystemFinal\Inventory\Inventory Management System\bin\Debug\EntityFramework.dll
+C:\Users\acer\OneDrive\Desktop\Inventory\InventoryManagementSystemFinal\Inventory\Inventory Management System\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\acer\OneDrive\Desktop\Inventory\InventoryManagementSystemFinal\Inventory\Inventory Management System\bin\Debug\Guna.UI2.dll
+C:\Users\acer\OneDrive\Desktop\Inventory\InventoryManagementSystemFinal\Inventory\Inventory Management System\bin\Debug\EntityFramework.xml
+C:\Users\acer\OneDrive\Desktop\Inventory\InventoryManagementSystemFinal\Inventory\Inventory Management System\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\acer\OneDrive\Desktop\Inventory\InventoryManagementSystemFinal\Inventory\Inventory Management System\obj\Debug\Inventory Management System.csproj.AssemblyReference.cache
+C:\Users\acer\OneDrive\Desktop\Inventory\InventoryManagementSystemFinal\Inventory\Inventory Management System\obj\Debug\Inventory_Management_System.Forms.AddForm.resources
+C:\Users\acer\OneDrive\Desktop\Inventory\InventoryManagementSystemFinal\Inventory\Inventory Management System\obj\Debug\Inventory_Management_System.Forms.AdminDashboard.resources
+C:\Users\acer\OneDrive\Desktop\Inventory\InventoryManagementSystemFinal\Inventory\Inventory Management System\obj\Debug\Inventory_Management_System.Forms.ClerksDashboard.resources
+C:\Users\acer\OneDrive\Desktop\Inventory\InventoryManagementSystemFinal\Inventory\Inventory Management System\obj\Debug\Inventory_Management_System.Forms.Create.resources
+C:\Users\acer\OneDrive\Desktop\Inventory\InventoryManagementSystemFinal\Inventory\Inventory Management System\obj\Debug\Inventory_Management_System.Forms.EditAccount.resources
+C:\Users\acer\OneDrive\Desktop\Inventory\InventoryManagementSystemFinal\Inventory\Inventory Management System\obj\Debug\Inventory_Management_System.Forms.EditForm.resources
+C:\Users\acer\OneDrive\Desktop\Inventory\InventoryManagementSystemFinal\Inventory\Inventory Management System\obj\Debug\Inventory_Management_System.Login.resources
+C:\Users\acer\OneDrive\Desktop\Inventory\InventoryManagementSystemFinal\Inventory\Inventory Management System\obj\Debug\Inventory_Management_System.Forms.Registration.resources
+C:\Users\acer\OneDrive\Desktop\Inventory\InventoryManagementSystemFinal\Inventory\Inventory Management System\obj\Debug\Inventory_Management_System.Functions.ManagerDashboard.resources
+C:\Users\acer\OneDrive\Desktop\Inventory\InventoryManagementSystemFinal\Inventory\Inventory Management System\obj\Debug\Inventory_Management_System.Properties.Resources.resources
+C:\Users\acer\OneDrive\Desktop\Inventory\InventoryManagementSystemFinal\Inventory\Inventory Management System\obj\Debug\Inventory_Management_System.UserControls.CartProduct.resources
+C:\Users\acer\OneDrive\Desktop\Inventory\InventoryManagementSystemFinal\Inventory\Inventory Management System\obj\Debug\Inventory_Management_System.UserControls.HistoryControl.resources
+C:\Users\acer\OneDrive\Desktop\Inventory\InventoryManagementSystemFinal\Inventory\Inventory Management System\obj\Debug\Inventory_Management_System.UserControls.ManageAccount.resources
+C:\Users\acer\OneDrive\Desktop\Inventory\InventoryManagementSystemFinal\Inventory\Inventory Management System\obj\Debug\Inventory_Management_System.UserControls.OrderProduct.resources
+C:\Users\acer\OneDrive\Desktop\Inventory\InventoryManagementSystemFinal\Inventory\Inventory Management System\obj\Debug\Inventory_Management_System.UserControls.ProductControl.resources
+C:\Users\acer\OneDrive\Desktop\Inventory\InventoryManagementSystemFinal\Inventory\Inventory Management System\obj\Debug\Inventory_Management_System.UserControls.SalesReport.resources
+C:\Users\acer\OneDrive\Desktop\Inventory\InventoryManagementSystemFinal\Inventory\Inventory Management System\obj\Debug\Inventory_Management_System.UserControls.Summary.resources
+C:\Users\acer\OneDrive\Desktop\Inventory\InventoryManagementSystemFinal\Inventory\Inventory Management System\obj\Debug\Inventory Management System.csproj.GenerateResource.cache
+C:\Users\acer\OneDrive\Desktop\Inventory\InventoryManagementSystemFinal\Inventory\Inventory Management System\obj\Debug\Inventory Management System.csproj.CoreCompileInputs.cache
+C:\Users\acer\OneDrive\Desktop\Inventory\InventoryManagementSystemFinal\Inventory\Inventory Management System\obj\Debug\Inventory Management System.csproj.CopyComplete
+C:\Users\acer\OneDrive\Desktop\Inventory\InventoryManagementSystemFinal\Inventory\Inventory Management System\obj\Debug\Inventory Management System.exe
+C:\Users\acer\OneDrive\Desktop\Inventory\InventoryManagementSystemFinal\Inventory\Inventory Management System\obj\Debug\Inventory Management System.pdb

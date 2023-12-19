@@ -75,24 +75,16 @@
           <Property Name="roleName" Type="varchar" MaxLength="50" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'InventoryDB.dbo.vw_HistoryTransaction' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <EntityType Name="vw_HistoryTransaction">
+warning 6002: The table/view 'InventoryDB.dbo.vw_BestSeller' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vw_BestSeller">
           <Key>
             <PropertyRef Name="ID" />
-            <PropertyRef Name="Order no" />
-            <PropertyRef Name="Customer" />
-            <PropertyRef Name="Address" />
           </Key>
           <Property Name="ID" Type="int" Nullable="false" />
-          <Property Name="Order no" Type="int" Nullable="false" />
-          <Property Name="Clerk" Type="varchar" MaxLength="114" />
           <Property Name="Products" Type="varchar" MaxLength="50" />
-          <Property Name="Category" Type="varchar" MaxLength="50" />
-          <Property Name="Quantity" Type="varchar" MaxLength="50" />
+          <Property Name="Number of orders" Type="int" />
+          <Property Name="Total quantity" Type="int" />
           <Property Name="Total" Type="decimal" Precision="38" Scale="2" />
-          <Property Name="Date" Type="date" />
-          <Property Name="Customer" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Address" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'InventoryDB.dbo.vw_LastOrderNumber' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -124,6 +116,40 @@ warning 6002: The table/view 'InventoryDB.dbo.vw_PendingOrders' does not have a 
           <Property Name="Customer" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Address" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Status" Type="varchar" MaxLength="15" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'InventoryDB.dbo.vw_SelectProducts' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vw_SelectProducts">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Product Name" Type="varchar" MaxLength="50" />
+          <Property Name="SKU" Type="varchar" MaxLength="50" />
+          <Property Name="Quantity" Type="varchar" MaxLength="50" />
+          <Property Name="Price" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="Description" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'InventoryDB.dbo.vw_Transaction_History' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vw_Transaction_History">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="Order no" />
+            <PropertyRef Name="Quantity" />
+            <PropertyRef Name="Customer" />
+            <PropertyRef Name="Address" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Order no" Type="int" Nullable="false" />
+          <Property Name="Clerk" Type="varchar" MaxLength="114" />
+          <Property Name="Products" Type="varchar" MaxLength="50" />
+          <Property Name="Category" Type="varchar" MaxLength="50" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+          <Property Name="Total" Type="decimal" Precision="38" Scale="2" />
+          <Property Name="Date" Type="date" />
+          <Property Name="Customer" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Address" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <Association Name="FK_Accounts_Role">
           <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
@@ -277,19 +303,14 @@ warning 6002: The table/view 'InventoryDB.dbo.vw_PendingOrders' does not have a 
           <EntitySet Name="HistoryTransaction" EntityType="Self.HistoryTransaction" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="vw_HistoryTransaction" EntityType="Self.vw_HistoryTransaction" store:Type="Views" store:Schema="dbo">
+          <EntitySet Name="vw_BestSeller" EntityType="Self.vw_BestSeller" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
-    [vw_HistoryTransaction].[ID] AS [ID], 
-    [vw_HistoryTransaction].[Order no] AS [Order no], 
-    [vw_HistoryTransaction].[Clerk] AS [Clerk], 
-    [vw_HistoryTransaction].[Products] AS [Products], 
-    [vw_HistoryTransaction].[Category] AS [Category], 
-    [vw_HistoryTransaction].[Quantity] AS [Quantity], 
-    [vw_HistoryTransaction].[Total] AS [Total], 
-    [vw_HistoryTransaction].[Date] AS [Date], 
-    [vw_HistoryTransaction].[Customer] AS [Customer], 
-    [vw_HistoryTransaction].[Address] AS [Address]
-    FROM [dbo].[vw_HistoryTransaction] AS [vw_HistoryTransaction]</DefiningQuery>
+    [vw_BestSeller].[ID] AS [ID], 
+    [vw_BestSeller].[Products] AS [Products], 
+    [vw_BestSeller].[Number of orders] AS [Number of orders], 
+    [vw_BestSeller].[Total quantity] AS [Total quantity], 
+    [vw_BestSeller].[Total] AS [Total]
+    FROM [dbo].[vw_BestSeller] AS [vw_BestSeller]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="vw_LastOrderNumber" EntityType="Self.vw_LastOrderNumber" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -310,6 +331,30 @@ warning 6002: The table/view 'InventoryDB.dbo.vw_PendingOrders' does not have a 
     [vw_PendingOrders].[Address] AS [Address], 
     [vw_PendingOrders].[Status] AS [Status]
     FROM [dbo].[vw_PendingOrders] AS [vw_PendingOrders]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vw_SelectProducts" EntityType="Self.vw_SelectProducts" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_SelectProducts].[ID] AS [ID], 
+    [vw_SelectProducts].[Product Name] AS [Product Name], 
+    [vw_SelectProducts].[SKU] AS [SKU], 
+    [vw_SelectProducts].[Quantity] AS [Quantity], 
+    [vw_SelectProducts].[Price] AS [Price], 
+    [vw_SelectProducts].[Description] AS [Description]
+    FROM [dbo].[vw_SelectProducts] AS [vw_SelectProducts]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vw_Transaction_History" EntityType="Self.vw_Transaction_History" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_Transaction_History].[ID] AS [ID], 
+    [vw_Transaction_History].[Order no] AS [Order no], 
+    [vw_Transaction_History].[Clerk] AS [Clerk], 
+    [vw_Transaction_History].[Products] AS [Products], 
+    [vw_Transaction_History].[Category] AS [Category], 
+    [vw_Transaction_History].[Quantity] AS [Quantity], 
+    [vw_Transaction_History].[Total] AS [Total], 
+    [vw_Transaction_History].[Date] AS [Date], 
+    [vw_Transaction_History].[Customer] AS [Customer], 
+    [vw_Transaction_History].[Address] AS [Address]
+    FROM [dbo].[vw_Transaction_History] AS [vw_Transaction_History]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="FK_Accounts_Role" Association="Self.FK_Accounts_Role">
             <End Role="Role" EntitySet="Role" />
@@ -456,7 +501,9 @@ warning 6002: The table/view 'InventoryDB.dbo.vw_PendingOrders' does not have a 
             <End Role="Products" EntitySet="Products" />
             <End Role="HistoryTransaction" EntitySet="HistoryTransaction" />
           </AssociationSet>
-          <EntitySet Name="vw_HistoryTransaction" EntityType="InventoryDBModel.vw_HistoryTransaction" />
+          <EntitySet Name="vw_Transaction_History" EntityType="InventoryDBModel.vw_Transaction_History" />
+          <EntitySet Name="vw_SelectProducts" EntityType="InventoryDBModel.vw_SelectProducts" />
+          <EntitySet Name="vw_BestSeller" EntityType="InventoryDBModel.vw_BestSeller" />
         </EntityContainer>
         <ComplexType Name="sp_ValidateAccount_Result">
           <Property Type="Int32" Name="user_ID" Nullable="false" />
@@ -753,10 +800,11 @@ warning 6002: The table/view 'InventoryDB.dbo.vw_PendingOrders' does not have a 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="vw_HistoryTransaction">
+        <EntityType Name="vw_Transaction_History">
           <Key>
             <PropertyRef Name="ID" />
             <PropertyRef Name="Order_no" />
+            <PropertyRef Name="Quantity" />
             <PropertyRef Name="Customer" />
             <PropertyRef Name="Address" />
           </Key>
@@ -765,11 +813,32 @@ warning 6002: The table/view 'InventoryDB.dbo.vw_PendingOrders' does not have a 
           <Property Name="Clerk" Type="String" MaxLength="114" FixedLength="false" Unicode="false" />
           <Property Name="Products" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Category" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Quantity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
           <Property Name="Total" Type="Decimal" Precision="38" Scale="2" />
           <Property Name="Date" Type="DateTime" Precision="0" />
           <Property Name="Customer" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Address" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="vw_SelectProducts">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Product_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SKU" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Quantity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Price" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="vw_BestSeller">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Products" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Number_of_orders" Type="Int32" />
+          <Property Name="Total_quantity" Type="Int32" />
+          <Property Name="Total" Type="Decimal" Precision="38" Scale="2" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -962,9 +1031,9 @@ warning 6002: The table/view 'InventoryDB.dbo.vw_PendingOrders' does not have a 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="vw_HistoryTransaction">
-            <EntityTypeMapping TypeName="InventoryDBModel.vw_HistoryTransaction">
-              <MappingFragment StoreEntitySet="vw_HistoryTransaction">
+          <EntitySetMapping Name="vw_Transaction_History">
+            <EntityTypeMapping TypeName="InventoryDBModel.vw_Transaction_History">
+              <MappingFragment StoreEntitySet="vw_Transaction_History">
                 <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="Customer" ColumnName="Customer" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
@@ -974,6 +1043,29 @@ warning 6002: The table/view 'InventoryDB.dbo.vw_PendingOrders' does not have a 
                 <ScalarProperty Name="Products" ColumnName="Products" />
                 <ScalarProperty Name="Clerk" ColumnName="Clerk" />
                 <ScalarProperty Name="Order_no" ColumnName="Order no" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_SelectProducts">
+            <EntityTypeMapping TypeName="InventoryDBModel.vw_SelectProducts">
+              <MappingFragment StoreEntitySet="vw_SelectProducts">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="SKU" ColumnName="SKU" />
+                <ScalarProperty Name="Product_Name" ColumnName="Product Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_BestSeller">
+            <EntityTypeMapping TypeName="InventoryDBModel.vw_BestSeller">
+              <MappingFragment StoreEntitySet="vw_BestSeller">
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="Total_quantity" ColumnName="Total quantity" />
+                <ScalarProperty Name="Number_of_orders" ColumnName="Number of orders" />
+                <ScalarProperty Name="Products" ColumnName="Products" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

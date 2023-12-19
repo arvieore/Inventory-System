@@ -233,6 +233,7 @@ namespace Inventory_Management_System.UserControls
                 int CartID = Convert.ToInt32(selectedRow.Cells["ID"].Value);
                 String CartStatus = selectedRow.Cells["Status"].Value.ToString();
                 String CategoryName = selectedRow.Cells["Category"].Value.ToString();
+                int CartQty = Convert.ToInt32(selectedRow.Cells["Quantity"].Value); //Quantity sa Cart
 
                 int categoryID = db.Category.Where(c => c.categoryName == CategoryName).Select(c => c.categoryID).FirstOrDefault();
 

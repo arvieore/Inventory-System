@@ -50,6 +50,7 @@
             this.label9 = new System.Windows.Forms.Label();
             this.txtPassword = new Guna.UI2.WinForms.Guna2TextBox();
             this.picPassword = new System.Windows.Forms.PictureBox();
+            this.DefaultEmailSmbol = new Guna.UI2.WinForms.Guna2TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picPassword)).BeginInit();
             this.SuspendLayout();
@@ -162,7 +163,7 @@
             this.txtEmail.PasswordChar = '\0';
             this.txtEmail.PlaceholderText = "Email";
             this.txtEmail.SelectedText = "";
-            this.txtEmail.Size = new System.Drawing.Size(276, 36);
+            this.txtEmail.Size = new System.Drawing.Size(132, 36);
             this.txtEmail.TabIndex = 16;
             // 
             // txtAddress
@@ -345,6 +346,27 @@
             this.picPassword.TabStop = false;
             this.picPassword.Click += new System.EventHandler(this.picPassword_Click);
             // 
+            // DefaultEmailSmbol
+            // 
+            this.DefaultEmailSmbol.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.DefaultEmailSmbol.DefaultText = "@gmail.com";
+            this.DefaultEmailSmbol.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.DefaultEmailSmbol.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.DefaultEmailSmbol.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.DefaultEmailSmbol.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.DefaultEmailSmbol.Enabled = false;
+            this.DefaultEmailSmbol.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.DefaultEmailSmbol.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.DefaultEmailSmbol.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.DefaultEmailSmbol.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.DefaultEmailSmbol.Location = new System.Drawing.Point(167, 144);
+            this.DefaultEmailSmbol.Name = "DefaultEmailSmbol";
+            this.DefaultEmailSmbol.PasswordChar = '\0';
+            this.DefaultEmailSmbol.PlaceholderText = "@gmail.com";
+            this.DefaultEmailSmbol.SelectedText = "";
+            this.DefaultEmailSmbol.Size = new System.Drawing.Size(132, 36);
+            this.DefaultEmailSmbol.TabIndex = 16;
+            // 
             // EditAccount
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -365,6 +387,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.txtPhone);
+            this.Controls.Add(this.DefaultEmailSmbol);
             this.Controls.Add(this.txtEmail);
             this.Controls.Add(this.txtAddress);
             this.Controls.Add(this.txtLastname);
@@ -406,5 +429,6 @@
         private System.Windows.Forms.Label label9;
         private Guna.UI2.WinForms.Guna2TextBox txtPassword;
         private System.Windows.Forms.PictureBox picPassword;
+        private Guna.UI2.WinForms.Guna2TextBox DefaultEmailSmbol;
     }
 }
